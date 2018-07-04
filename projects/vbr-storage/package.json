@@ -1,0 +1,13 @@
+{
+  "name": "@viberlab/vbr-storage",
+  "version": "0.0.1",
+  "author": "ViberLab",
+  "description": "Local and session storage angular module",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/cdk": "^6.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "rxjs": "^6.0.0"
+  }
+}

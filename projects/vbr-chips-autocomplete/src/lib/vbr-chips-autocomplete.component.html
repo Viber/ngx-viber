@@ -1,0 +1,19 @@
+<mat-chip-list #chipsList>
+  <mat-chip *ngFor="let item of chippedKeys"
+            [ngStyle]="{'color': getByKey(item).color}"
+            (removed)="removeChip(item)">
+    {{ getByKey(item).label }}
+    <mat-icon matChipRemove>cancel</mat-icon>
+  </mat-chip>
+  <input #chipsInput matInput
+         [placeholder]="placeholder"
+         [formControl]="chipsControl"
+         [matChipInputFor]="chipsList"
+         [matAutocomplete]="auto"
+         (keyup)="panel()">
+</mat-chip-list>
+
+<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+  <ng-content></ng-content>
+  <mat-option class="hidden"></mat-option>
+</mat-autocomplete>
