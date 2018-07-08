@@ -40,6 +40,12 @@
       ],
       "vbr-input-params-templates/*": [
         "dist/vbr-input-params-templates/*"
+      ],
+      "vbr-translate": [
+        "dist/vbr-translate"
+      ],
+      "vbr-translate/*": [
+        "dist/vbr-translate/*"
       ]
     }
   }
