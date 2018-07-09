@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 /**
@@ -18,7 +17,6 @@ export interface VbrLanguageDetector {
   getLanguage(): Observable<string>;
 }
 
-@Injectable()
 export class VbrLanguageDetectorFake implements VbrLanguageDetector {
   getLanguage() {
     return of(null);

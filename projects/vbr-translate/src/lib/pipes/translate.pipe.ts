@@ -3,7 +3,7 @@ import {
   PipeTransform
 } from '@angular/core';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { VBR_TRANSLATE_PREFIX } from '../constants';
+import { VBR_TRANSLATE_PREFIX } from '../tokens';
 
 /**
  * Upgraded version of ngx-translate Translate Pipe

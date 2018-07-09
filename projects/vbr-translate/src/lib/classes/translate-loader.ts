@@ -1,7 +1,7 @@
 import { Observable, of, zip } from 'rxjs';
 import { TranslateLoader } from '@ngx-translate/core';
 import { Optional } from '@angular/core';
-import { VbrTranslateService } from './languages.service';
+import { VbrTranslateService } from '../services/translate.service';
 import { catchError, map, tap } from 'rxjs/operators';
 
 export class VbrTranslateLoader implements TranslateLoader {

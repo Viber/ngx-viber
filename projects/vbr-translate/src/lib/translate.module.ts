@@ -3,21 +3,31 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import {
-  VBR_ALLOWED_LANGUAGES,
-  VBR_CUSTOM_LANGUAGE_DETECTOR,
-  VBR_DEFAULT_LANGUAGE,
+  VBR_TRANSLATE_ALLOWED_LANGUAGES,
+  VBR_TRANSLATE_LANGUAGE_DETECTOR,
+  VBR_TRANSLATE_DEFAULT_LANGUAGE,
   VBR_NAVIGATOR_TOKEN,
-  VbrDefaultLanguage,
-  VbrSupportedLanguages
-} from './constants';
-import { VbrLanguageDetectorFake, VbrTranslateService } from './services';
-import { VbrTranslatePipe, VbrTranslateAsyncPipe } from './pipes';
+  VBR_TRANSLATE_CANONICAL_CODES,
+  VBR_TRANSLATE_RTL_CODES
+} from './tokens';
 
-export interface VbrModuleConfig {
+import { VbrTranslatePipe, VbrTranslateAsyncPipe } from './pipes';
+import {
+  VbrCanonicalCodes,
+  VbrDefaultLanguageCode,
+  VbrRtlLanguageCodes,
+  VbrSupportedLanguageCodes
+} from './defaults';
+import { VbrLanguageDetectorFake } from './classes/language-detector';
+import { VbrTranslateService } from './services/translate.service';
+
+export interface VbrTranslateModuleConfig {
   allowedLanguages?: Array<string>;
   defaultLanguage?: string;
   languageDetector?: Provider;
   navigator?: Navigator;
+  rtlLanguages?: Array<string>;
+  canonicalCodes?: Array<string>;
 }
 
 @NgModule({
@@ -37,14 +47,17 @@ export interface VbrModuleConfig {
 })
 
 export class VbrTranslateModule {
-  static forRoot(config: VbrModuleConfig = {}): ModuleWithProviders {
+  static forRoot(config: VbrTranslateModuleConfig = {}): ModuleWithProviders {
     return {
       ngModule: VbrTranslateModule,
       providers: [
-        {provide: VBR_ALLOWED_LANGUAGES, useValue: config.allowedLanguages || VbrSupportedLanguages},
-        {provide: VBR_DEFAULT_LANGUAGE, useValue: config.defaultLanguage || VbrDefaultLanguage},
+        {provide: VBR_TRANSLATE_ALLOWED_LANGUAGES, useValue: config.allowedLanguages || VbrSupportedLanguageCodes},
+        {provide: VBR_TRANSLATE_DEFAULT_LANGUAGE, useValue: config.defaultLanguage || VbrDefaultLanguageCode},
+        {provide: VBR_TRANSLATE_CANONICAL_CODES, useValue: config.canonicalCodes || VbrCanonicalCodes},
+        {provide: VBR_TRANSLATE_RTL_CODES, useValue: config.rtlLanguages || VbrRtlLanguageCodes},
+
         {provide: VBR_NAVIGATOR_TOKEN, useValue: config.navigator || navigator},
-        config.languageDetector || {provide: VBR_CUSTOM_LANGUAGE_DETECTOR, useClass: VbrLanguageDetectorFake},
+        config.languageDetector || {provide: VBR_TRANSLATE_LANGUAGE_DETECTOR, useClass: VbrLanguageDetectorFake},
         VbrTranslateService
       ]
     };

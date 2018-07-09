@@ -1,17 +1,8 @@
-import { InjectionToken } from '@angular/core';
-// All supported languages with codes and names
-import { VbrLanguage, VbrLanguageDetector } from './services';
+import { VbrLanguage } from './interfaces';
 
-// Used as prefix for VbrTranslatePipe
-export const VBR_TRANSLATE_PREFIX: InjectionToken<string> = new InjectionToken('VBR_TRANSLATE_PREFIX');
+export const VbrDefaultLanguageCode = 'en';
 
-export const VBR_ALLOWED_LANGUAGES = new InjectionToken<Array<string>>('VBR_ALLOWED_LANGUAGES');
-export const VBR_DEFAULT_LANGUAGE = new InjectionToken<Array<string>>('VBR_DEFAULT_LANGUAGE');
-export const VBR_CUSTOM_LANGUAGE_DETECTOR = new InjectionToken<VbrLanguageDetector>('VBR_CUSTOM_LANGUAGE_DETECTOR');
-export const VBR_NAVIGATOR_TOKEN = new InjectionToken<Navigator>('Navigator');
-export const VbrDefaultLanguage = 'en';
-
-export const VbrTranslateAllLanguages: Array<VbrLanguage> = [
+export const VbrAllLanguages: Array<VbrLanguage> = [
   {lang: 'English', short: 'En', code: 'en'},
   {lang: 'Español', short: 'Es', code: 'es'},
   {lang: 'Français', short: 'FR', code: 'fr'},
@@ -51,7 +42,7 @@ export const VbrTranslateAllLanguages: Array<VbrLanguage> = [
   {lang: 'Українська', short: 'Укр', code: 'uk'},
 ];
 
-export const VbrSupportedLanguages: Array<string> = [
+export const VbrSupportedLanguageCodes: Array<string> = [
   'en',
   'es',
   'fr',
@@ -91,5 +82,5 @@ export const VbrSupportedLanguages: Array<string> = [
   'uk',
 ];
 
-export const VbrTranslateRtlLanguages: Array<string> = ['he', 'fa', 'ar'];
-export const VbrTranslateCanonicalCodes = {'iw': 'he', 'nb': 'no'};
+export const VbrRtlLanguageCodes: Array<string> = ['he', 'fa', 'ar'];
+export const VbrCanonicalCodes = {'iw': 'he', 'nb': 'no'};
