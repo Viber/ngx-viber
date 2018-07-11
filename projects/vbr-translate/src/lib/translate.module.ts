@@ -11,7 +11,6 @@ import {
   VBR_TRANSLATE_RTL_CODES
 } from './tokens';
 
-import { VbrTranslatePipe, VbrTranslateAsyncPipe } from './pipes';
 import {
   VbrCanonicalCodes,
   VbrDefaultLanguageCode,
@@ -20,6 +19,8 @@ import {
 } from './defaults';
 import { VbrLanguageDetectorFake } from './classes/language-detector';
 import { VbrTranslateService } from './services/translate.service';
+import { VbrTranslateAsyncPipe } from './pipes/translate-async.pipe';
+import { VbrTranslatePipe } from './pipes/translate.pipe';
 
 export interface VbrTranslateModuleConfig {
   allowedLanguages?: Array<string>;

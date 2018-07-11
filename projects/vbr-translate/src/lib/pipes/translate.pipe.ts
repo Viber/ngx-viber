@@ -34,21 +34,25 @@ import { VBR_TRANSLATE_PREFIX } from '../tokens';
   name: 'vbrTranslate',
   pure: false
 })
-export class VbrTranslatePipe implements PipeTransform {
-  private orig: TranslatePipe;
+export class VbrTranslatePipe extends TranslatePipe implements PipeTransform {
 
   constructor(translate: TranslateService,
               _ref: ChangeDetectorRef,
-              @Optional() @Inject(VBR_TRANSLATE_PREFIX) private prefix: string = '') {
-    this.orig = new TranslatePipe(translate, _ref);
+              @Optional() @Inject(VBR_TRANSLATE_PREFIX) private prefix: string
+  ) {
+    super(translate, _ref);
+  }
+
+  private composeTranslationKey(value): string {
+    if (!!this.prefix && !!value && value[0] === '.') {
+      return this.prefix.concat(value);
+    }
+
+    return value;
   }
 
   transform(value: any, ...args: any[]): any {
-    if (!!value && value[0] === '.') {
-      return this.orig.transform(this.prefix.concat(value), ...args);
-    }
-
-    return this.orig.transform(value, ...args);
+    return super.transform(this.composeTranslationKey(value), ...args);
   }
 
 }

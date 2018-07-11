@@ -21,7 +21,8 @@ export * from './lib/services/language-info.service';
 export * from './lib/classes/language-detector';
 
 // Pipes
-export * from './lib/pipes';
+export * from './lib/pipes/translate-async.pipe';
+export * from './lib/pipes/translate.pipe';
 
 // Module
 export * from './lib/translate.module';
