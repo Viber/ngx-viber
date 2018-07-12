@@ -1,8 +1,27 @@
 import {
-  ChangeDetectorRef, Inject, Optional, Pipe,
+  ChangeDetectorRef,
+  Inject,
+  OnDestroy,
+  Optional,
+  Pipe,
   PipeTransform
 } from '@angular/core';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+
+import {
+  BehaviorSubject,
+  combineLatest,
+  Observable,
+  of,
+  Subject
+} from 'rxjs';
+
+import { filter, takeUntil } from 'rxjs/operators';
+
+import {
+  TranslatePipe,
+  TranslateService
+} from '@ngx-translate/core';
+
 import { VBR_TRANSLATE_PREFIX } from '../tokens';
 
 /**
@@ -34,7 +53,10 @@ import { VBR_TRANSLATE_PREFIX } from '../tokens';
   name: 'vbrTranslate',
   pure: false
 })
-export class VbrTranslatePipe extends TranslatePipe implements PipeTransform {
+export class VbrTranslatePipe extends TranslatePipe implements PipeTransform, OnDestroy {
+  private onDestroy$: Subject<any> = new Subject();
+  protected lastParams$: Observable<Object> | Object;
+  protected lastQuery$: BehaviorSubject<string> = new BehaviorSubject(undefined);
 
   constructor(translate: TranslateService,
               _ref: ChangeDetectorRef,
@@ -43,7 +65,7 @@ export class VbrTranslatePipe extends TranslatePipe implements PipeTransform {
     super(translate, _ref);
   }
 
-  private composeTranslationKey(value): string {
+  protected composeTranslationKey(value): string {
     if (!!this.prefix && !!value && value[0] === '.') {
       return this.prefix.concat(value);
     }
@@ -51,8 +73,40 @@ export class VbrTranslatePipe extends TranslatePipe implements PipeTransform {
     return value;
   }
 
-  transform(value: any, ...args: any[]): any {
-    return super.transform(this.composeTranslationKey(value), ...args);
+  transform(query: string, params$?: any): any {
+    // In case params$ changed, or params$ is not set
+    if (params$ !== this.lastParams$ || 'undefined' === typeof params$) {
+      this.lastParams$ = params$;
+      // Init destroy of old observable
+      this.onDestroy$.next();
+
+      // In case params$ is not observable, wrap it
+      if (!(params$ instanceof Observable)) {
+        params$ = of(params$);
+      }
+
+      // Create new Subscription to changes from both query and parameters changes.
+      // It is responsible to emit new pairs of query and parameter to parent translate method.
+      combineLatest(params$, this.lastQuery$)
+        .pipe(
+          takeUntil(this.onDestroy$),
+          filter(([p, q]) => !!(q && q.length))
+        )
+        .subscribe(([p, q]) => {
+          super.transform(this.composeTranslationKey(q), p);
+        });
+    }
+
+    // Query string changed, emit the change
+    if (query !== this.lastQuery$.value) {
+      this.lastQuery$.next(query);
+    }
+
+    return this.value;
   }
 
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this.onDestroy$.next();
+  }
 }

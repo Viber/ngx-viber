@@ -19,7 +19,6 @@ import {
 } from './defaults';
 import { VbrLanguageDetectorFake } from './classes/language-detector';
 import { VbrTranslateService } from './services/translate.service';
-import { VbrTranslateAsyncPipe } from './pipes/translate-async.pipe';
 import { VbrTranslatePipe } from './pipes/translate.pipe';
 
 export interface VbrTranslateModuleConfig {
@@ -38,11 +37,9 @@ export interface VbrTranslateModuleConfig {
     TranslateModule,
   ],
   declarations: [
-    VbrTranslateAsyncPipe,
     VbrTranslatePipe,
   ],
   exports: [
-    VbrTranslateAsyncPipe,
     VbrTranslatePipe,
   ]
 })
