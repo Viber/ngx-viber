@@ -20,20 +20,30 @@ import {
 import { VbrLanguageDetectorFake } from './classes/language-detector';
 import { VbrTranslateService } from './services/translate.service';
 import { VbrTranslatePipe } from './pipes/translate.pipe';
+import { Router } from '@angular/router';
 
 export interface VbrTranslateModuleConfig {
+  // array of all supported languages
   allowedLanguages?: Array<string>;
+  // Object of canonical languages, used to transform non-canonical codes tho their canonical form
+  // For example: if set {'iw' => 'he'}
+  // "iw" will be handled as "he"
+  canonicalCodes?: { [code: string]: string };
+  // Default language
   defaultLanguage?: string;
+  // Language Detector
   languageDetector?: Provider;
+  // Navigator
   navigator?: Navigator;
+  // Array of rtl languages
   rtlLanguages?: Array<string>;
-  canonicalCodes?: Array<string>;
 }
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
+    Router,
     TranslateModule,
   ],
   declarations: [

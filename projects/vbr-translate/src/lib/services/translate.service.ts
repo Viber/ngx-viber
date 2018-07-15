@@ -122,6 +122,7 @@ export class VbrTranslateService {
    *
    * @TODO
    * in case languages array is something like this ["en-AU", "ru"]
+   * and both "en" and "ru" are supported
    * first language to be found will be "ru"
    *
    * @param findLangs
