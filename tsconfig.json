@@ -46,6 +46,18 @@
       ],
       "vbr-translate/*": [
         "dist/vbr-translate/*"
+      ],
+      "vbr-translate-loader": [
+        "dist/vbr-translate-loader"
+      ],
+      "vbr-translate-loader/*": [
+        "dist/vbr-translate-loader/*"
+      ],
+      "vbr-translate-pipe": [
+        "dist/vbr-translate-pipe"
+      ],
+      "vbr-translate-pipe/*": [
+        "dist/vbr-translate-pipe/*"
       ]
     }
   }

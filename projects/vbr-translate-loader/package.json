@@ -1,0 +1,10 @@
+{
+  "name": "vbr-translate-loader",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^6.0.0",
+    "@ngx-translate/core": "^10.0.0",
+    "@viberlab/translate": ">=0.0.1",
+    "rxjs": "^6.0.0"
+  }
+}

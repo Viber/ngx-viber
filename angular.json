@@ -316,6 +316,86 @@
           }
         }
       }
+    },
+    "vbr-translate-loader": {
+      "root": "projects/vbr-translate-loader",
+      "sourceRoot": "projects/vbr-translate-loader/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-translate-loader/tsconfig.lib.json",
+            "project": "projects/vbr-translate-loader/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-translate-loader/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-translate-loader/src/test.ts",
+            "tsConfig": "projects/vbr-translate-loader/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-translate-loader/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-translate-loader/tsconfig.lib.json",
+              "projects/vbr-translate-loader/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "vbr-translate-pipe": {
+      "root": "projects/vbr-translate-pipe",
+      "sourceRoot": "projects/vbr-translate-pipe/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-translate-pipe/tsconfig.lib.json",
+            "project": "projects/vbr-translate-pipe/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-translate-pipe/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-translate-pipe/src/test.ts",
+            "tsConfig": "projects/vbr-translate-pipe/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-translate-pipe/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-translate-pipe/tsconfig.lib.json",
+              "projects/vbr-translate-pipe/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "libs"
