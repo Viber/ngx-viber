@@ -1,13 +1,13 @@
 ## vbrTranslate
-Upgraded to ngx-translate Translate Pipe
+Extended version of [ngx-translate/core](https://github.com/ngx-translate/core) `TranslatePipe`
 
-* [Short Keys](#short-keys) - allows not to specify full path to translation string when provided with `VBR_TRANSLATE_PREFIX` in component services.
+Features:
+* [Short Keys](#short-keys) - allows not to specify full path to translation string when provided with `VBR_TRANSLATE_PREFIX` in component providers.
 * [Observable as pipe parameter](#observable-as-pipe-parameter).
 
 ### Short Keys
 Pipe concat `VBR_TRANSLATE_PREFIX` with translation key string and use it as final translation string.
-Translation key should start with "." to benefit from such functionality,
-otherwise it will be handled as regular key.
+Translation key should start with "." to benefit from such functionality, otherwise it will be handled as regular key.
 
 Example:
 
@@ -17,20 +17,21 @@ Instead of:
 <p>{{'content.screen.line' | translate}}</p>
 ```
 
-In your Component add to providers:
+In your component add to providers:
 ```typescript
   providers: [
     {provide: VBR_TRANSLATE_PREFIX, useValue: 'content.screen'},
   ]
 ```
 
-So in component template short keys could be used
+Now in component template short keys could be used:
 ```angular2html
 <h1>{{'.title' | vbrTranslate}}</h1>
 <p class="first">{{'.line' | vbrTranslate}}</p>
 ```
 
 ### Observable as pipe parameter
+Use Observable as pipe parameter.
 
 Example:
 ```typescript
@@ -46,7 +47,14 @@ public userName = of({name: 'Peter'});
 
 ```
 
-In the template
+In your template
+
+BEFORE
+```angular2html
+<h1>{{'greetings' | translate:(userName | async)}}</h1>
+```
+
+AFTER
 ```angular2html
 <h1>{{'greetings' | vbrTranslate:userName}}</h1>
 ```
