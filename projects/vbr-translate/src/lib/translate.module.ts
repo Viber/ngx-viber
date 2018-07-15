@@ -19,7 +19,6 @@ import {
 } from './defaults';
 import { VbrLanguageDetectorFake } from './classes/language-detector';
 import { VbrTranslateService } from './services/translate.service';
-import { VbrTranslatePipe } from './pipes/translate.pipe';
 import { Router } from '@angular/router';
 
 export interface VbrTranslateModuleConfig {
@@ -46,12 +45,8 @@ export interface VbrTranslateModuleConfig {
     Router,
     TranslateModule,
   ],
-  declarations: [
-    VbrTranslatePipe,
-  ],
-  exports: [
-    VbrTranslatePipe,
-  ]
+  declarations: [],
+  exports: []
 })
 
 export class VbrTranslateModule {

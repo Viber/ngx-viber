@@ -3,10 +3,6 @@ import { InjectionToken } from '@angular/core';
 import { VbrLanguage } from './interfaces';
 import { VbrLanguageDetector } from './classes/language-detector';
 
-
-// Used as prefix for VbrTranslatePipe
-export const VBR_TRANSLATE_PREFIX: InjectionToken<string> = new InjectionToken('VBR_TRANSLATE_PREFIX');
-
 export const VBR_TRANSLATE_ALLOWED_LANGUAGES = new InjectionToken<Array<string>>('VBR_TRANSLATE_ALLOWED_LANGUAGES');
 export const VBR_TRANSLATE_DEFAULT_LANGUAGE = new InjectionToken<Array<string>>('VBR_TRANSLATE_DEFAULT_LANGUAGE');
 export const VBR_TRANSLATE_LANGUAGE_DETECTOR = new InjectionToken<VbrLanguageDetector>('VBR_TRANSLATE_LANGUAGE_DETECTOR');
