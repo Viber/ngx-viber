@@ -1,0 +1,53 @@
+<div #main id="main-art-board" class="card" (mouseup)="onMouseUp()" [ngClass]="{editing: editableImage}">
+  <div class="{{editMode}} {{interacting ? 'mousedown' : ''}}">
+    <input type="file" #fileInput style="display: none" (change)="sourceChanged($event)" [accept]="accept">
+    <canvas #canvas style="display: none;" [width]="outputWidth" [height]="outputHeight"></canvas>
+    <img *ngIf="outputImageSrc && showPreview" class="preview" [src]="outputImageSrc" alt=""/>
+    <div class="art-board-wrap">
+      <div id="art-board" #artBoard class="art-board" (mouseenter)="onMouseEnter()" (mouseout)="onMouseOut()"
+           (drop)="onDrop($event)">
+        <div id="main-image" #editableImageView
+             [style.backgroundImage]="editableImage?.source ? 'url(' + editableImage.source + ')' : ''"
+             [style.left]="editableImage?.left + 'px'"
+             [style.top]="editableImage?.top + 'px'"
+             [style.width]="editableImage?.width + 'px'"
+             [style.height]="editableImage?.height + 'px'"
+             [style.transform]="'rotate('+editableImage?.degrees+'deg)'"
+             (mousedown)="editMode === 'move' && onMouseDown($event)">
+          <div *ngIf="outputImageSrc && editMode === 'resize'" class="handle se resize"
+               data-html2canvas-ignore
+               (mousedown)="onMouseDown($event)"></div>
+        </div>
+        <div id="art-board-crop" data-html2canvas-ignore [hidden]="!editableImage"></div>
+        <div class="x axis">400px</div>
+        <div class="y axis">400px</div>
+        <div [hidden]="editableImage" class="add-image" (click)="addImage()" data-html2canvas-ignore>
+          <div class="plus"></div>
+        </div>
+        <!--<button type="button" [hidden]="!editableImage" class="change-image" (click)="addImage()" data-html2canvas-ignore>{{changeImageText}}</button>-->
+
+        <span id="change-image" data-html2canvas-ignore [hidden]="!editableImage">
+        <ng-content select="[type=button]"></ng-content>
+      </span>
+
+        <!--<div class="expand-icon" [hidden]="!editableImage" data-html2canvas-ignore></div>-->
+        <div class="expand-icon" [hidden]="!editableImage" data-html2canvas-ignore>
+          <i class="material-icons">photo_size_select_large</i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dim left" [style.width]="dimSize?.right?.width"></div>
+  <div class="dim right"
+       [style.width]="dimSize?.right?.width"
+       [style.left]="dimSize?.right?.x"></div>
+  <div class="dim top"
+       [style.height]="dimSize?.bottom?.height"
+       [style.width]="dimSize?.bottom?.width"
+       [style.left]="dimSize?.right?.width"></div>
+  <div class="dim bottom"
+       [style.width]="dimSize?.bottom?.width"
+       [style.height]="dimSize?.bottom?.height"
+       [style.top]="dimSize?.bottom?.y"
+       [style.left]="dimSize?.right?.width"></div>
+</div>

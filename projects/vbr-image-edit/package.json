@@ -1,0 +1,15 @@
+{
+  "name": "vbr-image-edit",
+  "version": "2.0.1",
+  "dependencies": {
+    "dom-to-image": "^2.6.0",
+    "html2canvas": "^1.0.0-alpha.12"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=6.0.0",
+    "@angular/core": ">=6.0.0",
+    "rxjs": ">=6.1.0"
+  },
+  "description": "Viber Angular Library - Image Editor",
+  "author": "ViberLab"
+}

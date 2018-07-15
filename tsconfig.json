@@ -40,6 +40,12 @@
       ],
       "vbr-input-params-templates/*": [
         "dist/vbr-input-params-templates/*"
+      ],
+      "vbr-image-edit": [
+        "dist/vbr-image-edit"
+      ],
+      "vbr-image-edit/*": [
+        "dist/vbr-image-edit/*"
       ]
     }
   }
