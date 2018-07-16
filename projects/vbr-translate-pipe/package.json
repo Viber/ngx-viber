@@ -1,8 +1,8 @@
 {
-  "name": "@viberlab/ngx-translate-pipe",
+  "name": "@viberlab/translate-pipe",
   "version": "0.0.1",
   "author": "ViberLab",
-  "homepage": "https://github.com/Viber/ngx-viber/tree/master/projects/vbr-translate-pipe",
+  "homepage": "https://github.com/Viber/ngx-viber",
   "description": "Viber Tools for ngx-translate - Extended version of ngx-translate TranslatePipe",
   "license": "MIT",
   "peerDependencies": {
