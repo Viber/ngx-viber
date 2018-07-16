@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import {
@@ -19,7 +20,6 @@ import {
 } from './defaults';
 import { VbrLanguageDetectorFake } from './classes/language-detector';
 import { VbrTranslateService } from './services/translate.service';
-import { Router } from '@angular/router';
 
 export interface VbrTranslateModuleConfig {
   // array of all supported languages
@@ -42,7 +42,7 @@ export interface VbrTranslateModuleConfig {
   imports: [
     CommonModule,
     HttpClientModule,
-    Router,
+    RouterModule,
     TranslateModule,
   ],
   declarations: [],

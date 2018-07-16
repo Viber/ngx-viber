@@ -1,6 +1,7 @@
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ParamMap, Router, RoutesRecognized } from '@angular/router';
 import { filter, first, map } from 'rxjs/operators';
+import { RouterEvent } from '@angular/router/src/events';
 
 /**
  * Allows to add custom language for initial language detection
@@ -20,7 +21,7 @@ export class VbrLanguageDetectorFake implements VbrLanguageDetector {
   }
 }
 
-class VbrLanguageDetectorCommon implements VbrLanguageDetector {
+export class VbrLanguageDetectorCommon implements VbrLanguageDetector {
   private language$: BehaviorSubject<string | undefined> = new BehaviorSubject(undefined);
 
   constructor(router: Router, type: 'queryParam' | 'param', paramName: string) {
@@ -28,7 +29,7 @@ class VbrLanguageDetectorCommon implements VbrLanguageDetector {
     router.events.pipe(
       // Make sure router init is done an
       // d we actually behold real one
-      filter((event: Event) => !!event && event instanceof RoutesRecognized),
+      filter((event: RouterEvent) => !!event && event instanceof RoutesRecognized),
       map((event: RoutesRecognized) => {
         return type === 'queryParam' ? event.state.root.firstChild.queryParamMap : event.state.root.firstChild.paramMap;
       }),
@@ -48,12 +49,12 @@ class VbrLanguageDetectorCommon implements VbrLanguageDetector {
 
 export class VbrLanguageDetectorQueryParam extends VbrLanguageDetectorCommon {
   constructor(router: Router, paramName: string) {
-    super.constructor(router, 'queryParam', paramName);
+    super(router, 'queryParam', paramName);
   }
 }
 
 export class VbrLanguageDetectorParam extends VbrLanguageDetectorCommon {
   constructor(router: Router, paramName: string) {
-    super.constructor(router, 'param', paramName);
+    super(router, 'param', paramName);
   }
 }

@@ -41,10 +41,10 @@
       "vbr-input-params-templates/*": [
         "dist/vbr-input-params-templates/*"
       ],
-      "vbr-translate": [
+      "@viberlab/translate": [
         "dist/vbr-translate"
       ],
-      "vbr-translate/*": [
+      "@viberlab/translate/*": [
         "dist/vbr-translate/*"
       ],
       "vbr-translate-loader": [
