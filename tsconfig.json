@@ -47,10 +47,10 @@
       "@viberlab/translate/*": [
         "dist/vbr-translate/*"
       ],
-      "vbr-translate-loader": [
+      "@viberlab/translate-loader": [
         "dist/vbr-translate-loader"
       ],
-      "vbr-translate-loader/*": [
+      "@viberlab/translate-loader/*": [
         "dist/vbr-translate-loader/*"
       ],
       "vbr-translate-pipe": [
