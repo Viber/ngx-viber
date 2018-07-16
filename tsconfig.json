@@ -35,10 +35,10 @@
       "@viberlab/input-keyboard/*": [
         "dist/vbr-input-keyboard/*"
       ],
-      "vbr-input-params-templates": [
+      "@viberlab/input-params-templates": [
         "dist/vbr-input-params-templates"
       ],
-      "vbr-input-params-templates/*": [
+      "@viberlab/input-params-templates/*": [
         "dist/vbr-input-params-templates/*"
       ],
       "@viberlab/translate": [
