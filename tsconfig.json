@@ -53,10 +53,10 @@
       "@viberlab/translate-loader/*": [
         "dist/vbr-translate-loader/*"
       ],
-      "vbr-translate-pipe": [
+      "@viberlab/translate-pipe": [
         "dist/vbr-translate-pipe"
       ],
-      "vbr-translate-pipe/*": [
+      "@viberlab/translate-pipe/*": [
         "dist/vbr-translate-pipe/*"
       ]
     }
