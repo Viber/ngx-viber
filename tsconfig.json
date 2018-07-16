@@ -17,10 +17,10 @@
       "dom"
     ],
     "paths": {
-      "vbr-chips-autocomplete": [
+      "@viberlab/chips-autocomplete": [
         "dist/vbr-chips-autocomplete"
       ],
-      "vbr-chips-autocomplete/*": [
+      "@viberlab/chips-autocomplete/*": [
         "dist/vbr-chips-autocomplete/*"
       ],
       "vbr-storage": [
