@@ -29,10 +29,10 @@
       "@viberlab/storage/*": [
         "dist/vbr-storage/*"
       ],
-      "vbr-input-keyboard": [
+      "@viberlab/input-keyboard": [
         "dist/vbr-input-keyboard"
       ],
-      "vbr-input-keyboard/*": [
+      "@viberlab/input-keyboard/*": [
         "dist/vbr-input-keyboard/*"
       ],
       "vbr-input-params-templates": [
