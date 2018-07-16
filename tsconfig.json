@@ -35,12 +35,6 @@
       "@viberlab/input-keyboard/*": [
         "dist/vbr-input-keyboard/*"
       ],
-      "@viberlab/input-params-templates": [
-        "dist/vbr-input-params-templates"
-      ],
-      "@viberlab/input-params-templates/*": [
-        "dist/vbr-input-params-templates/*"
-      ],
       "@viberlab/translate": [
         "dist/vbr-translate"
       ],

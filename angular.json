@@ -237,46 +237,6 @@
         }
       }
     },
-    "vbr-input-params-templates": {
-      "root": "projects/vbr-input-params-templates",
-      "sourceRoot": "projects/vbr-input-params-templates/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/vbr-input-params-templates/tsconfig.lib.json",
-            "project": "projects/vbr-input-params-templates/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/vbr-input-params-templates/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/vbr-input-params-templates/src/test.ts",
-            "tsConfig": "projects/vbr-input-params-templates/tsconfig.spec.json",
-            "karmaConfig": "projects/vbr-input-params-templates/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/vbr-input-params-templates/tsconfig.lib.json",
-              "projects/vbr-input-params-templates/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "vbr-translate": {
       "root": "projects/vbr-translate",
       "sourceRoot": "projects/vbr-translate/src",
