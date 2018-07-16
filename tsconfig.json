@@ -23,10 +23,10 @@
       "@viberlab/chips-autocomplete/*": [
         "dist/vbr-chips-autocomplete/*"
       ],
-      "vbr-storage": [
+      "@viberlab/storage": [
         "dist/vbr-storage"
       ],
-      "vbr-storage/*": [
+      "@viberlab/storage/*": [
         "dist/vbr-storage/*"
       ],
       "vbr-input-keyboard": [
