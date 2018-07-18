@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { EventEmitter, Inject, Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {
   VBR_NAVIGATOR_TOKEN,
@@ -7,33 +7,27 @@ import {
   VBR_TRANSLATE_DEFAULT_LANGUAGE,
   VBR_TRANSLATE_CANONICAL_CODES,
 } from '../tokens';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { distinctUntilChanged, first, map } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
+
+export interface VbrLoaderEvent {
+  language: string;
+  eventType: 'started' | 'failed' | 'succeed';
+  error?: any;
+}
 
 @Injectable()
 export class VbrTranslateService {
-  public loadingEvent: BehaviorSubject<boolean> = new BehaviorSubject(false);
-
-  private store: BehaviorSubject<string> = new BehaviorSubject(undefined);
-
-  // Array of the languages should be supported
-  @Inject(VBR_TRANSLATE_ALLOWED_LANGUAGES)
-  readonly allowedCodes;
-
-  @Inject(VBR_TRANSLATE_DEFAULT_LANGUAGE)
-  readonly defaultLanguage;
-
-  @Inject(VBR_TRANSLATE_CANONICAL_CODES)
-  readonly canonicalCode;
-
-  @Inject(VBR_NAVIGATOR_TOKEN)
-  private navigator;
+  public loaderStatus: EventEmitter<VbrLoaderEvent> = new EventEmitter<VbrLoaderEvent>();
 
   constructor(
     private translate: TranslateService,
+    // Array of the languages should be supported
+    @Inject(VBR_TRANSLATE_ALLOWED_LANGUAGES) readonly allowedCodes,
+    @Inject(VBR_TRANSLATE_DEFAULT_LANGUAGE) readonly defaultLanguage,
+    @Inject(VBR_TRANSLATE_CANONICAL_CODES) readonly canonicalCode,
+    @Inject(VBR_NAVIGATOR_TOKEN) private navigator,
     @Inject(VBR_TRANSLATE_LANGUAGE_DETECTOR) customLanguageDetector
   ) {
-
     // Canonize all provided language codes
     this.allowedCodes = this.allowedCodes.map(code => this.toCanonical(code));
     this.defaultLanguage = this.toCanonical(this.defaultLanguage);
@@ -64,21 +58,24 @@ export class VbrTranslateService {
   }
 
   /**
-   * Returns Observable that emits current language
-   *
-   */
-  get languageChange(): Observable<string> {
-    return this.store.pipe(distinctUntilChanged());
-  }
-
-  /**
    * Set new language by code
    *
    * @param code
    */
   public setLanguage(code: string) {
     code = this.toCanonical(code);
-    return !!this.isSupportedCode(code) && this.translate.use(code);
+    if (!this.isSupportedCode(code)) {
+      return;
+    }
+
+    // On successful language change/load, add to list of loaded Translations Languages
+    this.loaderStatus.emit({language: code, eventType: 'started'});
+    this.translate.use(code)
+      .subscribe(e => {
+        this.loaderStatus.emit({language: code, eventType: 'succeed'});
+      }, error => {
+        this.loaderStatus.emit({language: code, eventType: 'failed', error: error});
+      });
   }
 
   /**
