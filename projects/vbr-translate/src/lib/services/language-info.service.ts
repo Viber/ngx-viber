@@ -4,7 +4,7 @@ import {
   VBR_TRANSLATE_RTL_CODES
 } from '../tokens';
 import { VbrLanguage } from '../interfaces';
-import { VbrTranslateService } from './translate.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class VbrLanguageInfoService {
@@ -18,8 +18,8 @@ export class VbrLanguageInfoService {
   @Inject(VBR_TRANSLATE_LANGUAGE_INFO)
   public readonly languages;
 
-  constructor(private translate: VbrTranslateService) {
-    this.translate.languageChange
+  constructor(private translate: TranslateService) {
+    this.translate.onLangChange
       .subscribe((code) => {
         // Set dir
         this.dir = -1 === this.rtlCodes.indexOf(code) ? 'ltr' : 'rtl';
