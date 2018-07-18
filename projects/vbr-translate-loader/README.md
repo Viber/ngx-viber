@@ -5,11 +5,10 @@
 ## VbrTranslateLoader
 This loader should be used within `TranslateModule` ([Write & use your own loader](https://github.com/ngx-translate/core#write--use-your-own-loader))
 
-This loader can load translation from multiple data sources, each should implement [TranslateLoader](https://github.com/ngx-translate/http-loader) as well.
+Loader able to load and merge translation from multiple translation loaders.
+It implements [TranslateLoader](https://github.com/ngx-translate/http-loader), while each loader it uses implements `TranslateLoader` as well.
 
-It also can will emmit to `VbrTranslateService.loadingEvent` on start end/end of the loading process.
-
-In case some of the sources are failed, they will be ignored and partial translations will be used.
+Loader can be configured to ignore failed loaders, they will be ignored and partial translations will be used.
 
 Usage Example: 
 ```typescript
@@ -17,16 +16,17 @@ Usage Example:
 function createTranslateLoader(http: HttpClient) {
 
   return new VbrTranslateLoader(
+    // Array of loaders to be used.
     [
       new TranslateHttpLoader(http, 'assets/@viberlab/translations/locale-', '.json'),
       new TranslateHttpLoader(http, 'assets/translations/locale-', '.json')
-    ]
+    ],
+     true // Set to ignore failed loaders
   );
 }
 
 ...
 // In AppModule imports:
-
 
 imports: [
   TranslateModule.forRoot({
