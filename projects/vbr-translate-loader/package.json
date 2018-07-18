@@ -9,8 +9,5 @@
     "@angular/core": ">=6.0.0",
     "@ngx-translate/core": ">=10.0.0",
     "rxjs": ">=6.0.0"
-  },
-  "optionalDependencies": {
-    "@viberlab/tanslate": ">=0.0.1"
   }
 }
