@@ -60,8 +60,6 @@ describe('VbrTranslatePipe', () => {
   // let translate: TranslateService;
   let pipe: VbrTranslatePipe;
 
-  // let translate: TranslateService;
-
   beforeEach(() => {
     const model: TestModuleMetadata = {
       imports: [
