@@ -1,6 +1,8 @@
 # Libs
 
 * [vbr-translate](projects/vbr-translate)
+* [vbr-translate-loader](projects/vbr-translate-loader)
+* [vbr-translate-pipe](projects/vbr-translate-pipe)
 * [vbr-storage](projects/vbr-storage)
 * [vbr-input-keyboard](projects/vbr-input-keyboard)
 * [vbr-chips-autocomplete](projects/vbr-chips-autocomplete)
