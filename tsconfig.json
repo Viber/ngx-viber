@@ -40,6 +40,12 @@
       ],
       "vbr-input-params-templates/*": [
         "dist/vbr-input-params-templates/*"
+      ],
+      "vbr-tooltip": [
+        "dist/vbr-tooltip"
+      ],
+      "vbr-tooltip/*": [
+        "dist/vbr-tooltip/*"
       ]
     }
   }

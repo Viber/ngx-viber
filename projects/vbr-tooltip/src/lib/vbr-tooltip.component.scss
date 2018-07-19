@@ -1,0 +1,43 @@
+$border-color: #ccc;
+$background-color: #fff;
+$caret-size: 10px;
+
+#popper {
+  //border: 1px solid $border-color;
+  background: $background-color;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: -56px;
+  text-align: center;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.4));
+  opacity: 0;
+  visibility: hidden;
+  display: block;
+  position: absolute;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 400ms;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: $caret-size;
+    height: $caret-size;
+    position: absolute;
+    bottom: -6px;
+    background: #fff;
+    border: 1px solid #ccc;
+    transform: rotate(45deg);
+    border-top: none;
+    border-left: none;
+    left: calc(50% - 5px);
+  }
+}
+
+#popper-block {
+  position: absolute;
+  border: 1px solid #f66;
+}
