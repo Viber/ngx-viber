@@ -75,8 +75,9 @@ In case there is no language detector provided we will try to detect supported l
 
 Preset Language Detectors:
 * `VbrLanguageDetectorFake` - used as fallback in case no Language detector provided
-* `VbrLanguageDetectorQueryParam` - set language from query param
-* `VbrLanguageDetectorParam` - set language from param
+* `VbrLanguageDetectorCommon` - Can detect language according to defined parameter or query parameter.
+* `VbrLanguageDetectorQueryParam` - Detect language from query param
+* `VbrLanguageDetectorParam` - Detect language from param
 
 Example of preset Language detector usage:
 ```typescript

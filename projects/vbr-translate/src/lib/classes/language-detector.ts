@@ -21,6 +21,11 @@ export class VbrLanguageDetectorFake implements VbrLanguageDetector {
   }
 }
 
+/**
+ * Example of language detector
+ *
+ * Can detect language according to defined parameter or query parameter.
+ */
 export class VbrLanguageDetectorCommon implements VbrLanguageDetector {
   private language$: BehaviorSubject<string | undefined> = new BehaviorSubject(undefined);
 
@@ -47,12 +52,18 @@ export class VbrLanguageDetectorCommon implements VbrLanguageDetector {
   }
 }
 
+/**
+ * Shortcut to VbrLanguageDetectorCommon for Query Parameter
+ */
 export class VbrLanguageDetectorQueryParam extends VbrLanguageDetectorCommon {
   constructor(router: Router, paramName: string) {
     super(router, 'queryParam', paramName);
   }
 }
 
+/**
+ * Shortcut to VbrLanguageDetectorCommon for Parameter
+ */
 export class VbrLanguageDetectorParam extends VbrLanguageDetectorCommon {
   constructor(router: Router, paramName: string) {
     super(router, 'param', paramName);
