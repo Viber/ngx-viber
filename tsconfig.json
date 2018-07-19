@@ -17,29 +17,41 @@
       "dom"
     ],
     "paths": {
-      "vbr-chips-autocomplete": [
+      "@viberlab/chips-autocomplete": [
         "dist/vbr-chips-autocomplete"
       ],
-      "vbr-chips-autocomplete/*": [
+      "@viberlab/chips-autocomplete/*": [
         "dist/vbr-chips-autocomplete/*"
       ],
-      "vbr-storage": [
+      "@viberlab/storage": [
         "dist/vbr-storage"
       ],
-      "vbr-storage/*": [
+      "@viberlab/storage/*": [
         "dist/vbr-storage/*"
       ],
-      "vbr-input-keyboard": [
+      "@viberlab/input-keyboard": [
         "dist/vbr-input-keyboard"
       ],
-      "vbr-input-keyboard/*": [
+      "@viberlab/input-keyboard/*": [
         "dist/vbr-input-keyboard/*"
       ],
-      "vbr-input-params-templates": [
-        "dist/vbr-input-params-templates"
+      "@viberlab/translate": [
+        "dist/vbr-translate"
       ],
-      "vbr-input-params-templates/*": [
-        "dist/vbr-input-params-templates/*"
+      "@viberlab/translate/*": [
+        "dist/vbr-translate/*"
+      ],
+      "@viberlab/translate-loader": [
+        "dist/vbr-translate-loader"
+      ],
+      "@viberlab/translate-loader/*": [
+        "dist/vbr-translate-loader/*"
+      ],
+      "@viberlab/translate-pipe": [
+        "dist/vbr-translate-pipe"
+      ],
+      "@viberlab/translate-pipe/*": [
+        "dist/vbr-translate-pipe/*"
       ]
     }
   }

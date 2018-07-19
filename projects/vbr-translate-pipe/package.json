@@ -1,14 +1,13 @@
 {
-  "name": "@viberlab/storage",
+  "name": "@viberlab/translate-pipe",
   "version": "0.0.1",
   "author": "ViberLab",
   "homepage": "https://github.com/Viber/ngx-viber",
-  "description": "Viber Tools - Local and session storage angular module",
+  "description": "Viber Tools for ngx-translate - Extended version of ngx-translate TranslatePipe",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/cdk": ">=6.0.0",
-    "@angular/common": ">=6.0.0",
     "@angular/core": ">=6.0.0",
+    "@ngx-translate/core": ">=10.0.0",
     "rxjs": ">=6.0.0"
   }
 }
