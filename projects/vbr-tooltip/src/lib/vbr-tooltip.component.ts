@@ -44,7 +44,6 @@ export class VbrTooltipComponent implements OnInit {
         }
       },
       onUpdate: () => {
-        console.log(popper);
         const left = rect.left - (popperElement.nativeElement.offsetWidth / 2 - rect.width / 2);
         this.renderer.setStyle(popperElement.nativeElement, 'transform', 'translate3d(' + left + 'px, ' + rect.top + 'px, 0)');
       }
