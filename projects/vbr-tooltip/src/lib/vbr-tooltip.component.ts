@@ -18,10 +18,17 @@ export class VbrTooltipComponent implements OnInit {
   ngOnInit() {
     const body = document.getElementsByTagName('body')[0];
     body.addEventListener('click', (e: MouseEvent) => {
-      if (e.target === this.el.nativeElement) {
+      if (e.target === this.popperElement.nativeElement && this.popper) {
         return;
       }
     });
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(e) {
+    if (!this.el.nativeElement.contains(e.target)) {
+      return this.destroyPopper();
+    }
   }
 
   @HostListener('mouseup', ['$event'])
@@ -31,17 +38,17 @@ export class VbrTooltipComponent implements OnInit {
     const range = selection.getRangeAt(0);
     const rect = range.getBoundingClientRect();
 
-    const popper = new Popper(e.target, this.popperElement.nativeElement, {
+    this.popper = new Popper(e.target, this.popperElement.nativeElement, {
       placement: 'top',
       positionFixed: true,
       onCreate: () => {
-        if (rect.width > 0) {
-          this.renderer.addClass(this.popperElement.nativeElement, 'show');
-          const left = rect.left - (popperElement.nativeElement.offsetWidth / 2 - rect.width / 2);
-          this.renderer.setStyle(popperElement.nativeElement, 'transform', 'translate3d(' + left + 'px, ' + rect.top + 'px, 0)');
-        } else {
-          this.destroyPopper(popper);
-        }
+        // if (rect.width > 0) {
+        this.renderer.addClass(this.popperElement.nativeElement, 'show');
+        const left = rect.left - (popperElement.nativeElement.offsetWidth / 2 - rect.width / 2);
+        this.renderer.setStyle(popperElement.nativeElement, 'transform', 'translate3d(' + left + 'px, ' + rect.top + 'px, 0)');
+        // } else {
+        //   this.destroyPopper(popper);
+        // }
       },
       onUpdate: () => {
         const left = rect.left - (popperElement.nativeElement.offsetWidth / 2 - rect.width / 2);
@@ -50,11 +57,11 @@ export class VbrTooltipComponent implements OnInit {
     });
   }
 
-  destroyPopper(popper: Popper) {
-    if (!!popper) {
-      popper.destroy();
+  destroyPopper() {
+    if (!!this.popper) {
+      this.popper.destroy();
+      this.popper = null;
       this.renderer.removeClass(this.popperElement.nativeElement, 'show');
-      popper = null;
     }
   }
 }
