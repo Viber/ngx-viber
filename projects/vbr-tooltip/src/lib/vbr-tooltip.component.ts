@@ -1,14 +1,17 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import Popper from 'popper.js';
+import { NgTemplateOutlet } from '@angular/common';
+import { C } from '@angular/core/src/render3';
 
 @Component({
   selector: 'vbr-tooltip',
   templateUrl: './vbr-tooltip.component.html',
   styleUrls: ['./vbr-tooltip.component.scss']
 })
-export class VbrTooltipComponent implements OnInit {
+export class VbrTooltipComponent<T> implements OnInit {
+  @Input() content: TemplateRef<T>[];
+  @Input() placement: 'top' | 'bottom';
   @ViewChild('popper') popperElement: ElementRef;
-  @ViewChild('popperBlock') popperBlock: ElementRef;
   popper: Popper;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
@@ -39,7 +42,7 @@ export class VbrTooltipComponent implements OnInit {
     const rect = range.getBoundingClientRect();
 
     this.popper = new Popper(e.target, this.popperElement.nativeElement, {
-      placement: 'top',
+      placement: this.placement || 'top',
       positionFixed: true,
       onCreate: () => {
         // if (rect.width > 0) {
@@ -51,8 +54,11 @@ export class VbrTooltipComponent implements OnInit {
         // }
       },
       onUpdate: () => {
+        console.log(rect.top - window.scrollY);
+
         const left = rect.left - (popperElement.nativeElement.offsetWidth / 2 - rect.width / 2);
-        this.renderer.setStyle(popperElement.nativeElement, 'transform', 'translate3d(' + left + 'px, ' + rect.top + 'px, 0)');
+        const top = Math.abs(rect.top - window.scrollY);
+        this.renderer.setStyle(popperElement.nativeElement, 'transform', 'translate3d(' + left + 'px, ' + top + 'px, 0)');
       }
     });
   }

@@ -1,7 +1,7 @@
 <ng-content></ng-content>
 
 <div #popper id="popper">
-  POP!
+  <div *ngFor="let t of content">
+    <ng-container *ngTemplateOutlet="t"></ng-container>
+  </div>
 </div>
-
-<div #popperBlock id="popper-block"></div>
