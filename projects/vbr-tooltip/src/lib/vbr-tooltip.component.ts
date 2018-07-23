@@ -38,27 +38,21 @@ export class VbrTooltipComponent<T> implements OnInit {
   onMouseUp(e) {
     const popperElement = this.popperElement;
     const selection = window.getSelection();
-    const range = selection.getRangeAt(0);
-    const rect = range.getBoundingClientRect();
+    const range = !!selection && selection.getRangeAt(0) || null;
+    const rect = !!range && range.getBoundingClientRect();
+    const elementTop = e.target.offsetTop;
 
     this.popper = new Popper(e.target, this.popperElement.nativeElement, {
       placement: this.placement || 'top',
-      positionFixed: true,
+      // positionFixed: true,
       onCreate: () => {
-        // if (rect.width > 0) {
         this.renderer.addClass(this.popperElement.nativeElement, 'show');
         const left = rect.left - (popperElement.nativeElement.offsetWidth / 2 - rect.width / 2);
-        this.renderer.setStyle(popperElement.nativeElement, 'transform', 'translate3d(' + left + 'px, ' + rect.top + 'px, 0)');
-        // } else {
-        //   this.destroyPopper(popper);
-        // }
+        this.renderer.setStyle(popperElement.nativeElement, 'transform', 'translate3d(' + left + 'px, ' + elementTop + 'px, 0)');
       },
       onUpdate: () => {
-        console.log(rect.top - window.scrollY);
-
         const left = rect.left - (popperElement.nativeElement.offsetWidth / 2 - rect.width / 2);
-        const top = Math.abs(rect.top - window.scrollY);
-        this.renderer.setStyle(popperElement.nativeElement, 'transform', 'translate3d(' + left + 'px, ' + top + 'px, 0)');
+        this.renderer.setStyle(popperElement.nativeElement, 'transform', 'translate3d(' + left + 'px, ' + elementTop + 'px, 0)');
       }
     });
   }
