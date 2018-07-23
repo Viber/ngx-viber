@@ -1,5 +1,7 @@
 import { EventEmitter, Inject, Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { first, map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import {
   VBR_NAVIGATOR_TOKEN,
   VBR_TRANSLATE_ALLOWED_LANGUAGES,
@@ -7,9 +9,8 @@ import {
   VBR_TRANSLATE_DEFAULT_LANGUAGE,
   VBR_TRANSLATE_CANONICAL_CODES,
 } from '../tokens';
-import { first, map, switchMap } from 'rxjs/operators';
-import { VbrBrowserLangaugeDetector } from '../classes/browser-langauge-detector';
-import { Observable, of } from 'rxjs';
+
+import { VbrBrowserLanguageDetector } from '../classes/browser-language-detector';
 
 export interface VbrLoaderEvent {
   language: string;
@@ -113,6 +114,6 @@ export class VbrTranslateService {
    * - Look for a first met from navigator.languages
    */
   public detectBrowserLang(): Observable<string> {
-    return new VbrBrowserLangaugeDetector(this.allowedCodes, this.navigator).getLanguage();
+    return new VbrBrowserLanguageDetector(this.allowedCodes, this.navigator).getLanguage();
   }
 }
