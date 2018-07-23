@@ -7,7 +7,9 @@ import {
   VBR_TRANSLATE_DEFAULT_LANGUAGE,
   VBR_TRANSLATE_CANONICAL_CODES,
 } from '../tokens';
-import { first, map } from 'rxjs/operators';
+import { first, map, switchMap } from 'rxjs/operators';
+import { VbrBrowserLangaugeDetector } from '../classes/browser-langauge-detector';
+import { Observable, of } from 'rxjs';
 
 export interface VbrLoaderEvent {
   language: string;
@@ -48,10 +50,17 @@ export class VbrTranslateService {
     customLanguageDetector.getLanguage()
       .pipe(
         first(),
+        // Detect Language browser if customLanguageDetector failed
+        switchMap((code: string) => {
+          if (!this.isSupportedCode(code)) {
+            return this.detectBrowserLang();
+          }
+
+          return of(code);
+        }),
+        // Fallback to default bro
         map((code: string) => {
-          return this.isSupportedCode(code) ||
-            this.detectBrowserLang() ||
-            translate.getDefaultLang();
+          return this.isSupportedCode(code) || translate.getDefaultLang();
         })
       )
       .subscribe(code => this.setLanguage(code));
@@ -103,32 +112,7 @@ export class VbrTranslateService {
    * - Look for navigator.language first
    * - Look for a first met from navigator.languages
    */
-  public detectBrowserLang(): string {
-    if (typeof this.navigator === 'undefined') {
-      return undefined;
-    }
-
-    return ('undefined' !== typeof this.navigator.language && this.findLanguageInLanguages([this.navigator.language])) ||
-      ('undefined' !== typeof this.navigator.languages && this.findLanguageInLanguages(this.navigator.languages));
-  }
-
-  /**
-   * Try to find first supported language
-   * - First of all try to find language exact match.
-   * - Try to find "culture" prefix from structures such as "en-AU", - "en"
-   *
-   * @TODO
-   * in case languages array is something like this ["en-AU", "ru"]
-   * and both "en" and "ru" are supported
-   * first language to be found will be "ru"
-   *
-   * @param findLangs
-   */
-  private findLanguageInLanguages(findLangs: Array<string>): string | null {
-    return findLangs.find(lang => !!this.isSupportedCode(lang))
-      || findLangs
-      // for constructions such as 'en-AU'
-        .map(lang => lang.split('-')[0])
-        .find(lang => !!this.isSupportedCode(lang));
+  public detectBrowserLang(): Observable<string> {
+    return new VbrBrowserLangaugeDetector(this.allowedCodes, this.navigator).getLanguage();
   }
 }
