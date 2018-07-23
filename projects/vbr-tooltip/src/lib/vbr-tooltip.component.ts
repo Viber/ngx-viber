@@ -19,12 +19,7 @@ export class VbrTooltipComponent<T> implements OnInit {
   }
 
   ngOnInit() {
-    const body = document.getElementsByTagName('body')[0];
-    body.addEventListener('click', (e: MouseEvent) => {
-      if (e.target === this.popperElement.nativeElement && this.popper) {
-        return;
-      }
-    });
+
   }
 
   @HostListener('document:click', ['$event'])
