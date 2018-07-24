@@ -2,7 +2,7 @@ import { VbrLanguageDetector } from './language-detector';
 import { Observable, of } from 'rxjs';
 
 /**
- * Class used to find best match of user prefered languages set in navigate.languages
+ * Class used to find best match of user preferred languages set in navigate.languages
  *
  * More about logic behind this class: https://gist.github.com/zagushka/9fc3092b529d0a6c226e0e87846665a9
  */
@@ -11,17 +11,17 @@ export class VbrBrowserLanguageDetector implements VbrLanguageDetector {
 
   /**
    * @param supportedLanguages - array of language tags application support
-   * @param navigator - reference to document.navigator
+   * @param nav - reference to document.navigator
    */
-  constructor(supportedLanguages: Array<string>, private navigator: Navigator) {
+  constructor(supportedLanguages: Array<string>, nav: Navigator) {
     // merge navigator.languages with navigator.language, keep navigator.language with higher priority
     let navigatorTags = [];
-    if ('undefined' !== typeof this.navigator.language) {
-      navigatorTags = navigatorTags.concat(navigator.language);
+    if ('undefined' !== typeof nav.language) {
+      navigatorTags = navigatorTags.concat(nav.language);
     }
 
-    if ('undefined' !== typeof this.navigator.languages) {
-      navigatorTags = navigatorTags.concat(navigator.languages);
+    if ('undefined' !== typeof nav.languages) {
+      navigatorTags = navigatorTags.concat(nav.languages);
     }
 
     // group language tags by language, keep region order
@@ -51,10 +51,16 @@ export class VbrBrowserLanguageDetector implements VbrLanguageDetector {
         return this.combineTag(language, result);
       }
 
-      // Same - for language only
-      result = supportedLanguages.findIndex(v => this.splitTag(v)[0] === language);
+      // For language only in supported languages, exact match
+      result = supportedLanguages.find(v => v === language);
       if (result) {
-        return language;
+        return result;
+      }
+
+      // For language only in supported languages without regions
+      result = supportedLanguages.find(v => this.splitTag(v)[0] === language);
+      if (result) {
+        return result;
       }
     }
 
@@ -65,7 +71,7 @@ export class VbrBrowserLanguageDetector implements VbrLanguageDetector {
    * Group languages tags by language, preserve regions order
    *
    * For example:
-   * Initial languageTags array - ['en', 'he', 'en-EN', 'en-CA', 'he', 'en-GB', 'he-IL', 'ru]
+   * Initial languageTags array - ['en', 'he', 'en-EN', 'en-CA', 'he-IL', 'en-GB', 'he-IL', 'ru']
    * After grouping:
    *  [
    *    ['en', ['EN', 'CA', 'GB']],
@@ -113,7 +119,7 @@ export class VbrBrowserLanguageDetector implements VbrLanguageDetector {
    */
 
   protected combineTag(language: string, region: string) {
-    if (!!region) {
+    if (!region) {
       return language;
     }
     return language.concat('-', region);
