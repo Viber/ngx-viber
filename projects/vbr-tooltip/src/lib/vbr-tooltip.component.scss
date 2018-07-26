@@ -13,6 +13,7 @@ $caret-size: 10px;
   visibility: hidden;
   display: block;
   position: absolute;
+  z-index: 2;
 
   &[x-placement=top] {
     margin-top: -56px;
