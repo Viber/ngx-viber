@@ -8,17 +8,13 @@ import { C } from '@angular/core/src/render3';
   templateUrl: './vbr-tooltip.component.html',
   styleUrls: ['./vbr-tooltip.component.scss']
 })
-export class VbrTooltipComponent<T> implements OnInit {
+export class VbrTooltipComponent<T> {
   @Input() content: TemplateRef<T>[];
   @Input() placement: 'top' | 'bottom';
   @ViewChild('popper') popperElement: ElementRef;
   popper: Popper;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
-
-  }
-
-  ngOnInit() {
 
   }
 
@@ -31,6 +27,10 @@ export class VbrTooltipComponent<T> implements OnInit {
 
   @HostListener('mouseup', ['$event'])
   onMouseUp(e) {
+    if (this.popperElement.nativeElement.contains(e.target)) {
+      return;
+    }
+
     const popperElement = this.popperElement;
     const selection = window.getSelection();
     const range = !!selection && selection.getRangeAt(0) || null;
