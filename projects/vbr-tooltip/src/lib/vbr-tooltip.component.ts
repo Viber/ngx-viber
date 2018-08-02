@@ -2,20 +2,41 @@ import { Component, ElementRef, HostListener, Input, OnInit, Renderer2, Template
 import Popper from 'popper.js';
 import { NgTemplateOutlet } from '@angular/common';
 import { C } from '@angular/core/src/render3';
+import { BehaviorSubject } from 'rxjs';
+
+export enum TooltipTriggers {
+  destroy = '[TooltipTriggerTypes] Destroy'
+}
 
 @Component({
   selector: 'vbr-tooltip',
   templateUrl: './vbr-tooltip.component.html',
   styleUrls: ['./vbr-tooltip.component.scss']
 })
-export class VbrTooltipComponent<T> {
+export class VbrTooltipComponent<T> implements OnInit {
   @Input() content: TemplateRef<T>[];
   @Input() placement: 'top' | 'bottom';
+  @Input() triggerer: BehaviorSubject<string>;
   @ViewChild('popper') popperElement: ElementRef;
   popper: Popper;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
 
+  }
+
+  ngOnInit() {
+    if (!this.triggerer) {
+      this.triggerer = new BehaviorSubject('');
+    }
+
+    this.triggerer.subscribe((c: TooltipTriggers) => {
+      switch (c) {
+        case TooltipTriggers.destroy:
+          this.destroyPopper();
+          break;
+        default:
+      }
+    });
   }
 
   @HostListener('document:click', ['$event'])
