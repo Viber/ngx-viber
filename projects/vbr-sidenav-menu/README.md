@@ -4,9 +4,15 @@
 
 ## vbr-sidenav-menu component
 
+Installation:
+
+```bash
+npm i @viberlab/sidenav-menu
+```
+
 Usage:
 
-Add to imports in your module:
+Import in your module:
 
 ```typescript
 @NgModule({
@@ -17,12 +23,6 @@ Add to imports in your module:
   ...
   }
 )
-```
-
-View:
-
-```angular2html
-<vbr-sidenav-menu [sections]="sections"></vbr-sidenav-menu>
 ```
 
 Component:
@@ -57,5 +57,11 @@ export class MySidebar {
     }
    ];
 }
+```
+
+View:
+
+```angular2html
+<vbr-sidenav-menu [sections]="sections"></vbr-sidenav-menu>
 ```
 

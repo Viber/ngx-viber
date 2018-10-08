@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { VbrSidenavMenuSectionChild } from '../../section';
 
 @Component({
@@ -9,19 +8,6 @@ import { VbrSidenavMenuSectionChild } from '../../section';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class VbrSidenavMenuLinkComponent implements OnInit {
+export class VbrSidenavMenuLinkComponent {
   @Input() public section: VbrSidenavMenuSectionChild;
-
-  constructor(private route: ActivatedRoute) {
-  }
-
-  ngOnInit() {
-    setTimeout(() => {
-      console.log(
-        this.route.snapshot.pathFromRoot.toString()
-      );
-    }, 5000);
-
-  }
-
 }

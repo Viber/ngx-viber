@@ -2,7 +2,8 @@
 
 if [ -n "$1" ]
 then
-    ng build $1
+    ng build --prod $1
+    cp ./.npmrc dist/$1/
     cd dist/$1
     npm pack
 else
