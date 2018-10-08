@@ -356,6 +356,46 @@
           }
         }
       }
+    },
+    "vbr-sidenav-menu": {
+      "root": "projects/vbr-sidenav-menu",
+      "sourceRoot": "projects/vbr-sidenav-menu/src",
+      "projectType": "library",
+      "prefix": "vbr-sidenav-menu",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-sidenav-menu/tsconfig.lib.json",
+            "project": "projects/vbr-sidenav-menu/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-sidenav-menu/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-sidenav-menu/src/test.ts",
+            "tsConfig": "projects/vbr-sidenav-menu/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-sidenav-menu/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-sidenav-menu/tsconfig.lib.json",
+              "projects/vbr-sidenav-menu/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "libs"

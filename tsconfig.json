@@ -52,6 +52,12 @@
       ],
       "@viberlab/translate-pipe/*": [
         "dist/vbr-translate-pipe/*"
+      ],
+      "@viberlab/vbr-sidenav-menu": [
+        "dist/vbr-sidenav-menu"
+      ],
+      "@viberlab/vbr-sidenav-menu/*": [
+        "dist/vbr-sidenav-menu/*"
       ]
     }
   }

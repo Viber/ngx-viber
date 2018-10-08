@@ -1,10 +1,11 @@
 {
-  "name": "@viberlab/translate-loader",
-  "version": "0.0.1",
+  "name": "@viberlab/ngx-translate-loader",
+  "version": "1.0.0-alfa.1",
   "author": "ViberLab",
   "homepage": "https://github.com/Viber/ngx-viber",
   "description": "Viber Tools for ngx-translate - Multisource Translate Loader",
   "license": "MIT",
+  "private": true,
   "peerDependencies": {
     "@angular/core": ">=6.0.0",
     "@ngx-translate/core": ">=10.0.0",
