@@ -17,7 +17,6 @@ export * from './lib/classes/language-detector';
 // Services
 export * from './lib/services/translate.service';
 export * from './lib/services/language-info.service';
-export * from './lib/classes/language-detector';
 
 // Module
 export * from './lib/translate.module';
