@@ -1,0 +1,27 @@
+.short-lang {
+  display: block;
+  text-transform: capitalize;
+}
+
+.full-lang {
+  display: none;
+}
+
+.mat-form-field {
+  width: 50px;
+}
+
+@media (min-width: 768px) {
+
+  .mat-form-field {
+    width: 200px;
+  }
+
+  .short-lang {
+    display: none;
+  }
+
+  .full-lang {
+    display: block;
+  }
+}

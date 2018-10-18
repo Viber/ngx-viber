@@ -1,0 +1,9 @@
+<mat-form-field floatPlaceholder="never">
+  <mat-select [formControl]="currLang">
+    <mat-select-trigger>
+      <span class="full-lang">{{ currLang.value?.lang }}</span>
+      <span class="short-lang">{{ currLang.value?.short || currLang.value?.code }}</span>
+    </mat-select-trigger>
+    <mat-option *ngFor="let l of languagesService.languages" [value]="l">{{l.lang}}</mat-option>
+  </mat-select>
+</mat-form-field>
