@@ -3,6 +3,12 @@
 if [ -n "$1" ]
 then
     ng build --prod $1
+
+    if [ -d "./projects/$1/assets" ]; then
+      # Control will enter here if $DIRECTORY exists.
+      cp -R ./projects/$1/assets ./dist/$1/assets
+    fi
+
     cp ./.npmrc dist/$1/
     cd dist/$1
     npm pack
