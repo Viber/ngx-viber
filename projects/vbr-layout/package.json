@@ -1,0 +1,18 @@
+{
+  "name": "@viberlab/layout",
+  "version": "1.0.0-alfa.2",
+  "author": "ViberLab",
+  "description": "Viber - Layout Components",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": ">=6.0.0",
+    "@angular/core": ">=6.0.0",
+    "@angular/material": ">=6.0.0",
+    "@angular/router": ">=6.0.0",
+    "@angular/forms": ">=6.0.0",
+    "@viberlab/translate": "^1.0.0-alfa.5",
+    "@viberlab/translate-pipe": "1.0.0-alfa.1",
+    "@ngx-translate/core": ">=10.0.0",
+    "rxjs": ">=6.0.0"
+  }
+}
