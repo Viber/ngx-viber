@@ -436,6 +436,46 @@
           }
         }
       }
+    },
+    "vbr-squircle": {
+      "root": "projects/vbr-squircle",
+      "sourceRoot": "projects/vbr-squircle/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-squircle/tsconfig.lib.json",
+            "project": "projects/vbr-squircle/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-squircle/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-squircle/src/test.ts",
+            "tsConfig": "projects/vbr-squircle/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-squircle/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-squircle/tsconfig.lib.json",
+              "projects/vbr-squircle/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "libs"

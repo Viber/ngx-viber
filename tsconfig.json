@@ -64,6 +64,12 @@
       ],
       "vbr-layout/*": [
         "dist/vbr-layout/*"
+      ],
+      "vbr-squircle": [
+        "dist/vbr-squircle"
+      ],
+      "vbr-squircle/*": [
+        "dist/vbr-squircle/*"
       ]
     }
   }
