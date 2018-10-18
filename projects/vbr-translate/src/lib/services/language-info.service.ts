@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import {
-  VBR_TRANSLATE_LANGUAGE_INFO,
+  VBR_TRANSLATE_LANGUAGES_INFO,
   VBR_TRANSLATE_RTL_CODES
 } from '../tokens';
 import { VbrLanguage } from '../interfaces';
@@ -11,14 +11,12 @@ export class VbrLanguageInfoService {
   // Direction of the current language
   public dir: 'ltr' | 'rtl' = 'ltr';
 
-  // RTL languages support for this:
-  @Inject(VBR_TRANSLATE_RTL_CODES)
-  public readonly rtlCodes: Array<string>;
-
-  @Inject(VBR_TRANSLATE_LANGUAGE_INFO)
-  public readonly languages;
-
-  constructor(private translate: TranslateService) {
+  constructor(
+    private translate: TranslateService,
+    // RTL languages support for this
+    @Inject(VBR_TRANSLATE_RTL_CODES) public readonly rtlCodes: Array<string>,
+    @Inject(VBR_TRANSLATE_LANGUAGES_INFO) public readonly languages
+  ) {
     this.translate.onLangChange
       .subscribe((code) => {
         // Set dir
