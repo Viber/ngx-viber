@@ -58,6 +58,12 @@
       ],
       "@viberlab/vbr-sidenav-menu/*": [
         "dist/vbr-sidenav-menu/*"
+      ],
+      "vbr-layout": [
+        "dist/vbr-layout"
+      ],
+      "vbr-layout/*": [
+        "dist/vbr-layout/*"
       ]
     }
   }

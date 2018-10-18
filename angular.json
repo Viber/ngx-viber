@@ -396,6 +396,46 @@
           }
         }
       }
+    },
+    "vbr-layout": {
+      "root": "projects/vbr-layout",
+      "sourceRoot": "projects/vbr-layout/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-layout/tsconfig.lib.json",
+            "project": "projects/vbr-layout/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-layout/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-layout/src/test.ts",
+            "tsConfig": "projects/vbr-layout/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-layout/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-layout/tsconfig.lib.json",
+              "projects/vbr-layout/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "libs"
