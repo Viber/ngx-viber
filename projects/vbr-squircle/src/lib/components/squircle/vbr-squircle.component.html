@@ -1,0 +1,16 @@
+<div #squircle class="squircle" *ngIf="!isMS; else sqWrapTpl">
+  <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</div>
+
+<ng-template #sqWrapTpl>
+  <div #sqWrap class="sq-wrap" id="squircle-css">
+    <div #inner class="inner"></div>
+    <div #innerSrc style="display: none;">
+      <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #contentTpl>
+  <ng-content></ng-content>
+</ng-template>

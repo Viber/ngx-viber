@@ -1,0 +1,97 @@
+{
+  "footer": {
+    "titles": {
+      "viber": "Viber",
+      "business": "Företag",
+      "developers": "Utvecklare",
+      "general": "Allmänt"
+    },
+    "elements": {
+      "get_viber": {
+        "title": "Skaffa Viber",
+        "link": "//www.viber.com/"
+      },
+      "viber_out": {
+        "title": "Viber Out",
+        "link": "//account.viber.com/en/"
+      },
+      "blog": {
+        "title": "Blogg",
+        "link": "//www.viber.com/blog/"
+      },
+      "media_kit": {
+        "title": "Media-kit",
+        "link": "//www.viber.com/media-kit/"
+      },
+      "discover": {
+        "title": "Upptäck innehåll och varumärken",
+        "link": "//discover.viber.com/"
+      },
+      "communities": {
+        "title": "Diskussionsgrupper",
+        "link": "//www.viber.com/viber-for-business#public-accounts"
+      },
+      "integration_partners": {
+        "title": "Integrationspartners",
+        "link": "//www.viber.com/partners"
+      },
+      "promotional_stickers": {
+        "title": "Kampanjdekaler",
+        "link": "//www.viber.com/viber-for-business#promotional-stickers"
+      },
+      "advertising": {
+        "title": "Reklam",
+        "link": "//www.viber.com/viber-for-business#viber-ads"
+      },
+      "resellers": {
+        "title": "Viber Out-återförsäljare",
+        "link": "//www.viber.com/viber-for-business#viber-out"
+      },
+      "service_messages": {
+        "title": "Servicemeddelanden",
+        "link": "//www.viber.com/viber-for-business#service-messages"
+      },
+      "documentation": {
+        "title": "Dokumentation",
+        "link": "//developers.viber.com/"
+      },
+      "releases": {
+        "title": "Lanseringar",
+        "link": "//developers.viber.com/releases/"
+      },
+      "blog-dev": {
+        "title": "Blogg",
+        "link": "//developers.viber.com/blog/"
+      },
+      "partners": {
+        "title": "Partners",
+        "link": "//developers.viber.com/partners/"
+      },
+      "faq": {
+        "title": "FOS",
+        "link": "//www.viber.com/faq/"
+      },
+      "about": {
+        "title": "Om",
+        "link": "//www.viber.com/about/"
+      },
+      "support": {
+        "title": "Support",
+        "link": "//support.viber.com/"
+      },
+      "terms": {
+        "title": "Villkor och policyer",
+        "link": "//www.viber.com/terms/"
+      },
+      "facebook": {
+        "title": "Facebook",
+        "link": "//www.facebook.com/viber"
+      },
+      "twitter": {
+        "title": "Twitter",
+        "link": "//twitter.com/viber"
+      }
+    },
+    "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+  }
+}

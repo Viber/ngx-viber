@@ -1,0 +1,97 @@
+{
+  "footer": {
+    "titles": {
+      "viber": "Viber",
+      "business": "ธุรกิจ",
+      "developers": "นักพัฒนา",
+      "general": "ทั่วไป"
+    },
+    "elements": {
+      "get_viber": {
+        "title": "รับ Viber",
+        "link": "//www.viber.com/"
+      },
+      "viber_out": {
+        "title": "Viber Out",
+        "link": "//account.viber.com/en/"
+      },
+      "blog": {
+        "title": "เว็บบล็อก",
+        "link": "//www.viber.com/blog/"
+      },
+      "media_kit": {
+        "title": "ชุดมัลติมีเดีย",
+        "link": "//www.viber.com/media-kit/"
+      },
+      "discover": {
+        "title": "สำรวจเนื้อหาและแบรนด์ต่างๆ",
+        "link": "//discover.viber.com/"
+      },
+      "communities": {
+        "title": "ชุมชน",
+        "link": "//www.viber.com/viber-for-business#public-accounts"
+      },
+      "integration_partners": {
+        "title": "คู่ค้าร่วมธุรกิจ",
+        "link": "//www.viber.com/partners"
+      },
+      "promotional_stickers": {
+        "title": "สติ๊กเกอร์โปรโมชัน",
+        "link": "//www.viber.com/viber-for-business#promotional-stickers"
+      },
+      "advertising": {
+        "title": "การโฆษณา",
+        "link": "//www.viber.com/viber-for-business#viber-ads"
+      },
+      "resellers": {
+        "title": "ตัวแทนจำหน่ายเครดิต Viber Out",
+        "link": "//www.viber.com/viber-for-business#viber-out"
+      },
+      "service_messages": {
+        "title": "ข้อความบริการ",
+        "link": "//www.viber.com/viber-for-business#service-messages"
+      },
+      "documentation": {
+        "title": "เอกสารคู่มือ",
+        "link": "//developers.viber.com/"
+      },
+      "releases": {
+        "title": "รีลีส",
+        "link": "//developers.viber.com/releases/"
+      },
+      "blog-dev": {
+        "title": "เว็บบล็อก",
+        "link": "//developers.viber.com/blog/"
+      },
+      "partners": {
+        "title": "คู่ค้าทางธุรกิจ",
+        "link": "//developers.viber.com/partners/"
+      },
+      "faq": {
+        "title": "คำถามที่พบบ่อยๆ",
+        "link": "//www.viber.com/faq/"
+      },
+      "about": {
+        "title": "เกี่ยวกับ",
+        "link": "//www.viber.com/about/"
+      },
+      "support": {
+        "title": "การสนับสนุน",
+        "link": "//support.viber.com/"
+      },
+      "terms": {
+        "title": "ข้อกำหนดและนโยบาย",
+        "link": "//www.viber.com/terms/"
+      },
+      "facebook": {
+        "title": "Facebook",
+        "link": "//www.facebook.com/viber"
+      },
+      "twitter": {
+        "title": "Twitter",
+        "link": "//twitter.com/viber"
+      }
+    },
+    "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+  }
+}

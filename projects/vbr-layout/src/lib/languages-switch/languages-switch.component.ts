@@ -35,7 +35,6 @@ export class VbrLanguagesSwitchComponent implements OnInit, OnDestroy {
       )
       .subscribe((lang: string) => {
         const viberLanguage = this.languagesService.getLanguage(lang);
-        console.log(viberLanguage, lang);
         this.currLang.setValue(viberLanguage, {emitEvent: false});
       });
 
