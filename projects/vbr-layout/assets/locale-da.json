@@ -1,97 +1,99 @@
 {
-  "footer": {
-    "titles": {
-      "viber": "Viber",
-      "business": "Virksomhed",
-      "developers": "Udviklere",
-      "general": "Generelt"
-    },
-    "elements": {
-      "get_viber": {
-        "title": "Få Viber",
-        "link": "//www.viber.com/"
+  "vbr-layout": {
+    "footer": {
+      "titles": {
+        "viber": "Viber",
+        "business": "Virksomhed",
+        "developers": "Udviklere",
+        "general": "Generelt"
       },
-      "viber_out": {
-        "title": "Viber Out",
-        "link": "//account.viber.com/en/"
+      "elements": {
+        "get_viber": {
+          "title": "Få Viber",
+          "link": "//www.viber.com/"
+        },
+        "viber_out": {
+          "title": "Viber Out",
+          "link": "//account.viber.com/en/"
+        },
+        "blog": {
+          "title": "Blog",
+          "link": "//www.viber.com/blog/"
+        },
+        "media_kit": {
+          "title": "Mediesæt",
+          "link": "//www.viber.com/media-kit/"
+        },
+        "discover": {
+          "title": "Se indhold & mærker",
+          "link": "//discover.viber.com/"
+        },
+        "communities": {
+          "title": "Fællesskaber",
+          "link": "//www.viber.com/viber-for-business#public-accounts"
+        },
+        "integration_partners": {
+          "title": "Integrationspartnere",
+          "link": "//www.viber.com/partners"
+        },
+        "promotional_stickers": {
+          "title": "Reklamemærker",
+          "link": "//www.viber.com/viber-for-business#promotional-stickers"
+        },
+        "advertising": {
+          "title": "Reklamer",
+          "link": "//www.viber.com/viber-for-business#viber-ads"
+        },
+        "resellers": {
+          "title": "Forhandlere af Viber out",
+          "link": "//www.viber.com/viber-for-business#viber-out"
+        },
+        "service_messages": {
+          "title": "Servicemeddeleleser",
+          "link": "//www.viber.com/viber-for-business#service-messages"
+        },
+        "documentation": {
+          "title": "Dokumenter",
+          "link": "//developers.viber.com/"
+        },
+        "releases": {
+          "title": "Udgivelser",
+          "link": "//developers.viber.com/releases/"
+        },
+        "blog-dev": {
+          "title": "Blog",
+          "link": "//developers.viber.com/blog/"
+        },
+        "partners": {
+          "title": "Partnere",
+          "link": "//developers.viber.com/partners/"
+        },
+        "faq": {
+          "title": "Ofte stillede spørgsmål",
+          "link": "//www.viber.com/faq/"
+        },
+        "about": {
+          "title": "Om",
+          "link": "//www.viber.com/about/"
+        },
+        "support": {
+          "title": "Support",
+          "link": "//support.viber.com/"
+        },
+        "terms": {
+          "title": "Vilkår & Betingelser",
+          "link": "//www.viber.com/terms/"
+        },
+        "facebook": {
+          "title": "Facebook",
+          "link": "//www.facebook.com/viber"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "link": "//twitter.com/viber"
+        }
       },
-      "blog": {
-        "title": "Blog",
-        "link": "//www.viber.com/blog/"
-      },
-      "media_kit": {
-        "title": "Mediesæt",
-        "link": "//www.viber.com/media-kit/"
-      },
-      "discover": {
-        "title": "Se indhold & mærker",
-        "link": "//discover.viber.com/"
-      },
-      "communities": {
-        "title": "Fællesskaber",
-        "link": "//www.viber.com/viber-for-business#public-accounts"
-      },
-      "integration_partners": {
-        "title": "Integrationspartnere",
-        "link": "//www.viber.com/partners"
-      },
-      "promotional_stickers": {
-        "title": "Reklamemærker",
-        "link": "//www.viber.com/viber-for-business#promotional-stickers"
-      },
-      "advertising": {
-        "title": "Reklamer",
-        "link": "//www.viber.com/viber-for-business#viber-ads"
-      },
-      "resellers": {
-        "title": "Forhandlere af Viber out",
-        "link": "//www.viber.com/viber-for-business#viber-out"
-      },
-      "service_messages": {
-        "title": "Servicemeddeleleser",
-        "link": "//www.viber.com/viber-for-business#service-messages"
-      },
-      "documentation": {
-        "title": "Dokumenter",
-        "link": "//developers.viber.com/"
-      },
-      "releases": {
-        "title": "Udgivelser",
-        "link": "//developers.viber.com/releases/"
-      },
-      "blog-dev": {
-        "title": "Blog",
-        "link": "//developers.viber.com/blog/"
-      },
-      "partners": {
-        "title": "Partnere",
-        "link": "//developers.viber.com/partners/"
-      },
-      "faq": {
-        "title": "Ofte stillede spørgsmål",
-        "link": "//www.viber.com/faq/"
-      },
-      "about": {
-        "title": "Om",
-        "link": "//www.viber.com/about/"
-      },
-      "support": {
-        "title": "Support",
-        "link": "//support.viber.com/"
-      },
-      "terms": {
-        "title": "Vilkår & Betingelser",
-        "link": "//www.viber.com/terms/"
-      },
-      "facebook": {
-        "title": "Facebook",
-        "link": "//www.facebook.com/viber"
-      },
-      "twitter": {
-        "title": "Twitter",
-        "link": "//twitter.com/viber"
-      }
-    },
-    "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+      "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+    }
   }
 }

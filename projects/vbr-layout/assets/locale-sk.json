@@ -1,97 +1,99 @@
 {
-  "footer": {
-    "titles": {
-      "viber": "Viber",
-      "business": "Obchodovanie",
-      "developers": "Vývojári",
-      "general": "Všeobecné"
-    },
-    "elements": {
-      "get_viber": {
-        "title": "Stiahnite si Viber",
-        "link": "//www.viber.com/"
+  "vbr-layout": {
+    "footer": {
+      "titles": {
+        "viber": "Viber",
+        "business": "Obchodovanie",
+        "developers": "Vývojári",
+        "general": "Všeobecné"
       },
-      "viber_out": {
-        "title": "Viber Out",
-        "link": "//account.viber.com/en/"
+      "elements": {
+        "get_viber": {
+          "title": "Stiahnite si Viber",
+          "link": "//www.viber.com/"
+        },
+        "viber_out": {
+          "title": "Viber Out",
+          "link": "//account.viber.com/en/"
+        },
+        "blog": {
+          "title": "Blog",
+          "link": "//www.viber.com/blog/"
+        },
+        "media_kit": {
+          "title": "Mediálna súprava",
+          "link": "//www.viber.com/media-kit/"
+        },
+        "discover": {
+          "title": "Objavte obsah a značky",
+          "link": "//discover.viber.com/"
+        },
+        "communities": {
+          "title": "Komunity",
+          "link": "//www.viber.com/viber-for-business#public-accounts"
+        },
+        "integration_partners": {
+          "title": "Partneri integrácie",
+          "link": "//www.viber.com/partners"
+        },
+        "promotional_stickers": {
+          "title": "Promo nálepky",
+          "link": "//www.viber.com/viber-for-business#promotional-stickers"
+        },
+        "advertising": {
+          "title": "Reklama",
+          "link": "//www.viber.com/viber-for-business#viber-ads"
+        },
+        "resellers": {
+          "title": "Predajcovia Viber Out",
+          "link": "//www.viber.com/viber-for-business#viber-out"
+        },
+        "service_messages": {
+          "title": "Služby posielania správ",
+          "link": "//www.viber.com/viber-for-business#service-messages"
+        },
+        "documentation": {
+          "title": "Dokumentácia",
+          "link": "//developers.viber.com/"
+        },
+        "releases": {
+          "title": "Vydania",
+          "link": "//developers.viber.com/releases/"
+        },
+        "blog-dev": {
+          "title": "Blog",
+          "link": "//developers.viber.com/blog/"
+        },
+        "partners": {
+          "title": "Partneri",
+          "link": "//developers.viber.com/partners/"
+        },
+        "faq": {
+          "title": "Časté otázky",
+          "link": "//www.viber.com/faq/"
+        },
+        "about": {
+          "title": "O aplikácii",
+          "link": "//www.viber.com/about/"
+        },
+        "support": {
+          "title": "Podpora",
+          "link": "//support.viber.com/"
+        },
+        "terms": {
+          "title": "Zmluvné podmienky a pravidlá",
+          "link": "//www.viber.com/terms/"
+        },
+        "facebook": {
+          "title": "Facebook",
+          "link": "//www.facebook.com/viber"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "link": "//twitter.com/viber"
+        }
       },
-      "blog": {
-        "title": "Blog",
-        "link": "//www.viber.com/blog/"
-      },
-      "media_kit": {
-        "title": "Mediálna súprava",
-        "link": "//www.viber.com/media-kit/"
-      },
-      "discover": {
-        "title": "Objavte obsah a značky",
-        "link": "//discover.viber.com/"
-      },
-      "communities": {
-        "title": "Komunity",
-        "link": "//www.viber.com/viber-for-business#public-accounts"
-      },
-      "integration_partners": {
-        "title": "Partneri integrácie",
-        "link": "//www.viber.com/partners"
-      },
-      "promotional_stickers": {
-        "title": "Promo nálepky",
-        "link": "//www.viber.com/viber-for-business#promotional-stickers"
-      },
-      "advertising": {
-        "title": "Reklama",
-        "link": "//www.viber.com/viber-for-business#viber-ads"
-      },
-      "resellers": {
-        "title": "Predajcovia Viber Out",
-        "link": "//www.viber.com/viber-for-business#viber-out"
-      },
-      "service_messages": {
-        "title": "Služby posielania správ",
-        "link": "//www.viber.com/viber-for-business#service-messages"
-      },
-      "documentation": {
-        "title": "Dokumentácia",
-        "link": "//developers.viber.com/"
-      },
-      "releases": {
-        "title": "Vydania",
-        "link": "//developers.viber.com/releases/"
-      },
-      "blog-dev": {
-        "title": "Blog",
-        "link": "//developers.viber.com/blog/"
-      },
-      "partners": {
-        "title": "Partneri",
-        "link": "//developers.viber.com/partners/"
-      },
-      "faq": {
-        "title": "Časté otázky",
-        "link": "//www.viber.com/faq/"
-      },
-      "about": {
-        "title": "O aplikácii",
-        "link": "//www.viber.com/about/"
-      },
-      "support": {
-        "title": "Podpora",
-        "link": "//support.viber.com/"
-      },
-      "terms": {
-        "title": "Zmluvné podmienky a pravidlá",
-        "link": "//www.viber.com/terms/"
-      },
-      "facebook": {
-        "title": "Facebook",
-        "link": "//www.facebook.com/viber"
-      },
-      "twitter": {
-        "title": "Twitter",
-        "link": "//twitter.com/viber"
-      }
-    },
-    "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+      "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+    }
   }
 }

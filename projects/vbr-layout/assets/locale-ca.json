@@ -1,97 +1,99 @@
 {
-  "footer": {
-    "titles": {
-      "viber": "Viber",
-      "business": "Empresa",
-      "developers": "Desenvolupadors",
-      "general": "General"
-    },
-    "elements": {
-      "get_viber": {
-        "title": "Obtén Viber",
-        "link": "//www.viber.com/"
+  "vbr-layout": {
+    "footer": {
+      "titles": {
+        "viber": "Viber",
+        "business": "Empresa",
+        "developers": "Desenvolupadors",
+        "general": "General"
       },
-      "viber_out": {
-        "title": "Viber Out",
-        "link": "//account.viber.com/en/"
+      "elements": {
+        "get_viber": {
+          "title": "Obtén Viber",
+          "link": "//www.viber.com/"
+        },
+        "viber_out": {
+          "title": "Viber Out",
+          "link": "//account.viber.com/en/"
+        },
+        "blog": {
+          "title": "Blog",
+          "link": "//www.viber.com/blog/"
+        },
+        "media_kit": {
+          "title": "Kit multimèdia",
+          "link": "//www.viber.com/media-kit/"
+        },
+        "discover": {
+          "title": "Descobreix contingut i marques",
+          "link": "//discover.viber.com/"
+        },
+        "communities": {
+          "title": "Comunitats",
+          "link": "//www.viber.com/viber-for-business#public-accounts"
+        },
+        "integration_partners": {
+          "title": "Socis d'integració",
+          "link": "//www.viber.com/partners"
+        },
+        "promotional_stickers": {
+          "title": "Adhesius promocionals",
+          "link": "//www.viber.com/viber-for-business#promotional-stickers"
+        },
+        "advertising": {
+          "title": "Publicitat",
+          "link": "//www.viber.com/viber-for-business#viber-ads"
+        },
+        "resellers": {
+          "title": "Distribuïdors de Viber Out",
+          "link": "//www.viber.com/viber-for-business#viber-out"
+        },
+        "service_messages": {
+          "title": "Missatges de servei",
+          "link": "//www.viber.com/viber-for-business#service-messages"
+        },
+        "documentation": {
+          "title": "Documentació",
+          "link": "//developers.viber.com/"
+        },
+        "releases": {
+          "title": "Versions",
+          "link": "//developers.viber.com/releases/"
+        },
+        "blog-dev": {
+          "title": "Blog",
+          "link": "//developers.viber.com/blog/"
+        },
+        "partners": {
+          "title": "Socis",
+          "link": "//developers.viber.com/partners/"
+        },
+        "faq": {
+          "title": "Preguntes freqüents",
+          "link": "//www.viber.com/faq/"
+        },
+        "about": {
+          "title": "Informació",
+          "link": "//www.viber.com/about/"
+        },
+        "support": {
+          "title": "Suport",
+          "link": "//support.viber.com/"
+        },
+        "terms": {
+          "title": "Termes i Polítiques",
+          "link": "//www.viber.com/terms/"
+        },
+        "facebook": {
+          "title": "Facebook",
+          "link": "//www.facebook.com/viber"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "link": "//twitter.com/viber"
+        }
       },
-      "blog": {
-        "title": "Blog",
-        "link": "//www.viber.com/blog/"
-      },
-      "media_kit": {
-        "title": "Kit multimèdia",
-        "link": "//www.viber.com/media-kit/"
-      },
-      "discover": {
-        "title": "Descobreix contingut i marques",
-        "link": "//discover.viber.com/"
-      },
-      "communities": {
-        "title": "Comunitats",
-        "link": "//www.viber.com/viber-for-business#public-accounts"
-      },
-      "integration_partners": {
-        "title": "Socis d'integració",
-        "link": "//www.viber.com/partners"
-      },
-      "promotional_stickers": {
-        "title": "Adhesius promocionals",
-        "link": "//www.viber.com/viber-for-business#promotional-stickers"
-      },
-      "advertising": {
-        "title": "Publicitat",
-        "link": "//www.viber.com/viber-for-business#viber-ads"
-      },
-      "resellers": {
-        "title": "Distribuïdors de Viber Out",
-        "link": "//www.viber.com/viber-for-business#viber-out"
-      },
-      "service_messages": {
-        "title": "Missatges de servei",
-        "link": "//www.viber.com/viber-for-business#service-messages"
-      },
-      "documentation": {
-        "title": "Documentació",
-        "link": "//developers.viber.com/"
-      },
-      "releases": {
-        "title": "Versions",
-        "link": "//developers.viber.com/releases/"
-      },
-      "blog-dev": {
-        "title": "Blog",
-        "link": "//developers.viber.com/blog/"
-      },
-      "partners": {
-        "title": "Socis",
-        "link": "//developers.viber.com/partners/"
-      },
-      "faq": {
-        "title": "Preguntes freqüents",
-        "link": "//www.viber.com/faq/"
-      },
-      "about": {
-        "title": "Informació",
-        "link": "//www.viber.com/about/"
-      },
-      "support": {
-        "title": "Suport",
-        "link": "//support.viber.com/"
-      },
-      "terms": {
-        "title": "Termes i Polítiques",
-        "link": "//www.viber.com/terms/"
-      },
-      "facebook": {
-        "title": "Facebook",
-        "link": "//www.facebook.com/viber"
-      },
-      "twitter": {
-        "title": "Twitter",
-        "link": "//twitter.com/viber"
-      }
-    },
-    "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+      "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+    }
   }
 }

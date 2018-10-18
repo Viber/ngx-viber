@@ -1,97 +1,99 @@
 {
-  "footer": {
-    "titles": {
-      "viber": "Viber",
-      "business": "ビジネス",
-      "developers": "開発者",
-      "general": "全般"
-    },
-    "elements": {
-      "get_viber": {
-        "title": "Viber を入手",
-        "link": "//www.viber.com/"
+  "vbr-layout": {
+    "footer": {
+      "titles": {
+        "viber": "Viber",
+        "business": "ビジネス",
+        "developers": "開発者",
+        "general": "全般"
       },
-      "viber_out": {
-        "title": "Viber Out",
-        "link": "//account.viber.com/en/"
+      "elements": {
+        "get_viber": {
+          "title": "Viber を入手",
+          "link": "//www.viber.com/"
+        },
+        "viber_out": {
+          "title": "Viber Out",
+          "link": "//account.viber.com/en/"
+        },
+        "blog": {
+          "title": "ブログ",
+          "link": "//www.viber.com/blog/"
+        },
+        "media_kit": {
+          "title": "メディアキット",
+          "link": "//www.viber.com/media-kit/"
+        },
+        "discover": {
+          "title": "コンテンツとブランドを検索",
+          "link": "//discover.viber.com/"
+        },
+        "communities": {
+          "title": "コミュニティ",
+          "link": "//www.viber.com/viber-for-business#public-accounts"
+        },
+        "integration_partners": {
+          "title": "パートナー",
+          "link": "//www.viber.com/partners"
+        },
+        "promotional_stickers": {
+          "title": "プロモーション用ステッカー",
+          "link": "//www.viber.com/viber-for-business#promotional-stickers"
+        },
+        "advertising": {
+          "title": "広告",
+          "link": "//www.viber.com/viber-for-business#viber-ads"
+        },
+        "resellers": {
+          "title": "Viber Out 再販業者",
+          "link": "//www.viber.com/viber-for-business#viber-out"
+        },
+        "service_messages": {
+          "title": "サービスメッセージ",
+          "link": "//www.viber.com/viber-for-business#service-messages"
+        },
+        "documentation": {
+          "title": "ドキュメンテーション",
+          "link": "//developers.viber.com/"
+        },
+        "releases": {
+          "title": "リリース",
+          "link": "//developers.viber.com/releases/"
+        },
+        "blog-dev": {
+          "title": "ブログ",
+          "link": "//developers.viber.com/blog/"
+        },
+        "partners": {
+          "title": "パートナー",
+          "link": "//developers.viber.com/partners/"
+        },
+        "faq": {
+          "title": "よくある質問",
+          "link": "//www.viber.com/faq/"
+        },
+        "about": {
+          "title": "Viberについて",
+          "link": "//www.viber.com/about/"
+        },
+        "support": {
+          "title": "サポート",
+          "link": "//support.viber.com/"
+        },
+        "terms": {
+          "title": "当社の利用規約",
+          "link": "//www.viber.com/terms/"
+        },
+        "facebook": {
+          "title": "Facebook",
+          "link": "//www.facebook.com/viber"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "link": "//twitter.com/viber"
+        }
       },
-      "blog": {
-        "title": "ブログ",
-        "link": "//www.viber.com/blog/"
-      },
-      "media_kit": {
-        "title": "メディアキット",
-        "link": "//www.viber.com/media-kit/"
-      },
-      "discover": {
-        "title": "コンテンツとブランドを検索",
-        "link": "//discover.viber.com/"
-      },
-      "communities": {
-        "title": "コミュニティ",
-        "link": "//www.viber.com/viber-for-business#public-accounts"
-      },
-      "integration_partners": {
-        "title": "パートナー",
-        "link": "//www.viber.com/partners"
-      },
-      "promotional_stickers": {
-        "title": "プロモーション用ステッカー",
-        "link": "//www.viber.com/viber-for-business#promotional-stickers"
-      },
-      "advertising": {
-        "title": "広告",
-        "link": "//www.viber.com/viber-for-business#viber-ads"
-      },
-      "resellers": {
-        "title": "Viber Out 再販業者",
-        "link": "//www.viber.com/viber-for-business#viber-out"
-      },
-      "service_messages": {
-        "title": "サービスメッセージ",
-        "link": "//www.viber.com/viber-for-business#service-messages"
-      },
-      "documentation": {
-        "title": "ドキュメンテーション",
-        "link": "//developers.viber.com/"
-      },
-      "releases": {
-        "title": "リリース",
-        "link": "//developers.viber.com/releases/"
-      },
-      "blog-dev": {
-        "title": "ブログ",
-        "link": "//developers.viber.com/blog/"
-      },
-      "partners": {
-        "title": "パートナー",
-        "link": "//developers.viber.com/partners/"
-      },
-      "faq": {
-        "title": "よくある質問",
-        "link": "//www.viber.com/faq/"
-      },
-      "about": {
-        "title": "Viberについて",
-        "link": "//www.viber.com/about/"
-      },
-      "support": {
-        "title": "サポート",
-        "link": "//support.viber.com/"
-      },
-      "terms": {
-        "title": "当社の利用規約",
-        "link": "//www.viber.com/terms/"
-      },
-      "facebook": {
-        "title": "Facebook",
-        "link": "//www.facebook.com/viber"
-      },
-      "twitter": {
-        "title": "Twitter",
-        "link": "//twitter.com/viber"
-      }
-    },
-    "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+      "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+    }
   }
 }

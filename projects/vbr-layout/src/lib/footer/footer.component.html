@@ -2,11 +2,11 @@
   <div class="vat-footer-container">
     <div class="vat-footer-row">
       <div *ngFor="let row of FOOTER_ELEMENTS" class="vat-footer-col">
-        <h3>{{'footer.titles.' + row.title | translate}}</h3>
+        <h3>{{'vbr-layout.footer.titles.' + row.title | translate}}</h3>
         <ul>
           <li *ngFor="let column of row.elements">
-            <a href="{{'footer.elements.' + column + '.link' | translate}}">
-              {{'footer.elements.' + column + '.title' | translate}}
+            <a href="{{'vbr-layout.footer.elements.' + column + '.link' | translate}}">
+              {{'vbr-layout.footer.elements.' + column + '.title' | translate}}
             </a>
           </li>
         </ul>
@@ -14,7 +14,7 @@
     </div>
     <div class="vat-footer-copy vat-footer-row">
       <div class="vat-footer-col">
-        <span dir="ltr">{{'footer.copyright' | translate : year}}</span>
+        <span dir="ltr">{{'vbr-layout.footer.copyright' | translate : year}}</span>
       </div>
     </div>
   </div>
