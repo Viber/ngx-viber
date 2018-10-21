@@ -1,0 +1,40 @@
+/**
+  css vbr-button
+
+  Description:
+  vbr-button is a or button tags attribute that should be used in combination with mat-button directive
+  Converts regular material design button to viber style
+
+  Without any value it will take default "primary" state; display pink viber button
+  When used as vbr-button="secondary" it will display green viber button
+
+  can be used on both a and button tags
+
+  How to use:
+  Import into your scss files this one.
+ */
+$button-color-primary: #655bab;
+$button-color-secondary: #66b821;
+
+a, button {
+  // vbr-button attribute
+  &[vbr-button] {
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: $button-color-primary;
+    color: white;
+    &:hover {
+      background-color: darken($button-color-primary, 10);
+    }
+    &[mat-button] {
+      @include mat-elevation(0);
+    }
+  }
+  // For secondary button
+  &[vbr-button="secondary"] {
+    background-color: $button-color-secondary;
+    &:hover {
+      background-color: darken($button-color-secondary, 5);
+    }
+  }
+}
