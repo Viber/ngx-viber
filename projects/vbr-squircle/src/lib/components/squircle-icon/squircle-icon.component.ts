@@ -10,7 +10,7 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 export class VbrSquircleIconComponent implements OnInit {
 
   @Input() iconSize: string;
-  @Input() placeholder: string = 'assets/@viberlab/img/default-squircle-icon.png';
+  @Input() placeholder: string = 'assets/@viberlab/squircle/img/default-squircle-icon.png';
   @Input() showBorder: boolean = false;
   @Input() src: string;
 
