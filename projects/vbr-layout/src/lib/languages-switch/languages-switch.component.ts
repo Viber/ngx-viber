@@ -1,9 +1,24 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';
+import {
+  distinctUntilChanged,
+  map,
+  startWith,
+  takeUntil,
+} from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { VbrTranslateService, VbrLanguageInfoService } from '@viberlab/translate';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import {
+  VbrLanguageInfoService,
+  VbrTranslateService,
+} from '@viberlab/translate';
+import {
+  LangChangeEvent,
+  TranslateService,
+} from '@ngx-translate/core';
 
 @Component({
   selector: 'vbr-languages-switch',
@@ -20,7 +35,7 @@ export class VbrLanguagesSwitchComponent implements OnInit, OnDestroy {
   constructor(
     public languagesService: VbrLanguageInfoService,
     private translate: TranslateService,
-    private vbrTranslate: VbrTranslateService
+    private vbrTranslate: VbrTranslateService,
   ) {
   }
 
@@ -31,7 +46,7 @@ export class VbrLanguagesSwitchComponent implements OnInit, OnDestroy {
         takeUntil(this.onDestroy$),
         map((lang: LangChangeEvent) => lang.lang),
         startWith(this.translate.currentLang),
-        distinctUntilChanged()
+        distinctUntilChanged(),
       )
       .subscribe((lang: string) => {
         const viberLanguage = this.languagesService.getLanguage(lang);
@@ -41,7 +56,7 @@ export class VbrLanguagesSwitchComponent implements OnInit, OnDestroy {
     this.currLang.valueChanges
       .pipe(
         takeUntil(this.onDestroy$),
-        distinctUntilChanged()
+        distinctUntilChanged(),
       )
       .subscribe(lang => this.vbrTranslate.setLanguage(lang.code));
   }
