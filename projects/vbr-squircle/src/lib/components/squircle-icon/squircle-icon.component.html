@@ -1,0 +1,17 @@
+<div #iconWrap [style.width]="size + 'px'"
+     [style.height]="size + 'px'">
+  <vbr-squircle *ngIf="showBorder" class="border" [size]="(size + borderOffset)"
+                [style.width]="(size + borderOffset) + 'px'"
+                [style.height]="(size + borderOffset) + 'px'"
+                [style.left]="'-' + borderOffset / 2 + 'px'"
+                [style.top]="'-' + borderOffset / 2 + 'px'"
+                [ngClass]="iconSize">
+    <div class="white" style="background: #fff"></div>
+  </vbr-squircle>
+  <vbr-squircle [size]="size"
+                [style.width]="size + 'px'"
+                [style.height]="size + 'px'"
+                [ngClass]="iconSize">
+    <img class="anImage" [vbrImageSrc]="src" [vbrImagePreloader]="placeholder"/>
+  </vbr-squircle>
+</div>

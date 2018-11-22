@@ -1,0 +1,8 @@
+<mat-list-item [VbrSidenavHideSecured]="section.permissions">
+  <mat-icon mat-list-icon *ngIf="section.icon">{{section.icon}}</mat-icon>
+  <a mat-line
+     [href]="section.href | asyncOrNot"
+     target="_blank">{{section.name | asyncOrNot}}
+  </a>
+</mat-list-item>
+

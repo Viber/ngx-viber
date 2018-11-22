@@ -1,0 +1,31 @@
+$vbr-color-pale-dark: #323232;
+
+// vbr-font-flex - is responsible for font scaling according to the screen size.
+@media (max-width: 599px) {
+  .vbr-font-flex, [vbr-font-flex] {
+    &.mat-display-2 {
+      font-size: 32px;
+      line-height: 42px;
+    }
+    &.mat-display-3 {
+      font-size: 40px;
+      line-height: 60px;
+    }
+    &.mat-body-2 {
+      font-size: 14px;
+    }
+  }
+}
+
+// Will cut the line with ...
+.vbr-font-overflow, [vbr-font-overflow] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Set color (Usually for subtitles)
+.vbr-color-pale-dark, [vbr-color-pale-dark] {
+  color: $vbr-color-pale-dark;
+}
+

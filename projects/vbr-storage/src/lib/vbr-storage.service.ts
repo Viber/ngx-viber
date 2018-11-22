@@ -1,8 +1,7 @@
 import { Injectable, EventEmitter, Inject } from '@angular/core';
 import { VBR_WINDOW, VBR_STORAGE_PREFIX } from './constants';
 import { filter } from 'rxjs/operators';
-import { Subject } from 'rxjs/internal/Subject';
-import { fromEvent } from 'rxjs/internal/observable/fromEvent';
+import { fromEvent, Subject } from 'rxjs';
 
 class InnerStorage implements Storage {
   private storage: Object = {};

@@ -356,6 +356,126 @@
           }
         }
       }
+    },
+    "vbr-sidenav-menu": {
+      "root": "projects/vbr-sidenav-menu",
+      "sourceRoot": "projects/vbr-sidenav-menu/src",
+      "projectType": "library",
+      "prefix": "vbr-sidenav-menu",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-sidenav-menu/tsconfig.lib.json",
+            "project": "projects/vbr-sidenav-menu/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-sidenav-menu/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-sidenav-menu/src/test.ts",
+            "tsConfig": "projects/vbr-sidenav-menu/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-sidenav-menu/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-sidenav-menu/tsconfig.lib.json",
+              "projects/vbr-sidenav-menu/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "vbr-layout": {
+      "root": "projects/vbr-layout",
+      "sourceRoot": "projects/vbr-layout/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-layout/tsconfig.lib.json",
+            "project": "projects/vbr-layout/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-layout/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-layout/src/test.ts",
+            "tsConfig": "projects/vbr-layout/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-layout/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-layout/tsconfig.lib.json",
+              "projects/vbr-layout/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "vbr-squircle": {
+      "root": "projects/vbr-squircle",
+      "sourceRoot": "projects/vbr-squircle/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-squircle/tsconfig.lib.json",
+            "project": "projects/vbr-squircle/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-squircle/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-squircle/src/test.ts",
+            "tsConfig": "projects/vbr-squircle/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-squircle/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-squircle/tsconfig.lib.json",
+              "projects/vbr-squircle/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "libs"

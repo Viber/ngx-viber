@@ -1,0 +1,99 @@
+{
+  "vbr-layout": {
+    "footer": {
+      "titles": {
+        "viber": "Viber",
+        "business": "Kinh doanh",
+        "developers": "Nhà phát triển",
+        "general": "Giới thiệu chung"
+      },
+      "elements": {
+        "get_viber": {
+          "title": "Tải Viber",
+          "link": "//www.viber.com/"
+        },
+        "viber_out": {
+          "title": "Viber Out",
+          "link": "//account.viber.com/en/"
+        },
+        "blog": {
+          "title": "Blog",
+          "link": "//www.viber.com/blog/"
+        },
+        "media_kit": {
+          "title": "Bộ đa phương tiện",
+          "link": "//www.viber.com/media-kit/"
+        },
+        "discover": {
+          "title": "Khám phá nội dung & nhãn hiệu",
+          "link": "//discover.viber.com/"
+        },
+        "communities": {
+          "title": "Cộng đồng",
+          "link": "//www.viber.com/viber-for-business#public-accounts"
+        },
+        "integration_partners": {
+          "title": "Đối tác tích hợp",
+          "link": "//www.viber.com/partners"
+        },
+        "promotional_stickers": {
+          "title": "Sticker quảng bá",
+          "link": "//www.viber.com/viber-for-business#promotional-stickers"
+        },
+        "advertising": {
+          "title": "Quảng cáo",
+          "link": "//www.viber.com/viber-for-business#viber-ads"
+        },
+        "resellers": {
+          "title": "Nhà bán lẻ Viber Out",
+          "link": "//www.viber.com/viber-for-business#viber-out"
+        },
+        "service_messages": {
+          "title": "Tin nhắn Dịch vụ",
+          "link": "//www.viber.com/viber-for-business#service-messages"
+        },
+        "documentation": {
+          "title": "Tài liệu",
+          "link": "//developers.viber.com/"
+        },
+        "releases": {
+          "title": "Thông báo phát hành",
+          "link": "//developers.viber.com/releases/"
+        },
+        "blog-dev": {
+          "title": "Blog",
+          "link": "//developers.viber.com/blog/"
+        },
+        "partners": {
+          "title": "Đối tác",
+          "link": "//developers.viber.com/partners/"
+        },
+        "faq": {
+          "title": "CÂU HỎI THƯỜNG GẶP",
+          "link": "//www.viber.com/faq/"
+        },
+        "about": {
+          "title": "Giới thiệu",
+          "link": "//www.viber.com/about/"
+        },
+        "support": {
+          "title": "Hỗ trợ",
+          "link": "//support.viber.com/"
+        },
+        "terms": {
+          "title": "Điều khoản & Chính sách",
+          "link": "//www.viber.com/terms/"
+        },
+        "facebook": {
+          "title": "Facebook",
+          "link": "//www.facebook.com/viber"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "link": "//twitter.com/viber"
+        }
+      },
+      "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+    }
+  }
+}

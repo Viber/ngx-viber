@@ -1,0 +1,99 @@
+{
+  "vbr-layout": {
+    "footer": {
+      "titles": {
+        "viber": "Viber",
+        "business": "业务",
+        "developers": "开发人员",
+        "general": "常规"
+      },
+      "elements": {
+        "get_viber": {
+          "title": "获取 Viber",
+          "link": "//www.viber.com/"
+        },
+        "viber_out": {
+          "title": "Viber Out",
+          "link": "//account.viber.com/en/"
+        },
+        "blog": {
+          "title": "博客",
+          "link": "//www.viber.com/blog/"
+        },
+        "media_kit": {
+          "title": "媒体工具包",
+          "link": "//www.viber.com/media-kit/"
+        },
+        "discover": {
+          "title": "发现内容和品牌",
+          "link": "//discover.viber.com/"
+        },
+        "communities": {
+          "title": "社区",
+          "link": "//www.viber.com/viber-for-business#public-accounts"
+        },
+        "integration_partners": {
+          "title": "集成合作伙伴",
+          "link": "//www.viber.com/partners"
+        },
+        "promotional_stickers": {
+          "title": "促销标签",
+          "link": "//www.viber.com/viber-for-business#promotional-stickers"
+        },
+        "advertising": {
+          "title": "广告",
+          "link": "//www.viber.com/viber-for-business#viber-ads"
+        },
+        "resellers": {
+          "title": "Viber Out 代理商",
+          "link": "//www.viber.com/viber-for-business#viber-out"
+        },
+        "service_messages": {
+          "title": "服务消息",
+          "link": "//www.viber.com/viber-for-business#service-messages"
+        },
+        "documentation": {
+          "title": "文档",
+          "link": "//developers.viber.com/"
+        },
+        "releases": {
+          "title": "发行",
+          "link": "//developers.viber.com/releases/"
+        },
+        "blog-dev": {
+          "title": "博客",
+          "link": "//developers.viber.com/blog/"
+        },
+        "partners": {
+          "title": "合作伙伴",
+          "link": "//developers.viber.com/partners/"
+        },
+        "faq": {
+          "title": "常见问题",
+          "link": "//www.viber.com/faq/"
+        },
+        "about": {
+          "title": "关于",
+          "link": "//www.viber.com/about/"
+        },
+        "support": {
+          "title": "支持",
+          "link": "//support.viber.com/"
+        },
+        "terms": {
+          "title": "条款和政策",
+          "link": "//www.viber.com/terms/"
+        },
+        "facebook": {
+          "title": "Facebook",
+          "link": "//www.facebook.com/viber"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "link": "//twitter.com/viber"
+        }
+      },
+      "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+    }
+  }
+}

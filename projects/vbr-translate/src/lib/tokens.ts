@@ -14,6 +14,6 @@ export const VBR_TRANSLATE_RTL_CODES = new InjectionToken<Array<string>>('VBR_TR
 // For example {'iw' : 'he'} will handle 'iw' as 'he'
 export const VBR_TRANSLATE_CANONICAL_CODES = new InjectionToken<{ [code: string]: string }>('VBR_TRANSLATE_CANONICAL_CODES');
 
-export const VBR_TRANSLATE_LANGUAGE_INFO = new InjectionToken<Array<VbrLanguage>>('VBR_TRANSLATE_LANGUAGE_INFO');
+export const VBR_TRANSLATE_LANGUAGES_INFO = new InjectionToken<Array<VbrLanguage>>('VBR_TRANSLATE_LANGUAGES_INFO');
 
 export const VBR_NAVIGATOR_TOKEN = new InjectionToken<Navigator>('Navigator');

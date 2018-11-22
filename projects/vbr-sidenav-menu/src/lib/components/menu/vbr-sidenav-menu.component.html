@@ -1,0 +1,19 @@
+<mat-nav-list
+  *ngFor="let section of sections | async; last as last"
+  [VbrSidenavHideSecured]="section.permissions">
+  <h3 mat-subheader *ngIf="section.type === 'heading'">{{section.name | asyncOrNot}}</h3>
+
+  <ng-container *ngIf="section.children; else parentless">
+    <ng-container *ngFor="let child of section.children">
+      <vbr-sidenav-menu-link *ngIf="child.type === 'link'" [section]="child"></vbr-sidenav-menu-link>
+      <vbr-sidenav-menu-url-link *ngIf="child.type === 'url-link'" [section]="child"></vbr-sidenav-menu-url-link>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #parentless>
+    <vbr-sidenav-menu-link *ngIf="section.type === 'link'" [section]="section"></vbr-sidenav-menu-link>
+    <vbr-sidenav-menu-url-link *ngIf="section.type === 'url-link'" [section]="section"></vbr-sidenav-menu-url-link>
+  </ng-template>
+
+  <mat-divider *ngIf="!last"></mat-divider>
+</mat-nav-list>

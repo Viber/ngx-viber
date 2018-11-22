@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+:host {
+  display: inline-block;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  text-align: center;
+  width: 100%;
+}
+
+img {
+  width: 5rem;
+  margin: 2rem auto 1rem;
+}
+
+h3 {
+  color: #665cac;
+  font-size: 4rem;
+  font-family: 'Fira Sans', sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 0.85rem;
+}

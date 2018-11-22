@@ -1,17 +1,17 @@
 {
-  "name": "@viberlab/chips-autocomplete",
-  "version": "0.0.1",
+  "name": "@viberlab/ng-chips-autocomplete",
+  "version": "1.0.0-alfa.1",
   "author": "ViberLab",
   "description": "Viber Tools - Material chips autocomplete component",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/animations": ">=6.0.4",
-    "@angular/cdk": ">=6.2.1",
-    "@angular/common": ">=6.0.4",
-    "@angular/compiler": ">=6.0.4",
-    "@angular/core": ">=6.0.4",
-    "@angular/forms": ">=6.0.4",
-    "@angular/material": ">=6.2.1",
+    "@angular/animations": ">=6.0.0",
+    "@angular/cdk": ">=6.0.0",
+    "@angular/common": ">=6.0.0",
+    "@angular/compiler": ">=6.0.0",
+    "@angular/core": ">=6.0.0",
+    "@angular/forms": ">=6.0.0",
+    "@angular/material": ">=6.0.0",
     "rxjs": ">=6.0.0"
   }
 }

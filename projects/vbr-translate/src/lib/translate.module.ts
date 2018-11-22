@@ -9,10 +9,12 @@ import {
   VBR_TRANSLATE_DEFAULT_LANGUAGE,
   VBR_NAVIGATOR_TOKEN,
   VBR_TRANSLATE_CANONICAL_CODES,
-  VBR_TRANSLATE_RTL_CODES
+  VBR_TRANSLATE_RTL_CODES,
+  VBR_TRANSLATE_LANGUAGES_INFO
 } from './tokens';
 
 import {
+  VbrAllLanguages,
   VbrCanonicalCodes,
   VbrDefaultLanguageCode,
   VbrRtlLanguageCodes,
@@ -20,6 +22,8 @@ import {
 } from './defaults';
 import { VbrLanguageDetectorFake } from './classes/language-detector';
 import { VbrTranslateService } from './services/translate.service';
+import { VbrLanguageInfoService } from './services/language-info.service';
+import { VbrLanguage } from './interfaces';
 
 export interface VbrTranslateModuleConfig {
   // array of all supported languages
@@ -32,6 +36,8 @@ export interface VbrTranslateModuleConfig {
   defaultLanguage?: string;
   // Language Detector
   languageDetector?: Provider;
+  // Full Languages definition
+  languagesInfo?: Array<VbrLanguage>;
   // Navigator
   navigator?: Navigator;
   // Array of rtl languages
@@ -58,10 +64,12 @@ export class VbrTranslateModule {
         {provide: VBR_TRANSLATE_DEFAULT_LANGUAGE, useValue: config.defaultLanguage || VbrDefaultLanguageCode},
         {provide: VBR_TRANSLATE_CANONICAL_CODES, useValue: config.canonicalCodes || VbrCanonicalCodes},
         {provide: VBR_TRANSLATE_RTL_CODES, useValue: config.rtlLanguages || VbrRtlLanguageCodes},
+        {provide: VBR_TRANSLATE_LANGUAGES_INFO, useValue: config.languagesInfo || VbrAllLanguages},
 
         {provide: VBR_NAVIGATOR_TOKEN, useValue: config.navigator || navigator},
         config.languageDetector || {provide: VBR_TRANSLATE_LANGUAGE_DETECTOR, useClass: VbrLanguageDetectorFake},
-        VbrTranslateService
+        VbrTranslateService,
+        VbrLanguageInfoService
       ]
     };
   }

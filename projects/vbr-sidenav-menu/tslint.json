@@ -1,0 +1,17 @@
+{
+    "extends": "../../tslint.json",
+    "rules": {
+        "directive-selector": [
+            true,
+            "attribute",
+            "VbrSidenavMenu",
+            "camelCase"
+        ],
+        "component-selector": [
+            true,
+            "element",
+            "vbr-sidenav-menu",
+            "kebab-case"
+        ]
+    }
+}

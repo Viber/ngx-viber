@@ -1,6 +1,6 @@
 import { Observable, of, throwError, zip } from 'rxjs';
 import { TranslateLoader } from '@ngx-translate/core';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 export class VbrTranslateLoader implements TranslateLoader {
   protected loaders: Array<TranslateLoader> = [];

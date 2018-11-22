@@ -1,0 +1,99 @@
+{
+  "vbr-layout": {
+    "footer": {
+      "titles": {
+        "viber": "Viber",
+        "business": "Negocios",
+        "developers": "Desarrolladores",
+        "general": "General"
+      },
+      "elements": {
+        "get_viber": {
+          "title": "Descargar Viber",
+          "link": "//www.viber.com/"
+        },
+        "viber_out": {
+          "title": "Viber Out",
+          "link": "//account.viber.com/en/"
+        },
+        "blog": {
+          "title": "Blog",
+          "link": "//www.viber.com/blog/"
+        },
+        "media_kit": {
+          "title": "Kit de multimedia",
+          "link": "//www.viber.com/media-kit/"
+        },
+        "discover": {
+          "title": "Descubrir contenidos y marcas",
+          "link": "//discover.viber.com/"
+        },
+        "communities": {
+          "title": "Comunidades",
+          "link": "//www.viber.com/viber-for-business#public-accounts"
+        },
+        "integration_partners": {
+          "title": "Socios de integración",
+          "link": "//www.viber.com/partners"
+        },
+        "promotional_stickers": {
+          "title": "Calcomanías promocionales",
+          "link": "//www.viber.com/viber-for-business#promotional-stickers"
+        },
+        "advertising": {
+          "title": "Publicidad",
+          "link": "//www.viber.com/viber-for-business#viber-ads"
+        },
+        "resellers": {
+          "title": "Revendedores de Viber Out",
+          "link": "//www.viber.com/viber-for-business#viber-out"
+        },
+        "service_messages": {
+          "title": "Mensajes de servicio",
+          "link": "//www.viber.com/viber-for-business#service-messages"
+        },
+        "documentation": {
+          "title": "Documentación",
+          "link": "//developers.viber.com/"
+        },
+        "releases": {
+          "title": "Versiones",
+          "link": "//developers.viber.com/releases/"
+        },
+        "blog-dev": {
+          "title": "Blog",
+          "link": "//developers.viber.com/blog/"
+        },
+        "partners": {
+          "title": "Socios",
+          "link": "//developers.viber.com/partners/"
+        },
+        "faq": {
+          "title": "Preguntas frecuentes",
+          "link": "//www.viber.com/faq/"
+        },
+        "about": {
+          "title": "Acerca de",
+          "link": "//www.viber.com/about/"
+        },
+        "support": {
+          "title": "Asistencia técnica",
+          "link": "//support.viber.com/"
+        },
+        "terms": {
+          "title": "Términos y políticas",
+          "link": "//www.viber.com/terms/"
+        },
+        "facebook": {
+          "title": "Facebook",
+          "link": "//www.facebook.com/viber"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "link": "//twitter.com/viber"
+        }
+      },
+      "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+    }
+  }
+}
