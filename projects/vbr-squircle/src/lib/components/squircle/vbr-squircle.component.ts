@@ -7,7 +7,7 @@ import {
   OnInit,
   Renderer2,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { VBR_NAVIGATOR_TOKEN } from '../../constants';
 
@@ -15,7 +15,7 @@ import { VBR_NAVIGATOR_TOKEN } from '../../constants';
   selector: 'vbr-squircle',
   templateUrl: './vbr-squircle.component.html',
   styleUrls: ['./vbr-squircle.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class VbrSquircleComponent implements OnInit, AfterViewInit {
   @Input() size: string | number = 100;
@@ -28,8 +28,14 @@ export class VbrSquircleComponent implements OnInit, AfterViewInit {
 
   isMS: boolean = false;
 
-  constructor(private renderer: Renderer2, @Inject(VBR_NAVIGATOR_TOKEN) private navigator) {
-    if ('undefined' !== typeof navigator) {
+  constructor(private renderer: Renderer2, @Inject(VBR_NAVIGATOR_TOKEN) private readonly navigator) {
+    if (!this.navigator && !!navigator) {
+      this.navigator = navigator;
+    }
+  }
+
+  ngOnInit() {
+    if ('undefined' !== typeof this.navigator) {
       let verOffset, isOldFF;
       if ((verOffset = this.navigator.userAgent.indexOf('Firefox')) !== -1) {
         isOldFF = parseInt(this.navigator.userAgent.substring(verOffset + 8), 10) < 57;
@@ -39,10 +45,6 @@ export class VbrSquircleComponent implements OnInit, AfterViewInit {
         this.navigator.userAgent.search(/edge/i) !== -1 ||
         this.navigator.userAgent.search(/\.net/i) !== -1 || isOldFF;
     }
-  }
-
-  ngOnInit() {
-
   }
 
   ngAfterViewInit(): void {
