@@ -1,0 +1,17 @@
+{
+  "name": "json-merging-builder",
+  "version": "0.0.1",
+  "builders": "builders.json",
+  "scripts": {
+    "build": "./node_modules/.bin/tsc"
+  },
+  "peerDependencies": {},
+  "dependencies": {
+    "rxjs": "^6.3.3"
+  },
+  "devDependencies": {
+    "@angular-devkit/architect": "^0.12.1",
+    "@angular-devkit/build-angular": "^0.12.1",
+    "@angular-devkit/core": "^7.2.1"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": "JsonMergingBuilderSchema",
+  "title": "Json files merging builder",
+  "description": "Json files merging builder",
+  "properties": {
+    "targetPath": {
+      "type": "string",
+      "description": "Path to the target merged json file",
+      "default": ""
+    },
+    "targetFilename": {
+      "type": "string",
+      "description": "Name of the target merged json file",
+      "default": "merged-json.json"
+    },
+    "sourceList": {
+      "type": "array",
+      "description": "List of the paths to the json files or directories",
+      "default": []
+    },
+    "fileTemplate": {
+      "type": "string",
+      "description": "File's regexp template",
+      "default": ""
+    },
+    "groupByName": {
+      "type": "boolean",
+      "description": "Grouping by the same filename",
+      "default": false
+    },
+    "nestedDirectories": {
+      "type": "boolean",
+      "description": "Processes nested directories recursively",
+      "default": false
+    }
+  }
+}

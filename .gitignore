@@ -38,3 +38,8 @@ testem.log
 .DS_Store
 Thumbs.db
 /package-lock.json
+
+/builders/json-merging-builder/node_modules/
+/builders/json-merging-builder/package-lock.json
+/builders/json-merging-builder/src/json-merging.builder.js.map
+/builders/json-merging-builder/src/json-merging.builder.js
