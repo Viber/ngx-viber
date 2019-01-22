@@ -39,7 +39,7 @@ testem.log
 Thumbs.db
 /package-lock.json
 
-/builders/json-merging-builder/node_modules/
-/builders/json-merging-builder/package-lock.json
-/builders/json-merging-builder/src/json-merging.builder.js.map
-/builders/json-merging-builder/src/json-merging.builder.js
+/builders/json-merging/node_modules/
+/builders/json-merging/package-lock.json
+/builders/json-merging/src/index.js.map
+/builders/json-merging/src/index.js

@@ -87,7 +87,7 @@ export default class JsonMergingBuilder implements Builder<JsonMergingBuilderSch
           jsonObj = this.fileToObject(dir);
         } else {
           jsonObj = readdirSync(dir)
-            .reduce((target, file) => {
+            .reduce((_target, file) => {
               const path = dir + '/' + file;
               let obj;
               if (this.nestedDirectories && statSync(path).isDirectory()) {
@@ -95,7 +95,7 @@ export default class JsonMergingBuilder implements Builder<JsonMergingBuilderSch
               } else {
                 obj = this.fileToObject(path);
               }
-              return Object.assign(target, obj);
+              return Object.assign(_target, obj);
             }, {});
         }
 

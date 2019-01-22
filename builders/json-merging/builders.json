@@ -1,8 +1,8 @@
 {
   "$schema": "@angular-devkit/architect/src/builders-schema.json",
   "builders": {
-    "file": {
-      "class": "./src/json-merging.builder.js",
+    "json-merging": {
+      "class": "./src/index.js",
       "schema": "./src/schema.json",
       "description": "Json merging"
     }
