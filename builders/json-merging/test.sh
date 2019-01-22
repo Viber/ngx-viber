@@ -30,7 +30,7 @@ i=0
 for test in ${!tests@}
     do
         ((i++))
-        mkdir -p ././../../src/assets/json-merging-builder-test/target/${i}
+        mkdir -p ../../src/assets/json-merging-builder-test/target/${i}
         echo -e "\e[92mTest ${i}: ${test[description]}"
         ng run libs:json-merging --targetPath=src/assets/json-merging-builder-test/target/${i} ${test[test]}
 done
