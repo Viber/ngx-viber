@@ -117,16 +117,16 @@ export default class JsonMergingBuilder implements Builder<JsonMergingBuilderSch
   }
 
   private getFilesList(pathList: Array<string>, target: Object) {
-    const targetPush = (path: string, file: string) => {
+    const targetPush = (path: string, file: string, appendFile: boolean = true) => {
       if (!target[file]) {
         target[file] = [];
       }
-      target[file].push(path + file);
+      target[file].push(appendFile ? path + file : path);
     };
 
     pathList.forEach(path => {
       if (statSync(path).isFile()) {
-        targetPush(path, path.split('/').pop());
+        targetPush(path, path.split('/').pop(), false);
       } else {
         readdirSync(path)
           .forEach(file => {
