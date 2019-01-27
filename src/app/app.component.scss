@@ -1,0 +1,21 @@
+img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+p {
+  position: absolute;
+  font-size: 32px;
+  font-weight: bold;
+  //color: #fff;
+  //mix-blend-mode: difference;
+
+  &.bgLight {
+    color: #444;
+  }
+
+  &.bgDark {
+    color: #fff;
+  }
+}

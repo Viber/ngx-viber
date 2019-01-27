@@ -70,6 +70,12 @@
       ],
       "vbr-squircle/*": [
         "dist/vbr-squircle/*"
+      ],
+      "text-adjust": [
+        "dist/text-adjust"
+      ],
+      "text-adjust/*": [
+        "dist/text-adjust/*"
       ]
     }
   }
