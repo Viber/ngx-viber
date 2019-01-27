@@ -62,7 +62,7 @@ export default class JsonMergingBuilder implements Builder<JsonMergingBuilderSch
   }
 
   private fileToObject(filepath: string) {
-    if (!filepath.includes('.json') || !this.filter(filepath)) {
+    if (!this.filter(filepath)) {
       return {};
     }
 
@@ -84,7 +84,9 @@ export default class JsonMergingBuilder implements Builder<JsonMergingBuilderSch
         let jsonObj;
 
         if (statSync(dir).isFile()) {
-          jsonObj = this.fileToObject(dir);
+          if (dir.includes('.json')) {
+            jsonObj = this.fileToObject(dir);
+          }
         } else {
           jsonObj = readdirSync(dir)
             .reduce((_target, file) => {
@@ -92,7 +94,7 @@ export default class JsonMergingBuilder implements Builder<JsonMergingBuilderSch
               let obj;
               if (this.nestedDirectories && statSync(path).isDirectory()) {
                 obj = JSON.parse(this.listToJson([path]));
-              } else {
+              } else if (path.includes('.json')) {
                 obj = this.fileToObject(path);
               }
               return Object.assign(_target, obj);
@@ -118,6 +120,10 @@ export default class JsonMergingBuilder implements Builder<JsonMergingBuilderSch
 
   private getFilesList(pathList: Array<string>, target: Object) {
     const targetPush = (path: string, file: string, appendFile: boolean = true) => {
+      if (!file.includes('.json')) {
+        return;
+      }
+
       if (!target[file]) {
         target[file] = [];
       }

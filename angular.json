@@ -101,6 +101,7 @@
               "src/assets/json-merging-builder-test/source/a/",
               "src/assets/json-merging-builder-test/source/b/",
               "src/assets/json-merging-builder-test/source/c/",
+              "src/assets/json-merging-builder-test/source/e/",
               "src/assets/json-merging-builder-test/source/d.json"
             ]
           }
