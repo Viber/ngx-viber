@@ -1,6 +1,7 @@
 import {
   Directive,
   ElementRef,
+  HostBinding,
   Input,
   OnDestroy,
   OnInit,
@@ -16,6 +17,10 @@ import { takeUntil } from 'rxjs/operators';
   selector: '[vbrAdjustText]',
 })
 export class VbrAdjustTextDirective implements OnInit, OnDestroy {
+  @HostBinding('style.mixBlendMode')
+  mixBlendMode: string = 'difference';
+  @HostBinding('style.color')
+  textColor: string = '#fff';
 
   @Input('imageSrc') imageSrc: string;
   private onDestroy: Subject<any> = new Subject();
@@ -24,9 +29,6 @@ export class VbrAdjustTextDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.el.nativeElement.style.mixBlendMode = 'difference';
-    this.el.nativeElement.style.color = '#fff';
-
     if (!this.imageSrc) {
       return;
     }
