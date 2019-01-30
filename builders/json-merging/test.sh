@@ -33,4 +33,5 @@ for test in ${!tests@}
         mkdir -p ../../src/assets/json-merging-builder-test/target/${i}
         echo -e "\e[92mTest ${i}: ${test[description]}"
         ng run libs:json-merging --targetPath=src/assets/json-merging-builder-test/target/${i} ${test[test]}
+        echo "Error: $?"
 done

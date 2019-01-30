@@ -1,29 +1,9 @@
-import {
-  Builder,
-  BuilderConfiguration,
-  BuilderContext,
-  BuildEvent,
-} from '@angular-devkit/architect';
+import { Builder, BuilderConfiguration, BuilderContext, BuildEvent, } from '@angular-devkit/architect';
 import { getSystemPath } from '@angular-devkit/core';
-import {
-  bindNodeCallback,
-  forkJoin,
-  Observable,
-  of,
-} from 'rxjs';
-import {
-  catchError,
-  map,
-  reduce,
-  tap,
-} from 'rxjs/operators';
+import { bindNodeCallback, forkJoin, Observable, of, } from 'rxjs';
+import { catchError, map, reduce, tap, } from 'rxjs/operators';
 import { JsonMergingBuilderSchema } from './schema';
-import {
-  readdirSync,
-  readFileSync,
-  statSync,
-  writeFile,
-} from 'fs';
+import { mkdirSync, readdirSync, readFileSync, statSync, writeFile, } from 'fs';
 
 export default class JsonMergingBuilder implements Builder<JsonMergingBuilderSchema> {
   private readonly writeFileObservable;
@@ -39,6 +19,14 @@ export default class JsonMergingBuilder implements Builder<JsonMergingBuilderSch
   run(builderConfig: BuilderConfiguration<Partial<JsonMergingBuilderSchema>>): Observable<BuildEvent> {
     const {targetPath, targetFilename, sourceList, fileTemplate, groupByName, nestedDirectories} = builderConfig.options;
     const path = `${this.systemPath}/${targetPath}/`;
+
+    try {
+      statSync(path);
+    } catch (e) {
+      if (e.code === 'ENOENT') {
+        mkdirSync(path);
+      }
+    }
 
     this.template = new RegExp(fileTemplate);
     this.nestedDirectories = nestedDirectories;
@@ -115,7 +103,7 @@ export default class JsonMergingBuilder implements Builder<JsonMergingBuilderSch
     return <Observable<BuildEvent>>forkJoin(Object.keys(target).map(k => {
       const json = this.listToJson(target[k]);
       return this.writeTargetFile(targetPath + k, json);
-    })).pipe(reduce((acc, val) => ({success: true})));
+    })).pipe(map((acc, val) => ({success: true})));
   }
 
   private getFilesList(pathList: Array<string>, target: Object) {
