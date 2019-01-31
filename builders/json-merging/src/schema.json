@@ -18,20 +18,20 @@
       "description": "List of the paths to the json files or directories",
       "default": []
     },
-    "fileTemplate": {
+    "filenameTemplate": {
       "type": "string",
       "description": "File's regexp template",
       "default": ""
     },
-    "groupByName": {
+    "groupByFilename": {
       "type": "boolean",
       "description": "Grouping by the same filename",
-      "default": false
+      "default": true
     },
-    "nestedDirectories": {
+    "deepSearch": {
       "type": "boolean",
       "description": "Processes nested directories recursively",
-      "default": false
+      "default": true
     }
   }
 }
