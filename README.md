@@ -6,6 +6,7 @@
 * [vbr-storage](projects/vbr-storage)
 * [vbr-input-keyboard](projects/vbr-input-keyboard)
 * [vbr-chips-autocomplete](projects/vbr-chips-autocomplete)
+* [vbr-adjust-text](projects/vbr-adjust-text)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
 

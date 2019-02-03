@@ -19,7 +19,7 @@ import {
 } from '@ngx-translate/core';
 import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
 import { AppRoutingModule } from './routing.module';
-import { VbrAdjustTextModule } from '../../projects/vbr-text-adjust/src/lib/vbr-adjust-text.module';
+import { VbrAdjustTextModule } from '../../projects/vbr-adjust-text/src/lib/vbr-adjust-text.module';
 
 @NgModule({
   declarations: [
