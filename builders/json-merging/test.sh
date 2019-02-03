@@ -25,8 +25,24 @@ declare -A tests4=(
     [test]='--targetFilename=other-merged-json.json'
 )
 
+declare -A tests5=(
+    [description]='filenameTemplate is set, groupByFilename = false'
+    [test]='--filenameTemplate=zz --groupByFilename=false'
+)
+
+declare -A tests6=(
+    [description]='filenameTemplate is set, groupByFilename = true'
+    [test]='--filenameTemplate=zz --groupByFilename=true'
+)
+
+declare -A tests7=(
+    [description]='targetFilenameTemplate is set, groupByFilename = true'
+    [test]='--targetFilenameTemplate=bebebe-$1-kokoko --groupByFilename=true'
+)
+
 declare -n test
 i=0
+rm -rf ../../src/assets/json-merging-builder-test/target
 for test in ${!tests@}
     do
         ((i++))
