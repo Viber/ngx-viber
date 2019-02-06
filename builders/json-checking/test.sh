@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 declare -A tests0=(
-    [description]='removeBOM = false'
-    [test]='--removeBOM=false'
+    [description]='removeBom = false'
+    [test]='--removeBom=false'
 )
 
 declare -A tests1=(
-    [description]='removeBOM = true'
-    [test]='--removeBOM=true'
+    [description]='removeBom = true'
+    [test]='--removeBom=true'
 )
 
 printf '\xEF\xBB\xBF{"bom1": 1,"bom2": true,"bom3": "there is BOM"}' > ../../src/assets/json-merging-builder-test/source/bom.json

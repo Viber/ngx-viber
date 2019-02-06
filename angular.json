@@ -116,7 +116,10 @@
           "builder": "./builders/json-checking:json-checking",
           "options": {
             "checkList": [
-              "src/assets/json-merging-builder-test/source"
+              "src/assets/json-merging-builder-test/source/a",
+              "src/assets/json-merging-builder-test/source/bom.json",
+              "src/assets/json-merging-builder-test/source/error.json",
+              "src/assets/json-merging-builder-test/source/lalala-d.json"
             ]
           }
         }

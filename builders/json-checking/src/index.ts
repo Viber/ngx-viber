@@ -1,7 +1,7 @@
 import { Builder, BuilderConfiguration, BuilderContext, BuildEvent, } from '@angular-devkit/architect';
 import { getSystemPath } from '@angular-devkit/core';
 import { bindNodeCallback, EMPTY, from, merge, Observable, of, } from 'rxjs';
-import { catchError, map, mapTo, mergeAll, mergeMap, } from 'rxjs/operators';
+import { catchError, map, mapTo, mergeAll, mergeMap, tap, } from 'rxjs/operators';
 import { JsonCheckingBuilderSchema } from './schema';
 import { readdir, readFile, stat, writeFile } from 'fs';
 
@@ -14,25 +14,25 @@ export default class JsonCheckingBuilder implements Builder<JsonCheckingBuilderS
   ) => readFile(path, encoding, callback));
   private readonly stat$ = bindNodeCallback(stat);
   private readonly readdir$ = bindNodeCallback(readdir);
-  private removeBOM: boolean;
+  private removeBom: boolean;
 
   constructor(private context: BuilderContext) {
   }
 
   run(builderConfig: BuilderConfiguration<Partial<JsonCheckingBuilderSchema>>): Observable<BuildEvent> {
-    const {checkList, removeBOM} = builderConfig.options;
+    const {checkList, removeBom} = builderConfig.options;
     const systemPath = getSystemPath(this.context.workspace.root);
-    this.removeBOM = removeBOM;
+    this.removeBom = removeBom;
 
-    return from(<Array<string>>checkList)
+    return from(checkList)
       .pipe(
-        mergeMap((source: string) => this.checkFiles(systemPath + '/' + source)),
+        mergeMap(source => this.checkFiles(systemPath + '/' + source)),
         mapTo({success: true})
       );
   }
 
   private checkFiles(root: string): Observable<BuildEvent> {
-    return this.stat$(root)
+    return <Observable<BuildEvent>>this.stat$(root)
       .pipe(
         map(fileInfo => {
           if (fileInfo.isFile() && root.endsWith('.json')) {
@@ -42,7 +42,7 @@ export default class JsonCheckingBuilder implements Builder<JsonCheckingBuilderS
           if (fileInfo.isDirectory()) {
             return this.readdir$(root)
               .pipe(
-                mergeMap(files => merge(
+                mergeMap((files: Array<string>) => merge(
                   ...files.map(file => this.checkFiles(root + '/' + file))
                   )
                 )
@@ -50,7 +50,6 @@ export default class JsonCheckingBuilder implements Builder<JsonCheckingBuilderS
           }
           return EMPTY;
         }),
-
         mergeAll()
       );
   }
@@ -62,7 +61,7 @@ export default class JsonCheckingBuilder implements Builder<JsonCheckingBuilderS
           if (data.startsWith('\uFEFF')) {
             this.context.logger.error('There is BOM: ' + filepath);
             data = data.replace(/^\uFEFF/, '');
-            if (this.removeBOM) {
+            if (this.removeBom) {
               this.writeFile$(filepath, data)
                 .pipe(catchError(e => {
                   throw e;

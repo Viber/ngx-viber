@@ -45,3 +45,4 @@ Thumbs.db
 /builders/json-merging/src/index.js
 /builders/json-checking/src/index.js.map
 /builders/json-checking/src/index.js
+/builders/json-checking/package-lock.json
