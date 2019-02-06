@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
 declare -A tests0=(
-    [description]='groupByFilename = false, nestedDirectories = false'
-    [test]='--groupByFilename=false --nestedDirectories=false'
+    [description]='groupByFilename = false, deepSearch = false'
+    [test]='--groupByFilename=false --deepSearch=false'
 )
 
 declare -A tests1=(
-    [description]='groupByFilename = true, nestedDirectories = false'
-    [test]='--groupByFilename=true --nestedDirectories=false'
+    [description]='groupByFilename = true, deepSearch = false'
+    [test]='--groupByFilename=true --deepSearch=false'
 )
 
 declare -A tests2=(
-    [description]='groupByFilename = false, nestedDirectories = true'
-    [test]='--groupByFilename=false --nestedDirectories=true'
+    [description]='groupByFilename = false, deepSearch = true'
+    [test]='--groupByFilename=false --deepSearch=true'
 )
 
 declare -A tests3=(
-    [description]='groupByFilename = true, nestedDirectories = true'
-    [test]='--groupByFilename=true --nestedDirectories=true'
+    [description]='groupByFilename = true, deepSearch = true'
+    [test]='--groupByFilename=true --deepSearch=true'
 )
 
 declare -A tests4=(

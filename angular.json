@@ -111,6 +111,14 @@
               "src/assets/json-merging-builder-test/source/lalala-d.json"
             ]
           }
+        },
+        "json-checking": {
+          "builder": "./builders/json-checking:json-checking",
+          "options": {
+            "checkList": [
+              "src/assets/json-merging-builder-test/source"
+            ]
+          }
         }
       }
     },

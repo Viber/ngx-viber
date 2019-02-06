@@ -1,7 +1,7 @@
 import { Builder, BuilderConfiguration, BuilderContext, BuildEvent, } from '@angular-devkit/architect';
 import { getSystemPath } from '@angular-devkit/core';
 import { bindNodeCallback, EMPTY, forkJoin, from, merge, Observable, of, throwError, } from 'rxjs';
-import { filter, map, mapTo, mergeAll, mergeMap, reduce, switchMap, tap, } from 'rxjs/operators';
+import { filter, map, mapTo, mergeAll, mergeMap, reduce, switchMap, } from 'rxjs/operators';
 import { JsonMergingBuilderSchema, JsonSource } from './schema';
 import { mkdirSync, readdir, readFile, stat, statSync, writeFile } from 'fs';
 

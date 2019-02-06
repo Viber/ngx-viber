@@ -1,0 +1,17 @@
+{
+  "id": "JsonCheckingBuilderSchema",
+  "title": "Json files checking builder",
+  "description": "Json files checking builder",
+  "properties": {
+    "checkList": {
+      "type": "array",
+      "description": "List of the paths to the json files or directories for checking",
+      "default": []
+    },
+    "removeBOM": {
+      "type": "boolean",
+      "description": "Removes BOM",
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "@angular-devkit/architect/src/builders-schema.json",
+  "builders": {
+    "json-checking": {
+      "class": "./src/index.js",
+      "schema": "./src/schema.json",
+      "description": "Json checking"
+    }
+  }
+}
