@@ -4,7 +4,7 @@
 
   * checkList (array) - list of source files and directories
   
-  * removeBOM (boolean, default: true) - removes BOM form files
+  * removeBOM (boolean, default: true) - removes BOM from files
 
 #### Example (angular.json)
 
