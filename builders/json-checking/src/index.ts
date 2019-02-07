@@ -1,12 +1,11 @@
 import { Builder, BuilderConfiguration, BuilderContext, BuildEvent, } from '@angular-devkit/architect';
 import { getSystemPath } from '@angular-devkit/core';
-import { bindNodeCallback, EMPTY, from, merge, Observable, of, } from 'rxjs';
-import { catchError, map, mapTo, mergeAll, mergeMap, tap, } from 'rxjs/operators';
+import { bindNodeCallback, EMPTY, from, merge, Observable, } from 'rxjs';
+import { map, mapTo, mergeAll, mergeMap, } from 'rxjs/operators';
 import { JsonCheckingBuilderSchema } from './schema';
-import { readdir, readFile, stat, writeFile } from 'fs';
+import { readdir, readFile, stat, writeFileSync } from 'fs';
 
 export default class JsonCheckingBuilder implements Builder<JsonCheckingBuilderSchema> {
-  private readonly writeFile$ = bindNodeCallback(writeFile);
   private readonly readFile$ = bindNodeCallback((
     path: string,
     encoding: string,
@@ -26,8 +25,7 @@ export default class JsonCheckingBuilder implements Builder<JsonCheckingBuilderS
 
     return from(checkList)
       .pipe(
-        mergeMap(source => this.checkFiles(systemPath + '/' + source)),
-        mapTo({success: true})
+        mergeMap(source => this.checkFiles(systemPath + '/' + source))
       );
   }
 
@@ -62,11 +60,7 @@ export default class JsonCheckingBuilder implements Builder<JsonCheckingBuilderS
             this.context.logger.error('There is BOM: ' + filepath);
             data = data.replace(/^\uFEFF/, '');
             if (this.removeBom) {
-              this.writeFile$(filepath, data)
-                .pipe(catchError(e => {
-                  throw e;
-                }))
-                .subscribe(() => this.context.logger.info('BOM is removed: ' + filepath));
+              writeFileSync(filepath, data);
             }
           }
 

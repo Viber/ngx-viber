@@ -10,6 +10,11 @@ declare -A tests1=(
     [test]='--removeBom=true'
 )
 
+declare -A tests2=(
+    [description]='BOM is removed'
+    [test]='--removeBom=false'
+)
+
 printf '\xEF\xBB\xBF{"bom1": 1,"bom2": true,"bom3": "there is BOM"}' > ../../src/assets/json-merging-builder-test/source/bom.json
 
 declare -n test
