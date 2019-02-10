@@ -1,4 +1,4 @@
-## Json files merging builder
+## Json files combine builder
 
 #### Installation
 ```bash
@@ -35,7 +35,7 @@ npm install --save-dev @viberlabs/json-combine-builder
             },
             ...
             "json-merging": {
-              "builder": "json-merging-builder:file",
+              "builder": "@viberlab/json-combine-builder:builder",
               "options": {
                 "targetPath": "path/to/the/target",
                 "targetFilename": "mergedjsons.json",

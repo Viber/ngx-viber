@@ -25,7 +25,7 @@ npm install --save-dev @viberlabs/json-validator-builder
             },
             ...
             "json-merging": {
-              "builder": "json-merging-builder:file",
+              "builder": "@viberlab/json-validator-builder:builder",
               "options": {
                 "removeBOM": false,
                 "checkList": [
