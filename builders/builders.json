@@ -1,0 +1,15 @@
+{
+  "$schema": "@angular-devkit/architect/src/builders-schema.json",
+  "builders": {
+    "json-combine": {
+      "class": "./src/json-combine",
+      "schema": "./src/json-combine/schema.json",
+      "description": "Merge and/or group multiple Json files"
+    },
+    "json-validator": {
+      "class": "./src/json-validator/index.js",
+      "schema": "./src/json-validator/schema.json",
+      "description": "Json syntax checker and unnecessary BOM fixer."
+    }
+  }
+}

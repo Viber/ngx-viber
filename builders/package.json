@@ -1,8 +1,8 @@
 {
-  "name": "@viberlab/json-combine-builder",
+  "name": "@viberlab/builders",
   "version": "0.0.1",
   "author": "ViberLab",
-  "description": "Merge and/or group multiple Json files.",
+  "description": "Viber builders",
   "license": "MIT",
   "builders": "builders.json",
   "scripts": {
