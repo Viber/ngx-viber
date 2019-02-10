@@ -1,5 +1,10 @@
 ## Json files merging builder
 
+#### Installation
+```bash
+npm install --save-dev @viberlabs/json-combine-builder
+```
+
 #### Options
 
   * targetPath (string) - path to the target directory (created, if not exists)

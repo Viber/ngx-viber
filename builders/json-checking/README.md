@@ -1,4 +1,9 @@
-## Json files checking builder
+## Json files validator builder
+
+#### Installation
+```bash
+npm install --save-dev @viberlabs/json-validator-builder
+```
 
 #### Options
 

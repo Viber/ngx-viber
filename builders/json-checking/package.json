@@ -1,15 +1,17 @@
 {
-  "name": "json-checking-builder",
+  "name": "@viberlab/json-validator-builder",
   "version": "0.0.1",
+  "author": "ViberLab",
+  "description": "Json syntax checker and unnecessary BOM fixer.",
+  "license": "MIT",
   "builders": "builders.json",
   "scripts": {
     "build": "./node_modules/.bin/tsc"
   },
   "peerDependencies": {},
-  "dependencies": {
-    "rxjs": "^6.3.3"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "rxjs": "^6.3.3",
     "@angular-devkit/architect": "^0.12.1",
     "@angular-devkit/build-angular": "^0.12.1",
     "@angular-devkit/core": "^7.2.1"
