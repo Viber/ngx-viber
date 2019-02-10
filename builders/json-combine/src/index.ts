@@ -2,10 +2,10 @@ import { Builder, BuilderConfiguration, BuilderContext, BuildEvent, } from '@ang
 import { getSystemPath } from '@angular-devkit/core';
 import { bindNodeCallback, EMPTY, forkJoin, from, merge, Observable, of, throwError, } from 'rxjs';
 import { filter, map, mapTo, mergeAll, mergeMap, reduce, switchMap, } from 'rxjs/operators';
-import { JsonMergingBuilderSchema, JsonSource } from './schema';
+import { JsonCombineBuilderSchema, JsonSource } from './schema';
 import { mkdirSync, readdir, readFile, stat, statSync, writeFile } from 'fs';
 
-export default class JsonMergingBuilder implements Builder<JsonMergingBuilderSchema> {
+export default class JsonCombineBuilder implements Builder<JsonCombineBuilderSchema> {
   private readonly writeFileObservable = bindNodeCallback(writeFile);
   private readonly systemPath: string;
   private template: RegExp;
@@ -16,7 +16,7 @@ export default class JsonMergingBuilder implements Builder<JsonMergingBuilderSch
     this.systemPath = getSystemPath(this.context.workspace.root);
   }
 
-  run(builderConfig: BuilderConfiguration<Partial<JsonMergingBuilderSchema>>): Observable<BuildEvent> {
+  run(builderConfig: BuilderConfiguration<Partial<JsonCombineBuilderSchema>>): Observable<BuildEvent> {
     const {
       targetPath,
       targetFilename,

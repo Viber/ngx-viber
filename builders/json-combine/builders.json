@@ -4,7 +4,7 @@
     "builder": {
       "class": "./src/index.js",
       "schema": "./src/schema.json",
-      "description": "Json checking"
+      "description": "Merge and/or group multiple Json files"
     }
   }
 }

@@ -39,10 +39,10 @@ testem.log
 Thumbs.db
 /package-lock.json
 
-/builders/json-merging/node_modules/
-/builders/json-merging/package-lock.json
-/builders/json-merging/src/index.js.map
-/builders/json-merging/src/index.js
-/builders/json-checking/src/index.js.map
-/builders/json-checking/src/index.js
-/builders/json-checking/package-lock.json
+/builders/json-combine/node_modules/
+/builders/json-combine/package-lock.json
+/builders/json-combine/src/index.js.map
+/builders/json-combine/src/index.js
+/builders/json-validator/src/index.js.map
+/builders/json-validator/src/index.js
+/builders/json-validator/package-lock.json

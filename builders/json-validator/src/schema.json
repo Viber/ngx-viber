@@ -1,7 +1,7 @@
 {
-  "id": "JsonCheckingBuilderSchema",
-  "title": "Json files checking builder",
-  "description": "Json files checking builder",
+  "id": "JsonValidatorBuilderSchema",
+  "title": "Json syntax checker and unnecessary BOM fixer.",
+  "description": "Json syntax checker and unnecessary BOM fixer.",
   "properties": {
     "checkList": {
       "type": "array",

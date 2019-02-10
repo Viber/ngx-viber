@@ -2,10 +2,10 @@ import { Builder, BuilderConfiguration, BuilderContext, BuildEvent, } from '@ang
 import { getSystemPath } from '@angular-devkit/core';
 import { bindNodeCallback, EMPTY, from, merge, Observable, } from 'rxjs';
 import { map, mapTo, mergeAll, mergeMap, } from 'rxjs/operators';
-import { JsonCheckingBuilderSchema } from './schema';
+import { JsonValidatorBuilderSchema } from './schema';
 import { readdir, readFile, stat, writeFileSync } from 'fs';
 
-export default class JsonCheckingBuilder implements Builder<JsonCheckingBuilderSchema> {
+export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilderSchema> {
   private readonly readFile$ = bindNodeCallback((
     path: string,
     encoding: string,
@@ -18,7 +18,7 @@ export default class JsonCheckingBuilder implements Builder<JsonCheckingBuilderS
   constructor(private context: BuilderContext) {
   }
 
-  run(builderConfig: BuilderConfiguration<Partial<JsonCheckingBuilderSchema>>): Observable<BuildEvent> {
+  run(builderConfig: BuilderConfiguration<Partial<JsonValidatorBuilderSchema>>): Observable<BuildEvent> {
     const {checkList, removeBom} = builderConfig.options;
     const systemPath = getSystemPath(this.context.workspace.root);
     this.removeBom = removeBom;

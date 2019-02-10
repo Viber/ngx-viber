@@ -42,12 +42,12 @@ declare -A tests7=(
 
 declare -n test
 i=0
-rm -rf ../../src/assets/json-merging-builder-test/target
+rm -rf ./target
 for test in ${!tests@}
     do
         ((i++))
-        mkdir -p ../../src/assets/json-merging-builder-test/target/${i}
+        mkdir -p ./target/${i}
         echo -e "\e[92mTest ${i}: ${test[description]}"
-        ng run libs:json-merging --targetPath=src/assets/json-merging-builder-test/target/${i} ${test[test]}
+        ng run libs:json-merging --targetPath=./target/${i} ${test[test]}
         echo "Error: $?"
 done

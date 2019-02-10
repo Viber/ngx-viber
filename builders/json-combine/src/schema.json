@@ -1,7 +1,7 @@
 {
-  "id": "JsonMergingBuilderSchema",
-  "title": "Json files merging builder",
-  "description": "Json files merging builder",
+  "id": "JsonCombineBuilderSchema",
+  "title": "Merge and/or group multiple Json files",
+  "description": "Merge and/or group multiple Json files",
   "properties": {
     "targetPath": {
       "type": "string",

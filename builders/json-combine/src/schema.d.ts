@@ -3,7 +3,7 @@ export interface JsonSource {
   filter: string;
 }
 
-export interface JsonMergingBuilderSchema {
+export interface JsonCombineBuilderSchema {
   targetPath: string;
   targetFilename: string;
   targetFilenameTemplate: string;
