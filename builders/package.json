@@ -6,7 +6,7 @@
   "license": "MIT",
   "builders": "builders.json",
   "scripts": {
-    "build": "./node_modules/.bin/tsc"
+    "build": "./build.sh"
   },
   "peerDependencies": {},
   "dependencies": {},
