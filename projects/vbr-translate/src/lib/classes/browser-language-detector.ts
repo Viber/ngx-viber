@@ -1,7 +1,5 @@
 import { VbrLanguageDetector } from './language-detector';
 import { Observable, of } from 'rxjs';
-import { VBR_NAVIGATOR_TOKEN } from '../tokens';
-import { Inject } from '@angular/core';
 
 /**
  * Class used to find best match of user preferred languages set in navigate.languages
@@ -15,7 +13,7 @@ export class VbrBrowserLanguageDetector implements VbrLanguageDetector {
    * @param supportedLanguages - array of language tags application support
    * @param nav - reference to document.navigator
    */
-  constructor(supportedLanguages: Array<string>, @Inject(VBR_NAVIGATOR_TOKEN) nav: Navigator) {
+  constructor(supportedLanguages: Array<string>, nav: Navigator) {
     // merge navigator.languages with navigator.language, keep navigator.language with higher priority
     if ('undefined' === typeof nav) {
       return undefined;
