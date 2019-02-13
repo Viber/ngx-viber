@@ -2,6 +2,8 @@
 
 if [ -n "$1" ]
 then
+    ng test $1 --browsers=ChromeHeadless --watch=false --progress=false --codeCoverage=true
+
     ng build --prod $1
 
     if [ -d "./projects/$1/assets" ]; then

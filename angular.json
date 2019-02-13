@@ -72,7 +72,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -140,7 +140,8 @@
           "options": {
             "main": "projects/vbr-chips-autocomplete/src/test.ts",
             "tsConfig": "projects/vbr-chips-autocomplete/tsconfig.spec.json",
-            "karmaConfig": "projects/vbr-chips-autocomplete/karma.conf.js"
+            "karmaConfig": "projects/vbr-chips-autocomplete/karma.conf.js",
+            "styles": []
           }
         },
         "lint": {

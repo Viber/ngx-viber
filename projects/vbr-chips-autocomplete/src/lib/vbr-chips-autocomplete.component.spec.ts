@@ -68,7 +68,7 @@ describe('VbrChipsAutocompleteComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(VbrChipsAutocompleteComponent);
-    component = fixture.componentInstance;
+    component = fixture.debugElement.componentInstance;
 
     component.keysData = [
       {key: 'aaa', label: 'aaa', color: 'red'},

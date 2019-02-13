@@ -156,7 +156,7 @@ describe('Vbr Browser Language detectors', () => {
     return {
       language: language,
       languages: languages,
-    } as Navigator;
+    } as unknown as Navigator;
   };
 
 });
