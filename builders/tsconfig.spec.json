@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "outDir": "../dist/builders",
+    "outDir": "../dist/test",
     "sourceMap": true,
     "declaration": true,
-    "experimentalDecorators": true,
     "module": "commonjs",
     "target": "es2017",
+    "experimentalDecorators": true,
     "lib": [
       "es2017",
       "dom",
@@ -13,6 +13,6 @@
     ]
   },
   "exclude": [
-    "./test"
+    "./src"
   ]
 }

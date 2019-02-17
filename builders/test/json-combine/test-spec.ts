@@ -1,3 +1,8 @@
+import { runTargetSpec } from '@angular-devkit/architect/testing';
+import { BuildEvent } from '@angular-devkit/architect';
+import { tap } from 'rxjs/operators';
+import { host, jsonCombineTargetSpec } from '../utils';
+
 describe('Combine', () => {
   const files = {
     'a/lalala-xxx.json': '{"x1": {"x11": "x11x11x11", "x12": 12345, "x13": true, "x14": [1, "x1x1x1", 2], "x15": {"x1x11": "x12x12x12", "x1x12": {"x1x1x11": "x13x13x13"}}}}',
@@ -14,5 +19,28 @@ describe('Combine', () => {
     'error.json': '"r": {"r1": "r1r1r1", "r2": 12345, "r3": true, "r4": [1, "rrr", 2], "r5": {"rr1": "r2r2r2", "rr2": {"rrr1": "r3r3r3"}}}}'
   };
 
+  // it('test', (done) => {
+  //   expect(true).toBe(true);
+  //   done();
+  // }, 30000);
 
+  beforeEach(done => host
+    .initialize()
+    .toPromise()
+    .then(done, done.fail)
+  );
+
+  afterEach(done => host
+    .restore()
+    .toPromise()
+    .then(done, done.fail)
+  );
+
+  it('works', done => {
+    runTargetSpec(host, jsonCombineTargetSpec).pipe(
+      tap((buildEvent: BuildEvent) => expect(buildEvent.success).toBe(true)),
+    )
+      .toPromise()
+      .then(done, done.fail);
+  }, 30000);
 });

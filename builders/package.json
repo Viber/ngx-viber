@@ -6,7 +6,8 @@
   "license": "MIT",
   "builders": "builders.json",
   "scripts": {
-    "build": "./build.sh"
+    "build": "./build.sh",
+    "test": "jasmine-node-karma --autotest --verbose dist/test/json-combine/"
   },
   "peerDependencies": {},
   "dependencies": {},

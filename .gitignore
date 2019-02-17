@@ -47,3 +47,4 @@ Thumbs.db
 /builders/json-validator/src/index.js
 /builders/json-validator/package-lock.json
 /builders/dist/
+/builders/node_modules/
