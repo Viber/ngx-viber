@@ -1,9 +1,9 @@
 import { Builder, BuilderConfiguration, BuilderContext, BuildEvent, } from '@angular-devkit/architect';
 import { getSystemPath } from '@angular-devkit/core';
-import { bindNodeCallback, EMPTY, forkJoin, from, merge, Observable, of, OperatorFunction, pipe, throwError, } from 'rxjs';
-import { catchError, filter, map, mapTo, mergeAll, mergeMap, reduce, switchMap, switchMapTo, tap, } from 'rxjs/operators';
+import { bindNodeCallback, EMPTY, forkJoin, from, merge, Observable, of, throwError, } from 'rxjs';
+import { catchError, filter, map, mapTo, mergeAll, mergeMap, reduce, switchMap, tap, } from 'rxjs/operators';
 import { JsonCombineBuilderSchema, JsonSource } from './schema';
-import { mkdirSync, readdir, readFile, stat, statSync, writeFile, mkdir } from 'fs';
+import { mkdir, readdir, readFile, stat, writeFile } from 'fs';
 import { Stats } from '@angular-devkit/core/src/virtual-fs/host';
 
 

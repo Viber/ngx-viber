@@ -12,6 +12,9 @@
       "esnext"
     ]
   },
+  "files": [
+    "./test/json-combine/test.spec.ts"
+  ],
   "exclude": [
     "./src"
   ]

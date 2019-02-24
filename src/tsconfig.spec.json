@@ -16,7 +16,7 @@
   "files": [
     "test.ts",
     "polyfills.ts",
-    "../builders/test/json-combine/test-spec.ts"
+    "../builders/test/json-combine/test.spec.ts"
   ],
   "include": [
     "**/*.spec.ts",
