@@ -72,6 +72,12 @@
       ],
       "vbr-squircle/*": [
         "dist/vbr-squircle/*"
+      ],
+      "vbr-request-detector": [
+        "dist/vbr-request-detector"
+      ],
+      "vbr-request-detector/*": [
+        "dist/vbr-request-detector/*"
       ]
     }
   }
