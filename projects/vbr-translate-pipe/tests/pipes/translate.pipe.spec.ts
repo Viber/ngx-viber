@@ -1,8 +1,7 @@
 import { VbrTranslatePipe } from '../../src/lib/pipes/translate.pipe';
-import { inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed, TestModuleMetadata } from '@angular/core/testing';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ChangeDetectorRef } from '@angular/core';
-import { TestModuleMetadata } from '@angular/core/testing/src/test_bed';
 import { of } from 'rxjs';
 import { VBR_TRANSLATE_PREFIX } from '../../src/lib/tokens';
 

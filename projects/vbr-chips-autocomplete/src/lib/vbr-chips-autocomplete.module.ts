@@ -16,4 +16,5 @@ import { MatAutocompleteModule, MatChipsModule, MatIconModule } from '@angular/m
   declarations: [VbrChipsAutocompleteComponent],
   exports: [VbrChipsAutocompleteComponent]
 })
-export class VbrChipsAutocompleteModule { }
+export class VbrChipsAutocompleteModule {
+}
