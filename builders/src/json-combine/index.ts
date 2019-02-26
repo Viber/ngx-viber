@@ -23,10 +23,10 @@ const parseStringToJson = switchMap((data: string) => {
 
 export default class JsonCombineBuilder implements Builder<JsonCombineBuilderSchema> {
   private readonly systemPath: string;
-  private template: RegExp;
   private targetTemplate: string;
+  private template: RegExp;
 
-  constructor(private context: BuilderContext) {
+  constructor(protected context: BuilderContext) {
     this.systemPath = getSystemPath(this.context.workspace.root);
   }
 
@@ -199,9 +199,5 @@ export default class JsonCombineBuilder implements Builder<JsonCombineBuilderSch
     }
 
     return match.slice(1).reduce((acc, cur, i) => acc.replace('$' + (i + 1), cur), this.targetTemplate);
-  }
-
-  public getPrivatePropertyForTesting(method: string) {
-    return this[method];
   }
 }

@@ -1,8 +1,23 @@
-import { Architect } from '@angular-devkit/architect';
+import { Architect, BuilderContext } from '@angular-devkit/architect';
 import { concatMap, tap } from 'rxjs/operators';
-import { experimental, logging, normalize, Path } from '@angular-devkit/core';
+import { experimental, getSystemPath, logging, normalize, Path, virtualFs } from '@angular-devkit/core';
 import { NodeJsSyncHost } from '@angular-devkit/core/node';
 import JsonCombineBuilder from '../../src/json-combine';
+
+interface BrowserTargetOptions {
+  browserOption: number;
+  optionalBrowserOption: boolean;
+}
+
+class JsonCombineBuilderTesting extends JsonCombineBuilder {
+  constructor(protected context: BuilderContext) {
+    super(context);
+  }
+
+  public getPrivatePropertyForTesting(method: string) {
+    return this[method];
+  }
+}
 
 const workspaceJson = {
   version: 1,
@@ -51,13 +66,9 @@ const files = {
   'b/lalala-zzz.json': '{"z3": {"z31": "z31z31z31", "z32": 12345, "z33": true, "z34": [1, "z3z3z3", 2], "z35": {"z3z31": "z32z32z32", "z3z32": {"z3z3z31": "z33z33z33"}}}}',
   'lalala-d.json': '{"d": {"d1": "d1d1d1", "d2": 12345, "d3": true, "d4": [1, "ddd", 2], "d5": {"dd1": "d2d2d2", "dd2": {"ddd1": "d3d3d3"}}}}',
   'e.error': 'jjj jjj jjj',
-  'error.json': '"r": {"r1": "r1r1r1", "r2": 12345, "r3": true, "r4": [1, "rrr", 2], "r5": {"rr1": "r2r2r2", "rr2": {"rrr1": "r3r3r3"}}}}'
+  'error.json': '"r": {"r1": "r1r1r1", "r2": 12345, "r3": true, "r4": [1, "rrr", 2], "r5": {"rr1": "r2r2r2", "rr2": {"rrr1": "r3r3r3"}}}}',
+  'test.json': '{"a": "aaa", "b": 3}'
 };
-
-interface BrowserTargetOptions {
-  browserOption: number;
-  optionalBrowserOption: boolean;
-}
 
 describe('Combine', () => {
   const host = new NodeJsSyncHost();
@@ -66,14 +77,14 @@ describe('Combine', () => {
 
   let architect: Architect;
   let builderConfig;
-  let jsonCombineBuilder: JsonCombineBuilder;
+  let jsonCombineBuilder: JsonCombineBuilderTesting;
 
   beforeEach(done => workspace.loadWorkspaceFromJson(workspaceJson).pipe(
     concatMap(_workspace => new Architect(_workspace).loadArchitect()),
     tap(_architect => {
       architect = _architect;
       builderConfig = architect.getBuilderConfiguration<BrowserTargetOptions>(targetSpec);
-      jsonCombineBuilder = new JsonCombineBuilder({
+      jsonCombineBuilder = new JsonCombineBuilderTesting({
         logger: new logging.NullLogger(),
         host: host,
         workspace: workspace,
@@ -107,8 +118,11 @@ describe('Combine', () => {
     expect(changeFilename('d.json', 'locale-([a-z]{1,3})')).toBe('d.json');
   });
 
-  it('getFileContent', () => {
+  it('getFileContent', done => {
     const getFileContent = jsonCombineBuilder.getPrivatePropertyForTesting('getFileContent').bind(jsonCombineBuilder);
-    getFileContent(normalize('a/lalala-xxx.json')).subscribe(a => console.log(a));
+    getFileContent(normalize(__dirname + '/test.json')).subscribe(json => {
+      expect(json).toBe(files['lalala-d.json']);
+      done();
+    });
   });
 });
