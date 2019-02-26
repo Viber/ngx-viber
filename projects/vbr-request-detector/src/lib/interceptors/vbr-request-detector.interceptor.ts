@@ -8,19 +8,19 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { VbrRequestDetectorService } from '../serives/vbr-request-detector.service';
+import { VbrProcessStatusService } from '../serives/vbr-process-status.service';
 
 @Injectable()
 export class VbrRequestDetectorInterceptor implements HttpInterceptor {
 
-  constructor(private progressBar: VbrRequestDetectorService) {
+  constructor(private progressStatusService: VbrProcessStatusService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.progressBar.activate();
+    const process = this.progressStatusService.start();
     return next.handle(req)
       .pipe(
-        finalize(() => this.progressBar.deactivate())
+        finalize(() => process.stop())
       );
   }
 }
