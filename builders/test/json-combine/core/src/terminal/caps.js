@@ -15,7 +15,6 @@ process.stderr = stdio.stderr;
 sinon.stub(process, 'stdin').value(stdio.stdin);
 sinon.stub(process, 'stdout').value(stdio.stdout);
 sinon.stub(process, 'stderr').value(stdio.stderr);
-sinon.stub(process, 'binding').value(require);
 
 function _getColorLevel(stream) {
     if ('FORCE_COLOR' in _env) {

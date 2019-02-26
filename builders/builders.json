@@ -2,7 +2,7 @@
   "$schema": "@angular-devkit/architect/src/builders-schema.json",
   "builders": {
     "json-combine": {
-      "class": "./json-combine",
+      "class": "./json-combine/index.js",
       "schema": "./json-combine/schema.json",
       "description": "Merge and/or group multiple Json files"
     },

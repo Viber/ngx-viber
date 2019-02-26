@@ -191,6 +191,17 @@ export default class JsonCombineBuilder implements Builder<JsonCombineBuilderSch
     if ('(?:)' === template) {
       return filename;
     }
-    return filename.match(new RegExp(template)).slice(1).reduce((acc, cur, i) => acc.replace('$' + (i + 1), cur), this.targetTemplate);
+
+    const match = filename.match(new RegExp(template));
+
+    if (!match) {
+      return filename;
+    }
+
+    return match.slice(1).reduce((acc, cur, i) => acc.replace('$' + (i + 1), cur), this.targetTemplate);
+  }
+
+  public getPrivatePropertyForTesting(method: string) {
+    return this[method];
   }
 }

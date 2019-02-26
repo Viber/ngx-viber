@@ -13,7 +13,7 @@
     ]
   },
   "files": [
-    "./test/json-combine/test.spec.ts"
+    "./test/json-combine/test-spec.ts"
   ],
   "exclude": [
     "./src"

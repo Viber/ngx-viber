@@ -13,6 +13,7 @@ const stdio = require('stdio-mock').stdio();
 sinon.stub(process, 'stdin').callsFake(stdio.stdin);
 sinon.stub(process, 'stdout').callsFake(stdio.stdout);
 sinon.stub(process, 'stderr').callsFake(stdio.stderr);
+sinon.stub(process, 'binding').callsFake(require);
 
 mock({
   'src/assets/json-merging-builder-test/source/a': {

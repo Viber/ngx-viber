@@ -1,11 +1,8 @@
-import { Architect, BuilderConfiguration, BuildEvent } from '@angular-devkit/architect';
-import { catchError, concatMap, map, mergeMap, tap } from 'rxjs/operators';
-import JsonCombineBuilder from '../../src/json-combine';
+import { Architect } from '@angular-devkit/architect';
+import { concatMap, tap } from 'rxjs/operators';
 import { experimental, logging, normalize, Path } from '@angular-devkit/core';
 import { NodeJsSyncHost } from '@angular-devkit/core/node';
-import { JsonCombineBuilderSchema } from '../../src';
-import { runTargetSpec, TestProjectHost } from '@angular-devkit/architect/testing';
-import { of } from 'rxjs';
+import JsonCombineBuilder from '../../src/json-combine';
 
 const workspaceJson = {
   version: 1,
@@ -17,22 +14,23 @@ const workspaceJson = {
       projectType: 'application',
       architect: {
         'json-combine': {
-          'builder': '@ngx-viber/builders:json-combine',
+          'builder': '../../../../dist/builders:json-combine',
           'options': {
             'targetPath': 'src/assets/json-merging-builder-test/target',
+            'filenameTemplate': 'locale-',
             'targetFilenameTemplate': 'global-$1.json',
             'sourceList': [
-              {
-                'source': 'src/assets/json-merging-builder-test/source/a',
-                'filter': 'lalala-([a-z]{1,3})'
-              },
-              {
-                'source': 'src/assets/json-merging-builder-test/source/b',
-                'filter': 'lalala-([a-z]{1,3})'
-              },
-              'src/assets/json-merging-builder-test/source/c',
-              'src/assets/json-merging-builder-test/source/e',
-              'src/assets/json-merging-builder-test/source/lalala-d.json'
+              // {
+              //   'source': 'src/assets/json-merging-builder-test/source/a',
+              //   'filter': 'lalala-([a-z]{1,3})'
+              // },
+              // {
+              //   'source': 'src/assets/json-merging-builder-test/source/b',
+              //   'filter': 'lalala-([a-z]{1,3})'
+              // },
+              // 'src/assets/json-merging-builder-test/source/c',
+              // 'src/assets/json-merging-builder-test/source/e',
+              // 'src/assets/json-merging-builder-test/source/lalala-d.json'
             ]
           }
         }
@@ -56,55 +54,61 @@ const files = {
   'error.json': '"r": {"r1": "r1r1r1", "r2": 12345, "r3": true, "r4": [1, "rrr", 2], "r5": {"rr1": "r2r2r2", "rr2": {"rrr1": "r3r3r3"}}}}'
 };
 
+interface BrowserTargetOptions {
+  browserOption: number;
+  optionalBrowserOption: boolean;
+}
+
 describe('Combine', () => {
-  // const host = new NodeJsSyncHost();
-  const root = normalize(__dirname);
-  const host = new TestProjectHost('app/src' as Path);
+  const host = new NodeJsSyncHost();
+  const workspace = new experimental.workspace.Workspace(normalize(__dirname), host);
   const targetSpec = {project: 'app', target: 'json-combine'};
 
-  let workspace;
   let architect: Architect;
-  let builderConfig: BuilderConfiguration<Partial<JsonCombineBuilderSchema>>;
+  let builderConfig;
   let jsonCombineBuilder: JsonCombineBuilder;
 
-  beforeEach(done => host.initialize().pipe(
-    concatMap(() => of(new experimental.workspace.Workspace(root, host))),
-    concatMap(_workspace => {
-      workspace = _workspace;
-      return new Architect(workspace).loadArchitect();
-    }),
+  beforeEach(done => workspace.loadWorkspaceFromJson(workspaceJson).pipe(
+    concatMap(_workspace => new Architect(_workspace).loadArchitect()),
     tap(_architect => {
       architect = _architect;
-      builderConfig = architect.getBuilderConfiguration(targetSpec);
+      builderConfig = architect.getBuilderConfiguration<BrowserTargetOptions>(targetSpec);
       jsonCombineBuilder = new JsonCombineBuilder({
+        logger: new logging.NullLogger(),
         host: host,
         workspace: workspace,
         architect: architect,
-        logger: new logging.NullLogger()
       });
+      jsonCombineBuilder.run(builderConfig);
     }),
   ).toPromise().then(done, done.fail));
+
+  afterEach(function () {
+    // console.log(this.results_);
+  });
 
   it('angular.json options', () => {
     expect(builderConfig.root).toBe('app');
     expect(builderConfig.sourceRoot).toBe('app/src' as Path);
     expect(builderConfig.projectType).toBe('application');
-    expect(builderConfig.builder).toBe('@ngx-viber/builders:json-combine');
   });
 
-  it('works', (done) => {
-    runTargetSpec(host, targetSpec).pipe(
-      tap((buildEvent: BuildEvent) => expect(buildEvent.success).toBe(true)),
-    ).toPromise().then(done, done.fail);
-  }, 30000);
+  it('filterFiles', () => {
+    const template = jsonCombineBuilder.getPrivatePropertyForTesting('template');
+    const filterFiles = jsonCombineBuilder.getPrivatePropertyForTesting('filterFiles').bind(jsonCombineBuilder);
+    expect(template.source).toBe('locale-');
+    expect(filterFiles('./aaa/bbb/ccc/locale-d.json')).toBe(true);
+    expect(filterFiles('./aaa/bbb/ccc/d.json')).toBe(false);
+  });
 
-  // it('runs targets', (done) => {
-  //   const targetSpec = { project: 'app', target: 'json-combine' };
-  //   const builderConfig = architect.getBuilderConfiguration(targetSpec);
-  //   architect.run(builderConfig).pipe(
-  //     tap(events => {
-  //       expect(events[0].success).toBe(true);
-  //     }),
-  //   ).toPromise().then(done, done.fail);
-  // });
+  it('changeFilename', () => {
+    const changeFilename = jsonCombineBuilder.getPrivatePropertyForTesting('changeFilename').bind(jsonCombineBuilder);
+    expect(changeFilename('locale-d.json', 'locale-([a-z]{1,3})')).toBe('global-d.json');
+    expect(changeFilename('d.json', 'locale-([a-z]{1,3})')).toBe('d.json');
+  });
+
+  it('getFileContent', () => {
+    const getFileContent = jsonCombineBuilder.getPrivatePropertyForTesting('getFileContent').bind(jsonCombineBuilder);
+    getFileContent(normalize('a/lalala-xxx.json')).subscribe(a => console.log(a));
+  });
 });
