@@ -2,9 +2,9 @@ import { Architect, BuilderContext } from '@angular-devkit/architect';
 import { concatMap, mergeMap, reduce, tap } from 'rxjs/operators';
 import { experimental, logging, normalize, Path, virtualFs } from '@angular-devkit/core';
 import { NodeJsSyncHost } from '@angular-devkit/core/node';
-import JsonCombineBuilder from '../../src/json-combine';
 import { mkdir, rmdir, unlink, writeFile } from 'fs';
 import { bindNodeCallback, merge } from 'rxjs';
+import JsonCombineBuilder from '../src/json-combine';
 
 interface BrowserTargetOptions {
   browserOption: number;
@@ -45,9 +45,7 @@ const workspaceJson = {
 };
 
 const files = {
-  'test.json': '{"d": {"d1": "d1d1d1", "d2": 12345, "d3": true, "d4": [1, "ddd", 2], "d5": {"dd1": "d2d2d2", "dd2": {"ddd1": "d3d3d3"}}}}',
-  'e.error': 'jjj jjj jjj',
-  'error.json': '"r": {"r1": "r1r1r1", "r2": 12345, "r3": true, "r4": [1, "rrr", 2], "r5": {"rr1": "r2r2r2", "rr2": {"rrr1": "r3r3r3"}}}}'
+  'test.json': '{"d": {"d1": "d1d1d1", "d2": 12345, "d3": true, "d4": [1, "ddd", 2], "d5": {"dd1": "d2d2d2", "dd2": {"ddd1": "d3d3d3"}}}}'
 };
 
 describe('Combine', () => {
@@ -95,9 +93,7 @@ describe('Combine', () => {
   });
 
   it('filterFiles', () => {
-    const template = jsonCombineBuilder.getPrivatePropertyForTesting('template');
     const filterFiles = jsonCombineBuilder.getPrivatePropertyForTesting('filterFiles').bind(jsonCombineBuilder);
-    expect(template.source).toBe('locale-');
     expect(filterFiles('./aaa/bbb/ccc/locale-d.json')).toBeTruthy();
     expect(filterFiles('./aaa/bbb/ccc/d.json')).toBeFalsy();
   });

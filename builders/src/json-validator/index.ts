@@ -15,7 +15,7 @@ export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilde
   private readonly readdir$ = bindNodeCallback(readdir);
   private removeBom: boolean;
 
-  constructor(private context: BuilderContext) {
+  constructor(protected context: BuilderContext) {
   }
 
   run(builderConfig: BuilderConfiguration<Partial<JsonValidatorBuilderSchema>>): Observable<BuildEvent> {
