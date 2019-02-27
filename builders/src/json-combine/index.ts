@@ -129,7 +129,6 @@ export default class JsonCombineBuilder implements Builder<JsonCombineBuilderSch
           }
           return EMPTY;
         }),
-
         mergeAll()
       );
   }
