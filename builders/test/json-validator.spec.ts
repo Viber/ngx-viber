@@ -1,9 +1,9 @@
 import { Architect, BuilderContext } from '@angular-devkit/architect';
-import { concatMap, count, first, mergeMap, reduce, take, tap } from 'rxjs/operators';
-import { experimental, logging, normalize, Path, virtualFs } from '@angular-devkit/core';
+import { concatMap, count, map, tap } from 'rxjs/operators';
+import { experimental, logging, normalize, Path } from '@angular-devkit/core';
 import { NodeJsSyncHost } from '@angular-devkit/core/node';
 import { LogEntry } from '@angular-devkit/core/src/logger';
-import { mkdir, rmdir, unlink, writeFile } from 'fs';
+import { unlink, writeFile } from 'fs';
 import { bindNodeCallback, EMPTY, forkJoin, merge } from 'rxjs';
 import JsonValidatorBuilder from '../src/json-validator';
 
@@ -60,7 +60,7 @@ describe('Validator', () => {
 
   beforeEach(done => workspace.loadWorkspaceFromJson(workspaceJson).pipe(
     concatMap(_workspace => new Architect(_workspace).loadArchitect()),
-    tap(_architect => {
+    map(_architect => {
       architect = _architect;
       builderConfig = architect.getBuilderConfiguration<BrowserTargetOptions>(targetSpec);
       jsonValidatorBuilder = new JsonValidatorBuilderTesting({

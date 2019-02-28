@@ -1,5 +1,5 @@
 import { Architect, BuilderContext } from '@angular-devkit/architect';
-import { concatMap, mergeMap, reduce, tap } from 'rxjs/operators';
+import { concatMap, map, mergeMap, reduce, tap } from 'rxjs/operators';
 import { experimental, logging, normalize, Path, virtualFs } from '@angular-devkit/core';
 import { NodeJsSyncHost } from '@angular-devkit/core/node';
 import { mkdir, rmdir, unlink, writeFile } from 'fs';
@@ -62,7 +62,7 @@ describe('Combine', () => {
 
   beforeEach(done => workspace.loadWorkspaceFromJson(workspaceJson).pipe(
     concatMap(_workspace => new Architect(_workspace).loadArchitect()),
-    tap(_architect => {
+    map(_architect => {
       architect = _architect;
       builderConfig = architect.getBuilderConfiguration<BrowserTargetOptions>(targetSpec);
       jsonCombineBuilder = new JsonCombineBuilderTesting({
@@ -76,7 +76,7 @@ describe('Combine', () => {
     }),
   ).toPromise().then(done, done.fail));
 
-  afterEach(function (done) {
+  afterEach(done => {
     bindNodeCallback(unlink)(jsonPath).subscribe(() => done(), () => done());
 
     merge(
@@ -89,7 +89,6 @@ describe('Combine', () => {
       () => bindNodeCallback(rmdir)(dirPath).subscribe(() => done(), () => done()));
 
     bindNodeCallback(rmdir)(dirPath).subscribe(() => done(), () => done());
-    console.log(this.results_);
   });
 
   it('filterFiles', () => {
