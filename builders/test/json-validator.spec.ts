@@ -1,9 +1,10 @@
 import { Architect, BuilderContext } from '@angular-devkit/architect';
-import { concatMap, mergeMap, reduce, tap } from 'rxjs/operators';
+import { concatMap, count, first, mergeMap, reduce, take, tap } from 'rxjs/operators';
 import { experimental, logging, normalize, Path, virtualFs } from '@angular-devkit/core';
 import { NodeJsSyncHost } from '@angular-devkit/core/node';
+import { LogEntry } from '@angular-devkit/core/src/logger';
 import { mkdir, rmdir, unlink, writeFile } from 'fs';
-import { bindNodeCallback, merge } from 'rxjs';
+import { bindNodeCallback, EMPTY, forkJoin, merge } from 'rxjs';
 import JsonValidatorBuilder from '../src/json-validator';
 
 interface BrowserTargetOptions {
@@ -30,13 +31,10 @@ const workspaceJson = {
       sourceRoot: 'app/src',
       projectType: 'application',
       architect: {
-        'json-combine': {
-          'builder': '../../../../dist/builders:json-combine',
+        'json-validator': {
+          'builder': '../../../../dist/builders:json-validator',
           'options': {
-            'targetPath': 'src/assets/json-merging-builder-test/target',
-            'filenameTemplate': 'locale-',
-            'targetFilenameTemplate': 'global-$1.json',
-            'sourceList': []
+            'checkList': []
           }
         }
       },
@@ -46,17 +44,15 @@ const workspaceJson = {
 
 const files = {
   'test.json': '{"d": {"d1": "d1d1d1", "d2": 12345, "d3": true, "d4": [1, "ddd", 2], "d5": {"dd1": "d2d2d2", "dd2": {"ddd1": "d3d3d3"}}}}',
-  'e.error': 'jjj jjj jjj',
-  'error.json': '"r": {"r1": "r1r1r1", "r2": 12345, "r3": true, "r4": [1, "rrr", 2], "r5": {"rr1": "r2r2r2", "rr2": {"rrr1": "r3r3r3"}}}}'
+  'test.err': 'jjj jjj jjj',
+  'err.json': '"r": {"r1": "r1r1r1", "r2": 12345, "r3": true, "r4": [1, "rrr", 2], "r5": {"rr1": "r2r2r2", "rr2": {"rrr1": "r3r3r3"}}}}'
 };
 
 describe('Validator', () => {
   const host = new NodeJsSyncHost();
   const workspace = new experimental.workspace.Workspace(normalize(__dirname), host);
-  const targetSpec = {project: 'app', target: 'json-combine'};
-  const jsonData = JSON.parse(files['test.json']);
-  const jsonPath = normalize(__dirname + '/test.json') as Path;
-  const dirPath = normalize(__dirname + '/test_directory');
+  const targetSpec = {project: 'app', target: 'json-validator'};
+  const jsonPath = file => normalize(__dirname + '/' + file) as Path;
 
   let architect: Architect;
   let builderConfig;
@@ -68,38 +64,56 @@ describe('Validator', () => {
       architect = _architect;
       builderConfig = architect.getBuilderConfiguration<BrowserTargetOptions>(targetSpec);
       jsonValidatorBuilder = new JsonValidatorBuilderTesting({
-        logger: new logging.NullLogger(),
+        logger: new logging.Logger('test'),
         host: host,
         workspace: workspace,
         architect: architect,
       });
       jsonValidatorBuilder.run(builderConfig);
-      bindNodeCallback(writeFile)(jsonPath, files['test.json']).subscribe(() => done());
+      merge(
+        bindNodeCallback(writeFile)(jsonPath('test.json'), files['test.json']),
+        bindNodeCallback(writeFile)(jsonPath('test.err'), files['test.err']),
+        bindNodeCallback(writeFile)(jsonPath('err.json'), files['error.json'])
+      ).subscribe(() => done(), () => done());
     }),
   ).toPromise().then(done, done.fail));
 
-  afterEach(function (done) {
-    bindNodeCallback(unlink)(jsonPath).subscribe(() => done(), () => done());
-
+  afterEach(done => {
     merge(
-      bindNodeCallback(unlink)(dirPath + '/test1.json'),
-      bindNodeCallback(unlink)(dirPath + '/test2.json'),
-      bindNodeCallback(unlink)(dirPath + '/a/test3.json')
-        .pipe(mergeMap(() => bindNodeCallback(rmdir)(dirPath + '/a'))
-        )
-    ).subscribe(() => done(), () => done(),
-      () => bindNodeCallback(rmdir)(dirPath).subscribe(() => done(), () => done()));
-
-    bindNodeCallback(rmdir)(dirPath).subscribe(() => done(), () => done());
+      bindNodeCallback(unlink)(jsonPath('test.json')),
+      bindNodeCallback(unlink)(jsonPath('test.err')),
+      bindNodeCallback(unlink)(jsonPath('err.json'))
+    ).subscribe(() => done(), () => done());
   });
 
   it('checkFile', done => {
     const checkFile = jsonValidatorBuilder.getPrivatePropertyForTesting('checkFile').bind(jsonValidatorBuilder);
+    const logger = jsonValidatorBuilder.getPrivatePropertyForTesting('context').logger;
 
+    logger
+      .pipe(
+        tap((err: LogEntry) => expect(err.message).toMatch(/^Parsing error:.*(test.err|err.json)$/)),
+        count(),
+        tap(errors => expect(errors).toBe(2))
+      )
+      .subscribe(() => done());
+
+    forkJoin(
+      checkFile(jsonPath('test.json')).pipe(tap((json => expect(json).toEqual({success: true})))),
+      checkFile(jsonPath('err.json')).pipe(tap((json => expect(json).toEqual({success: true})))),
+      checkFile(jsonPath('test.err')).pipe(tap((json => expect(json).toEqual({success: true}))))
+    ).subscribe(() => {
+      logger.complete();
+      done();
+    });
   });
 
   it('checkFiles', done => {
     const checkFiles = jsonValidatorBuilder.getPrivatePropertyForTesting('checkFiles').bind(jsonValidatorBuilder);
-
+    merge(
+      checkFiles(jsonPath('test.json')).pipe(tap((json => expect(json).toEqual({success: true})))),
+      checkFiles(jsonPath('err.json')).pipe(tap((json => expect(json).toEqual({success: true})))),
+      checkFiles(jsonPath('test.err')).pipe(tap((json => expect(json).toEqual(EMPTY))))
+    ).subscribe(() => done());
   });
 });

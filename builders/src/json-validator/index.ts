@@ -1,6 +1,6 @@
 import { Builder, BuilderConfiguration, BuilderContext, BuildEvent, } from '@angular-devkit/architect';
 import { getSystemPath } from '@angular-devkit/core';
-import { bindNodeCallback, EMPTY, from, merge, Observable, } from 'rxjs';
+import { bindNodeCallback, EMPTY, from, merge, Observable, of } from 'rxjs';
 import { map, mapTo, mergeAll, mergeMap, } from 'rxjs/operators';
 import { JsonValidatorBuilderSchema } from './schema';
 import { readdir, readFile, stat, writeFileSync } from 'fs';
@@ -46,7 +46,7 @@ export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilde
                 )
               );
           }
-          return EMPTY;
+          return of(EMPTY);
         }),
         mergeAll()
       );
