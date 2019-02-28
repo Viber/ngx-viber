@@ -1,22 +1,47 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { delay, groupBy, map, mergeAll, mergeMap, scan, tap, timeout } from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+} from 'rxjs';
+import {
+  delay,
+  groupBy,
+  map,
+  mergeAll,
+  mergeMap,
+  scan,
+  tap,
+} from 'rxjs/operators';
 
 export interface VbrProcessChange {
   delta: -1 | 1;
   name: string;
 }
 
+export function rxjsVbrProcess<T>(service: VbrProcessStatusService, name?: string) {
+  const activity = service.start(name);
+
+  return tap<T>(() => {
+    },
+    () => {
+      activity.stop();
+    },
+    () => {
+      activity.stop();
+    });
+}
+
 export class VbrProcess {
   public readonly process$: Observable<VbrProcessChange>;
   private readonly stopper$: Subject<any> = new Subject();
 
-  constructor(ttl: number, public readonly name: string) {
+  constructor(public readonly name: string) {
+
     this.process$ = new Observable<VbrProcessChange>((subscriber) => {
       subscriber.next({delta: 1, name: name});
 
       this.stopper$
-        .pipe(timeout(ttl))
         .subscribe(
           (next) => {
             // Should be no possible to get here, source should not emit anything.
@@ -31,7 +56,7 @@ export class VbrProcess {
             // We arrive here when source is complete from this function or external call
             subscriber.next({delta: -1, name: name});
             subscriber.complete();
-          }
+          },
         );
     });
   }
@@ -44,7 +69,6 @@ export class VbrProcess {
 @Injectable()
 export class VbrProcessStatusService {
   public isActive = new Map<string, BehaviorSubject<boolean>>();
-  public active$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private processes$: Subject<VbrProcess> = new Subject();
 
   constructor() {
@@ -57,21 +81,21 @@ export class VbrProcessStatusService {
           return group.pipe(
             map(process => process.delta),
             scan((acc, delta) => acc + delta, 0),
-            tap(count => this.setStatus(group.key, !!count))
+            tap(count => this.setStatus(group.key, !!count)),
           );
         }),
 
         map((value) => value > 0),
         delay(0),
       )
-      .subscribe(this.active$);
+      .subscribe();
   }
 
   private setStatus(name: string, status: boolean) {
     this.getStatus(name).next(status);
   }
 
-  getStatus(name: string = 'default'): BehaviorSubject<boolean> {
+  public getStatus(name: string = 'default'): BehaviorSubject<boolean> {
     if (!this.isActive.has(name)) {
       this.createNewActivity(name);
     }
@@ -83,9 +107,9 @@ export class VbrProcessStatusService {
     this.isActive.set(name, new BehaviorSubject(false));
   }
 
-  public start(ttl: number = 15000, name: string = 'default') {
+  public start(name: string = 'default') {
 
-    const process = new VbrProcess(ttl, name);
+    const process = new VbrProcess(name);
 
     this.processes$.next(process);
     return process;
