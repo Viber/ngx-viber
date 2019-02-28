@@ -89,7 +89,7 @@ describe('Combine', () => {
       () => bindNodeCallback(rmdir)(dirPath).subscribe(() => done(), () => done()));
 
     bindNodeCallback(rmdir)(dirPath).subscribe(() => done(), () => done());
-    // console.log(this.results_);
+    console.log(this.results_);
   });
 
   it('filterFiles', () => {
@@ -135,8 +135,6 @@ describe('Combine', () => {
   it('getFilesListFromDirectory', done => {
     const getFilesListFromDirectory =
       jsonCombineBuilder.getPrivatePropertyForTesting('getFilesListFromDirectory').bind(jsonCombineBuilder);
-    const paths = ['test1.json', 'test2.json', 'a/test3.json']
-      .map(file => <string>normalize(__dirname + '/test_directory/' + file));
 
     bindNodeCallback(mkdir)(dirPath).pipe(
       mergeMap(() => bindNodeCallback(writeFile)(dirPath + '/test1.json', files['test.json'])),

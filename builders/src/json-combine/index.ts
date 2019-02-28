@@ -1,15 +1,12 @@
 import { Builder, BuilderConfiguration, BuilderContext, BuildEvent, } from '@angular-devkit/architect';
 import { getSystemPath } from '@angular-devkit/core';
 import { bindNodeCallback, EMPTY, forkJoin, from, merge, Observable, of, throwError, } from 'rxjs';
-import { catchError, filter, map, mapTo, mergeAll, mergeMap, reduce, switchMap, tap, } from 'rxjs/operators';
+import { catchError, delayWhen, filter, map, mapTo, mergeAll, mergeMap, reduce, switchMap, } from 'rxjs/operators';
 import { JsonCombineBuilderSchema, JsonSource } from './schema';
 import { mkdir, readdir, readFile, stat, writeFile } from 'fs';
 import { Stats } from '@angular-devkit/core/src/virtual-fs/host';
 
-
-const extractFileName = (filePath: string): string => {
-  return filePath.split('/').pop();
-};
+const extractFileName = (filePath: string): string => filePath.split('/').pop();
 
 const parseStringToJson = switchMap((data: string) => {
   try {
@@ -87,7 +84,7 @@ export default class JsonCombineBuilder implements Builder<JsonCombineBuilderSch
 
         // Write to file/s
         // Create directory
-        tap(() => this.createDirectoryIfNotExists(path)),
+        delayWhen(() => this.createDirectoryIfNotExists(path)),
         switchMap(jsonData => this.writeFilesToDirectory(path, isSingleFile ? {[targetFilename]: jsonData} : jsonData)),
         mapTo(success)
       );
@@ -140,7 +137,7 @@ export default class JsonCombineBuilder implements Builder<JsonCombineBuilderSch
   private createDirectoryIfNotExists(path: string): Observable<Stats | void> {
     const stat$ = bindNodeCallback(stat);
     const mkdir$ = bindNodeCallback(mkdir);
-    // Create diretory if not exists
+    // Create directory if not exists
     return stat$(path)
       .pipe(
         catchError(e => {
