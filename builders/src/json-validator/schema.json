@@ -8,10 +8,10 @@
       "description": "List of the paths to the json files or directories for checking",
       "default": []
     },
-    "removeBom": {
+    "dryRun": {
       "type": "boolean",
-      "description": "Removes BOM",
-      "default": true
+      "description": "Dry run",
+      "default": false
     }
   }
 }

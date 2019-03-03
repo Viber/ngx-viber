@@ -6,6 +6,7 @@ import { LogEntry } from '@angular-devkit/core/src/logger';
 import { unlink, writeFile } from 'fs';
 import { bindNodeCallback, EMPTY, forkJoin, merge } from 'rxjs';
 import JsonValidatorBuilder from '../src/json-validator';
+import { beforeEach } from 'selenium-webdriver/testing';
 
 interface BrowserTargetOptions {
   browserOption: number;
@@ -89,6 +90,23 @@ describe('Validator', () => {
   it('checkFile', done => {
     const checkFile = jsonValidatorBuilder.getPrivatePropertyForTesting('checkFile').bind(jsonValidatorBuilder);
     const logger = jsonValidatorBuilder.getPrivatePropertyForTesting('context').logger;
+
+    it('checkFile: Correct Json file', done => {
+      checkFile(jsonPath('test.json'))
+        .subscribe(json => {
+          expect(json).toEqual({success: true});
+          done();
+        });
+    });
+
+    it('checkFile: Not Json File', done => {
+        checkFile(jsonPath('err.json'))
+          .subscribe(json => {
+            expect(json).toEqual({success: true});
+            done();
+          });
+      });
+
 
     logger
       .pipe(
