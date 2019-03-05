@@ -131,7 +131,7 @@ export default class JsonCombineBuilder implements Builder<JsonCombineBuilderSch
   }
 
   /**
-   *
+   * Creates directory if it doesn't exist
    * @param path
    */
   private createDirectoryIfNotExists(path: string): Observable<Stats | void> {
@@ -150,6 +150,7 @@ export default class JsonCombineBuilder implements Builder<JsonCombineBuilderSch
   }
 
   /**
+   * Writes files to target directory
    * @param filePath
    * @param filesData
    */
@@ -176,10 +177,19 @@ export default class JsonCombineBuilder implements Builder<JsonCombineBuilderSch
     return readFile$(filepath, 'utf8');
   }
 
+  /**
+   * Filters files by template
+   * @param path
+   */
   private filterFiles(path: string): boolean {
     return this.template.test(extractFileName(path));
   }
 
+  /**
+   * Changes target filename by template
+   * @param filename
+   * @param template
+   */
   private changeFilename(filename: string, template: string): string {
     if ('(?:)' === template) {
       return filename;

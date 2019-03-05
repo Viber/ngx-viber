@@ -5,7 +5,6 @@ import { unlink, writeFile } from 'fs';
 import { bindNodeCallback, merge } from 'rxjs';
 import { concatMap, map, tap } from 'rxjs/operators';
 import JsonValidatorBuilder from '../src/json-validator';
-import { describe } from 'selenium-webdriver/testing';
 
 interface BrowserTargetOptions {
   browserOption: number;

@@ -91,19 +91,27 @@ describe('Combine', () => {
     bindNodeCallback(rmdir)(dirPath).subscribe(() => done(), () => done());
   });
 
-  it('filterFiles', () => {
-    const filterFiles = jsonCombineBuilder.getPrivatePropertyForTesting('filterFiles').bind(jsonCombineBuilder);
-    expect(filterFiles('./aaa/bbb/ccc/locale-d.json')).toBeTruthy();
-    expect(filterFiles('./aaa/bbb/ccc/d.json')).toBeFalsy();
+  describe('filter files by template', () => {
+    let filterFiles;
+
+    beforeEach(() => filterFiles = jsonCombineBuilder.getPrivatePropertyForTesting('filterFiles').bind(jsonCombineBuilder));
+
+    it('pass filter', () => expect(filterFiles('./aaa/bbb/ccc/locale-d.json')).toBeTruthy());
+
+    it('not pass filter', () => expect(filterFiles('./aaa/bbb/ccc/d.json')).toBeFalsy());
   });
 
-  it('changeFilename', () => {
-    const changeFilename = jsonCombineBuilder.getPrivatePropertyForTesting('changeFilename').bind(jsonCombineBuilder);
-    expect(changeFilename('locale-d.json', 'locale-([a-z]{1,3})')).toBe('global-d.json');
-    expect(changeFilename('d.json', 'locale-([a-z]{1,3})')).toBe('d.json');
+  describe('change filename', () => {
+    let changeFilename;
+
+    beforeEach(() => changeFilename = jsonCombineBuilder.getPrivatePropertyForTesting('changeFilename').bind(jsonCombineBuilder));
+
+    it('change', () => expect(changeFilename('locale-d.json', 'locale-([a-z]{1,3})')).toBe('global-d.json'));
+
+    it('not change', () => expect(changeFilename('d.json', 'locale-([a-z]{1,3})')).toBe('d.json'));
   });
 
-  it('getFileContent', done => {
+  it('get file content', done => {
     const getFileContent = jsonCombineBuilder.getPrivatePropertyForTesting('getFileContent').bind(jsonCombineBuilder);
     getFileContent(jsonPath).subscribe(json => {
       expect(JSON.parse(json)).toEqual(jsonData);
@@ -111,7 +119,7 @@ describe('Combine', () => {
     });
   });
 
-  it('writeFilesToDirectory', done => {
+  it('write files to directory', done => {
     const writeFilesToDirectory = jsonCombineBuilder.getPrivatePropertyForTesting('writeFilesToDirectory').bind(jsonCombineBuilder);
     writeFilesToDirectory(normalize(__dirname) + '/', {'test.json': jsonData}).pipe(
       mergeMap(() => host.exists(jsonPath)),
@@ -121,7 +129,7 @@ describe('Combine', () => {
     ).subscribe(() => done());
   });
 
-  it('createDirectoryIfNotExists', done => {
+  it('create directory if not exists', done => {
     const createDirectoryIfNotExists =
       jsonCombineBuilder.getPrivatePropertyForTesting('createDirectoryIfNotExists').bind(jsonCombineBuilder);
 

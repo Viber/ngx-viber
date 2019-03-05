@@ -1,8 +1,8 @@
 import { Builder, BuilderConfiguration, BuilderContext, BuildEvent, } from '@angular-devkit/architect';
 import { getSystemPath } from '@angular-devkit/core';
 import { Stats } from '@angular-devkit/core/src/virtual-fs/host';
-import { bindNodeCallback, from, iif, merge, Observable, of, Subject, throwError } from 'rxjs';
-import { catchError, filter, finalize, map, mapTo, mergeMap, startWith, switchMap, tap } from 'rxjs/operators';
+import { bindNodeCallback, from, iif, merge, Observable, of, Subject } from 'rxjs';
+import { filter, map, mapTo, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { readdir, readFile, stat, writeFile } from 'fs';
 import { JsonValidatorBuilderSchema } from './schema';
 
