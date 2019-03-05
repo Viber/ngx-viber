@@ -1,20 +1,13 @@
 import { Builder, BuilderConfiguration, BuilderContext, BuildEvent, } from '@angular-devkit/architect';
 import { getSystemPath } from '@angular-devkit/core';
-import { bindNodeCallback, from, iif, merge, Observable, of } from 'rxjs';
-import { filter, map, mapTo, mergeMap, switchMap, tap, } from 'rxjs/operators';
+import { Stats } from '@angular-devkit/core/src/virtual-fs/host';
+import { bindNodeCallback, from, iif, merge, Observable, of, Subject, throwError } from 'rxjs';
+import { catchError, filter, finalize, map, mapTo, mergeMap, startWith, switchMap, tap } from 'rxjs/operators';
 import { readdir, readFile, stat, writeFile } from 'fs';
 import { JsonValidatorBuilderSchema } from './schema';
 
 export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilderSchema> {
-  private readonly readFile$ = bindNodeCallback((
-    path: string,
-    encoding: string,
-    callback: (error: Error, buffer: string) => void
-  ) => readFile(path, encoding, callback));
-  private readonly stat$ = bindNodeCallback(stat);
-  private readonly readdir$ = bindNodeCallback(readdir);
-  private readonly writeFile$ = bindNodeCallback(writeFile);
-  private dryRun: boolean = false;
+  private dryRun: boolean;
 
   constructor(protected context: BuilderContext) {
   }
@@ -37,12 +30,12 @@ export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilde
    * @param fileName
    */
   private getFiles(fileName: string): Observable<string> {
-    return this.stat$(fileName)
+    return this.isDirectory(fileName)
       .pipe(
-        mergeMap(fileInfo =>
+        mergeMap(isDirectory =>
           iif(
-            () => fileInfo.isDirectory(),
-            this.readdir$(fileName)
+            () => isDirectory,
+            this.getDirectoryList(fileName)
               .pipe(
                 mergeMap((files: Array<string>) =>
                   merge(...files.map(file => this.getFiles(fileName + '/' + file))))
@@ -63,15 +56,16 @@ export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilde
    * 4. Write File
    * @param filepath
    */
-  private validateFile(filepath: string): Observable<Set<string>> {
-    const status: Set<string> = new Set();
+  private validateFile(filepath: string): Observable<Array<string>> {
+    const status: Array<string> = [];
+    const status$: Subject<Array<string>> = new Subject();
     const logging = (info: string) => {
       info += filepath;
       this.context.logger.error(info);
-      status.add(info);
+      status.push(info);
     };
 
-    return this.readFile$(filepath, 'utf8')
+    this.getFileContent(filepath)
       .pipe(
         filter(json => !this.isValidJson(json)),
         filter(json => {
@@ -87,22 +81,38 @@ export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilde
           }
           return isValid;
         }),
-        switchMap(json => this.writeFile$(filepath, json)
+        filter(() => !this.dryRun),
+        switchMap(json => this.updateFile(filepath, json)
           .pipe(
-            map(() => logging('Updated file: '))
+            tap(() => logging('Updated file: '))
           )),
-        mapTo(status)
-      );
+      ).subscribe(() => {
+    }, () => {
+    }, () => status$.next(status));
+
+    return status$;
   }
 
+  /**
+   * Checks if the file has BOM
+   * @param data
+   */
   private hasBom(data: string): boolean {
     return data.startsWith('\uFEFF');
   }
 
+  /**
+   * Removes BOM form the file
+   * @param data
+   */
   private removeBom(data: string): string {
     return data.replace(/^\uFEFF/, '');
   }
 
+  /**
+   * Parses the file and checks if it's valid
+   * @param data
+   */
   private isValidJson(data): boolean {
     try {
       JSON.parse(data);
@@ -110,5 +120,46 @@ export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilde
       return false;
     }
     return true;
+  }
+
+  /**
+   * Reads Json file
+   * @param filepath
+   * @return observable of json file
+   */
+  private getFileContent(filepath: string): Observable<string> {
+    return bindNodeCallback((
+      path: string,
+      encoding: string,
+      callback: (error: Error, buffer: string) => void
+    ) => readFile(path, encoding, callback))(filepath, 'utf8');
+  }
+
+  /**
+   * Updates the file with valid json (without BOM)
+   * @param filepath
+   * @param json
+   */
+  private updateFile(filepath: string, json: string): Observable<void> {
+    return bindNodeCallback(writeFile)(filepath, json);
+  }
+
+  /**
+   * Checks if it's directory
+   * @param filepath
+   */
+  private isDirectory(filepath: string): Observable<boolean> {
+    return bindNodeCallback(stat)(filepath).pipe(
+      map((fileInfo: Stats) => fileInfo.isDirectory())
+    );
+  }
+
+  /**
+   * Gets the directory content
+   * @param dir
+   * @return observable of content list
+   */
+  private getDirectoryList(dir: string): Observable<Object> {
+    return bindNodeCallback(readdir)(dir);
   }
 }

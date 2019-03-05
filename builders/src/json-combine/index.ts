@@ -150,8 +150,6 @@ export default class JsonCombineBuilder implements Builder<JsonCombineBuilderSch
   }
 
   /**
-   *
-   *
    * @param filePath
    * @param filesData
    */
@@ -164,10 +162,9 @@ export default class JsonCombineBuilder implements Builder<JsonCombineBuilderSch
   }
 
   /**
-   * Read Json file and validate it.
-   * return observable of parsed json file.
-   *
+   * Reads Json file
    * @param filepath
+   * @return observable of json file
    */
   private getFileContent(filepath: string): Observable<string> {
     const readFile$ = bindNodeCallback((

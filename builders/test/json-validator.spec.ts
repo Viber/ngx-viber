@@ -1,12 +1,11 @@
 import { Architect, BuilderContext } from '@angular-devkit/architect';
-import { concatMap, count, map, tap } from 'rxjs/operators';
-import { experimental, logging, normalize, Path } from '@angular-devkit/core';
+import { experimental, logging, normalize, Path, virtualFs } from '@angular-devkit/core';
 import { NodeJsSyncHost } from '@angular-devkit/core/node';
-import { LogEntry } from '@angular-devkit/core/src/logger';
 import { unlink, writeFile } from 'fs';
-import { bindNodeCallback, EMPTY, forkJoin, merge } from 'rxjs';
+import { bindNodeCallback, merge } from 'rxjs';
+import { concatMap, map, tap } from 'rxjs/operators';
 import JsonValidatorBuilder from '../src/json-validator';
-import { beforeEach } from 'selenium-webdriver/testing';
+import { describe } from 'selenium-webdriver/testing';
 
 interface BrowserTargetOptions {
   browserOption: number;
@@ -45,8 +44,9 @@ const workspaceJson = {
 
 const files = {
   'test.json': '{"d": {"d1": "d1d1d1", "d2": 12345, "d3": true, "d4": [1, "ddd", 2], "d5": {"dd1": "d2d2d2", "dd2": {"ddd1": "d3d3d3"}}}}',
-  'test.err': 'jjj jjj jjj',
-  'err.json': '"r": {"r1": "r1r1r1", "r2": 12345, "r3": true, "r4": [1, "rrr", 2], "r5": {"rr1": "r2r2r2", "rr2": {"rrr1": "r3r3r3"}}}}'
+  'bom.json': '\uFEFF{"b": {"b1": "b1b1b1", "b2": 12345, "b3": true}}',
+  'err.json': '"r": {"r1": "r1r1r1", "r2": 12345, "r3": true, "r4": [1, "rrr", 2], "r5": {"rr1": "r2r2r2", "rr2": {"rrr1": "r3r3r3"}}}}',
+  'test.err': 'jjj jjj jjj'
 };
 
 describe('Validator', () => {
@@ -65,73 +65,108 @@ describe('Validator', () => {
       architect = _architect;
       builderConfig = architect.getBuilderConfiguration<BrowserTargetOptions>(targetSpec);
       jsonValidatorBuilder = new JsonValidatorBuilderTesting({
-        logger: new logging.Logger('test'),
+        logger: new logging.NullLogger(),
         host: host,
         workspace: workspace,
         architect: architect,
       });
       jsonValidatorBuilder.run(builderConfig);
       merge(
-        bindNodeCallback(writeFile)(jsonPath('test.json'), files['test.json']),
-        bindNodeCallback(writeFile)(jsonPath('test.err'), files['test.err']),
-        bindNodeCallback(writeFile)(jsonPath('err.json'), files['error.json'])
+        ...Object.keys(files).map(file => bindNodeCallback(writeFile)(jsonPath(file), files[file]))
       ).subscribe(() => done(), () => done());
     }),
   ).toPromise().then(done, done.fail));
 
   afterEach(done => {
     merge(
-      bindNodeCallback(unlink)(jsonPath('test.json')),
-      bindNodeCallback(unlink)(jsonPath('test.err')),
-      bindNodeCallback(unlink)(jsonPath('err.json'))
+      ...Object.keys(files).map(file => bindNodeCallback(unlink)(jsonPath(file)))
     ).subscribe(() => done(), () => done());
   });
 
-  it('checkFile', done => {
-    const checkFile = jsonValidatorBuilder.getPrivatePropertyForTesting('checkFile').bind(jsonValidatorBuilder);
-    const logger = jsonValidatorBuilder.getPrivatePropertyForTesting('context').logger;
+  describe('Is Valid Json', () => {
+    let isValidJson;
 
-    it('checkFile: Correct Json file', done => {
-      checkFile(jsonPath('test.json'))
-        .subscribe(json => {
-          expect(json).toEqual({success: true});
-          done();
-        });
-    });
+    beforeEach(() => isValidJson = jsonValidatorBuilder.getPrivatePropertyForTesting('isValidJson').bind(jsonValidatorBuilder));
 
-    it('checkFile: Not Json File', done => {
-        checkFile(jsonPath('err.json'))
-          .subscribe(json => {
-            expect(json).toEqual({success: true});
-            done();
-          });
-      });
-
-
-    logger
+    it('valid json', done => host.read(jsonPath('test.json'))
       .pipe(
-        tap((err: LogEntry) => expect(err.message).toMatch(/^Parsing error:.*(test.err|err.json)$/)),
-        count(),
-        tap(errors => expect(errors).toBe(2))
-      )
-      .subscribe(() => done());
+        tap(json => expect(isValidJson(virtualFs.fileBufferToString(json))).toBeTruthy())
+      ).subscribe(() => done()));
 
-    forkJoin(
-      checkFile(jsonPath('test.json')).pipe(tap((json => expect(json).toEqual({success: true})))),
-      checkFile(jsonPath('err.json')).pipe(tap((json => expect(json).toEqual({success: true})))),
-      checkFile(jsonPath('test.err')).pipe(tap((json => expect(json).toEqual({success: true}))))
-    ).subscribe(() => {
-      logger.complete();
-      done();
-    });
+    it('valid json with BOM', done => host.read(jsonPath('bom.json'))
+      .pipe(
+        tap(json => expect(isValidJson(virtualFs.fileBufferToString(json))).toBeFalsy())
+      ).subscribe(() => done()));
+
+    it('invalid json', done => host.read(jsonPath('err.json'))
+      .pipe(
+        tap(json => expect(isValidJson(virtualFs.fileBufferToString(json))).toBeFalsy())
+      ).subscribe(() => done()));
+
+    it('not json', done => host.read(jsonPath('test.err'))
+      .pipe(
+        tap(json => expect(isValidJson(virtualFs.fileBufferToString(json))).toBeFalsy())
+      ).subscribe(() => done()));
   });
 
-  it('checkFiles', done => {
-    const checkFiles = jsonValidatorBuilder.getPrivatePropertyForTesting('checkFiles').bind(jsonValidatorBuilder);
-    merge(
-      checkFiles(jsonPath('test.json')).pipe(tap((json => expect(json).toEqual({success: true})))),
-      checkFiles(jsonPath('err.json')).pipe(tap((json => expect(json).toEqual({success: true})))),
-      checkFiles(jsonPath('test.err')).pipe(tap((json => expect(json).toEqual(EMPTY))))
-    ).subscribe(() => done());
+  describe('BOM', () => {
+    let hasBom;
+    let removeBom;
+
+    beforeEach(() => {
+      hasBom = jsonValidatorBuilder.getPrivatePropertyForTesting('hasBom').bind(jsonValidatorBuilder);
+      removeBom = jsonValidatorBuilder.getPrivatePropertyForTesting('removeBom').bind(jsonValidatorBuilder);
+    });
+
+    it('json without BOM', done => host.read(jsonPath('test.json'))
+      .pipe(
+        tap(json => expect(hasBom(virtualFs.fileBufferToString(json))).toBeFalsy())
+      ).subscribe(() => done()));
+
+    it('json with BOM', done => host.read(jsonPath('bom.json'))
+      .pipe(
+        tap(json => expect(hasBom(virtualFs.fileBufferToString(json))).toBeTruthy())
+      ).subscribe(() => done()));
+
+    it('removing BOM', done => host.read(jsonPath('bom.json'))
+      .pipe(
+        map(json => removeBom(virtualFs.fileBufferToString(json))),
+        tap(json => expect(hasBom(json)).toBeFalsy())
+      ).subscribe(() => done()));
+  });
+
+  describe('Validate Json', () => {
+    let validateFile;
+
+    beforeEach(() => validateFile = jsonValidatorBuilder.getPrivatePropertyForTesting('validateFile').bind(jsonValidatorBuilder));
+
+    it('valid json', done => validateFile(jsonPath('test.json'))
+      .pipe(
+        tap(status => expect(status).toEqual([]))
+      ).subscribe(() => done(), () => done(), () => done()));
+
+    it('valid json with BOM', done => validateFile(jsonPath('bom.json'))
+      .pipe(
+        tap(status => expect(status).toEqual(['There is BOM: ' + jsonPath('bom.json'), 'Updated file: ' + jsonPath('bom.json')]))
+      ).subscribe(() => done(), () => done(), () => done()));
+
+    it('valid json with BOM (dry run)', done => {
+      builderConfig.options.dryRun = true;
+      jsonValidatorBuilder.run(builderConfig);
+      validateFile(jsonPath('bom.json'))
+        .pipe(
+          tap(status => expect(status).toEqual(['There is BOM: ' + jsonPath('bom.json')]))
+        ).subscribe(() => done(), () => done(), () => done());
+    });
+
+    it('invalid json', done => validateFile(jsonPath('err.json'))
+      .pipe(
+        tap(status => expect(status).toEqual(['Parsing error: ' + jsonPath('err.json')]))
+      ).subscribe(() => done(), () => done(), () => done()));
+
+    it('not json', done => validateFile(jsonPath('test.err'))
+      .pipe(
+        tap(status => expect(status).toEqual(['Parsing error: ' + jsonPath('test.err')]))
+      ).subscribe(() => done(), () => done(), () => done()));
   });
 });
