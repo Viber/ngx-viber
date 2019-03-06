@@ -22,9 +22,9 @@ npm install --save-dev @viberlabs/json-combine-builder
   
   * sourceList (array) - list of source files and directories. The item is string or object {source: string, filter: string}
   
-  * fileTemplate (regexp, optional) - filename template. For files that match this template only
+  * filenameTemplate (regexp, optional) - filename template. For files that match this template only
   
-  * groupByName (boolean, default: true) - merges json files with the same name
+  * groupByFilename (boolean, default: true) - merges json files with the same name
   
   * deepSearch (boolean, default: true) - processes nested directories recursively
 
@@ -41,14 +41,14 @@ npm install --save-dev @viberlabs/json-combine-builder
                 ...
             },
             ...
-            "json-merging": {
-              "builder": "@viberlab/json-combine-builder:builder",
+            "json-combine": {
+              "builder": "@viberlab/builders:json-combine",
               "options": {
                 "targetPath": "path/to/the/target",
                 "targetFilename": "mergedjsons.json",
                 "targetFilenameTemplate": "lalala-$1-bebebe-$2-kokoko.json"
-                "fileTemplate": "-en",
-                "groupByName": true,   
+                "filenameTemplate": "-en",
+                "groupByFilename": true,   
                 "deepSearch": true,     
                 "sourceList": [
                   "first/source/directory",
@@ -78,7 +78,7 @@ npm install --save-dev @viberlabs/json-validator-builder
 
   * checkList (array) - list of source files and directories
   
-  * removeBOM (boolean, default: true) - removes BOM from files
+  * dryRun (boolean, default: false) - checks files only (without BOM removing)
 
 #### Example (angular.json)
 
@@ -94,9 +94,9 @@ npm install --save-dev @viberlabs/json-validator-builder
             },
             ...
             "json-merging": {
-              "builder": "@viberlab/json-validator-builder:builder",
+              "builder": "@viberlab/builders:json-validator",
               "options": {
-                "removeBOM": false,
+                "dryRun": false,
                 "checkList": [
                   "first/source/directory",
                   "some/file.json"
@@ -108,3 +108,12 @@ npm install --save-dev @viberlabs/json-validator-builder
         ...
       }
 
+#### Tests
+
+```bash
+tsc --build tsconfig.spec.json
+
+jasmine-node --verbose ../dist/test/test/json-combine.spec.js
+
+jasmine-node --verbose ../dist/test/test/json-validator.spec.js
+```
