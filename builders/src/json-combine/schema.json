@@ -1,0 +1,42 @@
+{
+  "id": "JsonCombineBuilderSchema",
+  "title": "Merge and/or group multiple Json files",
+  "description": "Merge and/or group multiple Json files",
+  "properties": {
+    "targetPath": {
+      "type": "string",
+      "description": "Path to the target merged json file",
+      "default": ""
+    },
+    "targetFilename": {
+      "type": "string",
+      "description": "Name of the target merged json file",
+      "default": "merged-json.json"
+    },
+    "targetFilenameTemplate": {
+      "type": "string",
+      "description": "Template for the target merged json files",
+      "default": "merged-json.json"
+    },
+    "sourceList": {
+      "type": "array",
+      "description": "List of the paths to the json files or directories",
+      "default": []
+    },
+    "filenameTemplate": {
+      "type": "string",
+      "description": "File's regexp template",
+      "default": ""
+    },
+    "groupByFilename": {
+      "type": "boolean",
+      "description": "Grouping by the same filename",
+      "default": true
+    },
+    "deepSearch": {
+      "type": "boolean",
+      "description": "Processes nested directories recursively",
+      "default": true
+    }
+  }
+}

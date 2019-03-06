@@ -1,0 +1,23 @@
+{
+  "name": "@viberlab/builders",
+  "version": "0.0.1",
+  "author": "ViberLab",
+  "description": "Viber builders",
+  "license": "MIT",
+  "builders": "builders.json",
+  "scripts": {
+    "build": "./build.sh",
+    "build-test": "tsc --build tsconfig.spec.json",
+    "test-combine": "jasmine-node --verbose ../dist/test/test/json-combine.spec.js",
+    "test-validator": "jasmine-node --verbose ../dist/test/test/json-validator.spec.js"
+  },
+  "peerDependencies": {},
+  "dependencies": {},
+  "devDependencies": {
+    "@angular-devkit/architect": "^0.13.1",
+    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular-devkit/build-ng-packagr": "~0.13.0",
+    "@angular-devkit/core": "^7.3.1",
+    "rxjs": "^6.3.3"
+  }
+}

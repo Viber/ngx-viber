@@ -1,0 +1,17 @@
+{
+  "id": "JsonValidatorBuilderSchema",
+  "title": "Json syntax checker and unnecessary BOM fixer.",
+  "description": "Json syntax checker and unnecessary BOM fixer.",
+  "properties": {
+    "checkList": {
+      "type": "array",
+      "description": "List of the paths to the json files or directories for checking",
+      "default": []
+    },
+    "dryRun": {
+      "type": "boolean",
+      "description": "Dry run",
+      "default": false
+    }
+  }
+}
