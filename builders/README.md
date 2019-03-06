@@ -4,13 +4,13 @@
 
 [Json validator](#json-validator)
 
-## Json combine
-### Json files combine builder
-
 #### Installation
 ```bash
-npm install --save-dev @viberlabs/json-combine-builder
+npm install --save-dev @viberlab/builders
 ```
+
+## Json combine
+### Json files combine builder
 
 #### Options
 
@@ -68,11 +68,6 @@ npm install --save-dev @viberlabs/json-combine-builder
 
 ## Json validator
 ### Json files validator builder
-
-#### Installation
-```bash
-npm install --save-dev @viberlabs/json-validator-builder
-```
 
 #### Options
 
