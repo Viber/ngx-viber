@@ -14,9 +14,9 @@ import {
   TranslateModule,
   TranslateService,
 } from '@ngx-translate/core';
-import { VbrTranslatePipeModule } from '@viberlab/translate-pipe';
-import { VbrTranslateModule } from '@viberlab/translate';
 import { VbrPulsarService } from '@viberlab/pulsar';
+import { VbrTranslateModule } from '@viberlab/translate';
+import { VbrTranslatePipeModule } from '@viberlab/translate-pipe';
 
 import { AppComponent } from './app.component';
 import { VbrPulsarDemoComponent } from './pulsar-demo/pulsar-demo.component';

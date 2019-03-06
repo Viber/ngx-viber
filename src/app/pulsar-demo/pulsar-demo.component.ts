@@ -3,7 +3,7 @@ import {
   OnInit,
 } from '@angular/core';
 import {
-  rxjsVbrProcess,
+  rxjsVbrPulsar,
   VbrPulsarService,
 } from '@viberlab/pulsar';
 import {
@@ -32,7 +32,7 @@ export class VbrPulsarDemoComponent implements OnInit {
         mergeMap((wait) => of(wait)
           .pipe(
             delay(wait * 1000),
-            rxjsVbrProcess(this.service, streams[Math.floor(Math.random() * Math.floor(3))]),
+            rxjsVbrPulsar(this.service, streams[Math.floor(Math.random() * Math.floor(3))]),
           )),
       )
       .subscribe();
@@ -43,7 +43,7 @@ export class VbrPulsarDemoComponent implements OnInit {
       .pipe(
         delay(5000),
         // Set default process as active on subscribe and deactivate the moment observable resolved or error throwed
-        rxjsVbrProcess(this.service),
+        rxjsVbrPulsar(this.service),
       );
   }
 
