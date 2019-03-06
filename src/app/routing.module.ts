@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {
+  RouterModule,
+  Routes,
+} from '@angular/router';
+import { VbrPulsarDemoComponent } from './pulsar-demo/pulsar-demo.component';
 import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
 
 const routes: Routes = [
   {
     path: 'translate-pipe',
     component: VbrTranslateDemoComponent
+  },
+  {
+    path: 'pulsar',
+    component: VbrPulsarDemoComponent
   },
   {
     path: '**',
