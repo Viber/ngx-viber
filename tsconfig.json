@@ -19,12 +19,6 @@
       "esnext"
     ],
     "paths": {
-      "@viberlab/chips-autocomplete": [
-        "dist/vbr-chips-autocomplete"
-      ],
-      "@viberlab/chips-autocomplete/*": [
-        "dist/vbr-chips-autocomplete/*"
-      ],
       "@viberlab/storage": [
         "dist/vbr-storage"
       ],

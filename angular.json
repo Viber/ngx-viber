@@ -117,47 +117,6 @@
         }
       }
     },
-    "vbr-chips-autocomplete": {
-      "root": "projects/vbr-chips-autocomplete",
-      "sourceRoot": "projects/vbr-chips-autocomplete/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/vbr-chips-autocomplete/tsconfig.lib.json",
-            "project": "projects/vbr-chips-autocomplete/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/vbr-chips-autocomplete/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/vbr-chips-autocomplete/src/test.ts",
-            "tsConfig": "projects/vbr-chips-autocomplete/tsconfig.spec.json",
-            "karmaConfig": "projects/vbr-chips-autocomplete/karma.conf.js",
-            "styles": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/vbr-chips-autocomplete/tsconfig.lib.json",
-              "projects/vbr-chips-autocomplete/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "vbr-storage": {
       "root": "projects/vbr-storage",
       "sourceRoot": "projects/vbr-storage/src",
