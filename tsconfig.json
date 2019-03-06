@@ -73,11 +73,11 @@
       "@viberlab/squircle/*": [
         "dist/vbr-squircle/*"
       ],
-      "@viberlab/request-detector": [
-        "dist/vbr-request-detector"
+      "@viberlab/pulsar": [
+        "dist/vbr-pulsar"
       ],
-      "@viberlab/request-detector/*": [
-        "dist/vbr-request-detector/*"
+      "@viberlab/pulsar/*": [
+        "dist/vbr-pulsar/*"
       ]
     }
   }

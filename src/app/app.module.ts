@@ -16,10 +16,10 @@ import {
 } from '@ngx-translate/core';
 import { VbrTranslatePipeModule } from '@viberlab/translate-pipe';
 import { VbrTranslateModule } from '@viberlab/translate';
-import { VbrProcessStatusService } from '@viberlab/request-detector';
+import { VbrPulsarService } from '@viberlab/pulsar';
 
 import { AppComponent } from './app.component';
-import { VbrRequestDetectorDemoComponent } from './request-detector-demo/request-detector.component';
+import { VbrPulsarDemoComponent } from './pulsar-demo/pulsar-demo.component';
 import { AppRoutingModule } from './routing.module';
 import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
 
@@ -27,7 +27,7 @@ import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.compo
   declarations: [
     AppComponent,
     VbrTranslateDemoComponent,
-    VbrRequestDetectorDemoComponent,
+    VbrPulsarDemoComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,11 +40,11 @@ import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.compo
     TranslateModule.forRoot(),
     VbrTranslateModule,
     VbrTranslatePipeModule,
-    // VbrRequestDetectorModule.forRoot(),
+    // VbrPulsarModule.forRoot(),
     AppRoutingModule
   ],
   providers: [
-    VbrProcessStatusService
+    VbrPulsarService
   ],
   bootstrap: [AppComponent]
 })

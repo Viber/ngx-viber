@@ -3,8 +3,8 @@ import { throttleTime } from 'rxjs/operators';
 import { TestScheduler } from 'rxjs/testing';
 import {
   splittedProcessCounter,
-  VbrProcessStatusService,
-} from '../../src/lib/serives/vbr-process-status.service';
+  VbrPulsarService,
+} from '../../src/lib/serives/vbr-pulsar.service';
 
 
 describe('Vbr Process Counters', () => {
@@ -58,8 +58,8 @@ describe('Vbr Process Counters', () => {
     });
   });
 
-  it('VbrProcessStatusService class', () => {
-    const service = new VbrProcessStatusService();
+  it('VbrPulsarService class', () => {
+    const service = new VbrPulsarService();
 
   });
 
@@ -71,7 +71,7 @@ describe('Vbr Process Counters', () => {
   // });
   //
   // it('will fetch nothing when Parameter is missing in url', () => {
-  //   const detector = new VbrProcessStatusService();
+  //   const detector = new VbrPulsarService();
   //   const values = {
   //     a: {action: 'start', name: 'First'},
   //     b: {action: 'stop', name: 'First'},

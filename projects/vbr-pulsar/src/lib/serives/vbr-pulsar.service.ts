@@ -26,7 +26,7 @@ export interface VbrProcessCount {
   name: string;
 }
 
-export function rxjsVbrProcess<T>(service: VbrProcessStatusService, name?: string): MonoTypeOperatorFunction<T> {
+export function rxjsVbrProcess<T>(service: VbrPulsarService, name?: string): MonoTypeOperatorFunction<T> {
   const activity = service.start(name);
 
   return finalize<T>(() => activity.stop());
@@ -46,10 +46,10 @@ export function splittedProcessCounter(source: Observable<VbrProcessDelta>) {
 }
 
 /**
- * Process class should be used with VbrProcessStatusService
+ * Process class should be used with VbrPulsarService
  *
  */
-export class VbrProcess {
+export class VbrPulsarProcess {
   public readonly process$: Observable<VbrProcessDelta>;
   private readonly stopper$: Subject<any> = new Subject();
 
@@ -87,7 +87,7 @@ export class VbrProcess {
 }
 
 @Injectable()
-export class VbrProcessStatusService {
+export class VbrPulsarService {
   private processes$: Subject<Observable<VbrProcessDelta>> = new Subject();
   private defaultProcessName: string = 'default';
   private processStatus: BehaviorSubject<{ [processName: string]: number }> = new BehaviorSubject({});
@@ -165,8 +165,8 @@ export class VbrProcessStatusService {
    *
    * @param name
    */
-  public start(name: string = this.defaultProcessName): VbrProcess {
-    const process = new VbrProcess(name);
+  public start(name: string = this.defaultProcessName): VbrPulsarProcess {
+    const process = new VbrPulsarProcess(name);
     this.append(process.process$);
     return process;
   }

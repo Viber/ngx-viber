@@ -4,8 +4,8 @@ import {
 } from '@angular/core';
 import {
   rxjsVbrProcess,
-  VbrProcessStatusService,
-} from '@viberlab/request-detector';
+  VbrPulsarService,
+} from '@viberlab/pulsar';
 import {
   from,
   of,
@@ -16,12 +16,12 @@ import {
 } from 'rxjs/operators';
 
 @Component({
-  selector: 'request-detector-demo',
-  templateUrl: './request-detector-demo.component.html',
+  selector: 'pulsar-demo',
+  templateUrl: './pulsar-demo.component.html',
 })
-export class VbrRequestDetectorDemoComponent implements OnInit {
+export class VbrPulsarDemoComponent implements OnInit {
 
-  constructor(public service: VbrProcessStatusService) {
+  constructor(public service: VbrPulsarService) {
   }
 
   public ngOnInit(): void {

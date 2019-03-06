@@ -1,6 +1,6 @@
-# VbrRequestDetector Module
+# VbrPulsar Module
 
-## @ngx-viber/request-detector
+## @ngx-viber/pulsar
 
 ## Table of Contents
 * [What is it for](#what-is-it-for)
@@ -17,7 +17,7 @@ We are using it
 * Application initialization flow tracking.
 
 Services:
-* [VbrProcessStatusService](#vbrprocessstatusservice)
+* [VbrPulsarService](#VbrPulsarService)
 
 Misc:
 * rxjsVbrProcess - rxjs operator
@@ -28,10 +28,10 @@ Interceptors:
 
 ## Installation
 ```bash
-npm install @viberlabs/request-detector --save
+npm install @viberlabs/pulsar --save
 ```
 
-## VbrProcessStatusService
+## VbrPulsarService
 The purpose of this service is to keep count of the currently active processes.
 
 ###
@@ -39,10 +39,10 @@ The purpose of this service is to keep count of the currently active processes.
 
 ## Usage Examples
 
-In your module add `VbrProcessStatusService` to services section.
+In your module add `VbrPulsarService` to services section.
 ```typescript
 impors: [
- VbrProcessStatusService,
+ VbrPulsarService,
 ]
 ```
 
@@ -50,7 +50,7 @@ In any other component or service
 ```typescript
 @Injectable()
 export class MyService {
-  constructor(public service: VbrProcessStatusService) {
+  constructor(public service: VbrPulsarService) {
   }
 
   public asPipeOperator() {
@@ -94,7 +94,7 @@ In interceptor, active while any request in progress
 @Injectable()
 export class VbrActiveRequestsDetectorInterceptor implements HttpInterceptor {
 
-  constructor(private progressStatusService: VbrProcessStatusService) {
+  constructor(private progressStatusService: VbrPulsarService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

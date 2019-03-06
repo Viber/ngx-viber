@@ -9,13 +9,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   rxjsVbrProcess,
-  VbrProcessStatusService,
-} from '../serives/vbr-process-status.service';
+  VbrPulsarService,
+} from '../serives/vbr-pulsar.service';
 
 @Injectable()
 export class VbrActiveRequestsDetectorInterceptor implements HttpInterceptor {
 
-  constructor(private progressStatusService: VbrProcessStatusService) {
+  constructor(private progressStatusService: VbrPulsarService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

@@ -3,7 +3,7 @@ import {
   RouterModule,
   Routes,
 } from '@angular/router';
-import { VbrRequestDetectorDemoComponent } from './request-detector-demo/request-detector.component';
+import { VbrPulsarDemoComponent } from './pulsar-demo/pulsar-demo.component';
 import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
 
 const routes: Routes = [
@@ -12,8 +12,8 @@ const routes: Routes = [
     component: VbrTranslateDemoComponent
   },
   {
-    path: 'request-detector',
-    component: VbrRequestDetectorDemoComponent
+    path: 'pulsar',
+    component: VbrPulsarDemoComponent
   },
   {
     path: '**',

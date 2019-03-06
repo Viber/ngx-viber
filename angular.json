@@ -478,38 +478,38 @@
         }
       }
     },
-    "vbr-request-detector": {
-      "root": "projects/vbr-request-detector",
-      "sourceRoot": "projects/vbr-request-detector/src",
+    "vbr-pulsar": {
+      "root": "projects/vbr-pulsar",
+      "sourceRoot": "projects/vbr-pulsar/src",
       "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/vbr-request-detector/tsconfig.lib.json",
-            "project": "projects/vbr-request-detector/ng-package.json"
+            "tsConfig": "projects/vbr-pulsar/tsconfig.lib.json",
+            "project": "projects/vbr-pulsar/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "projects/vbr-request-detector/ng-package.prod.json"
+              "project": "projects/vbr-pulsar/ng-package.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/vbr-request-detector/src/test.ts",
-            "tsConfig": "projects/vbr-request-detector/tsconfig.spec.json",
-            "karmaConfig": "projects/vbr-request-detector/karma.conf.js"
+            "main": "projects/vbr-pulsar/src/test.ts",
+            "tsConfig": "projects/vbr-pulsar/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-pulsar/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/vbr-request-detector/tsconfig.lib.json",
-              "projects/vbr-request-detector/tsconfig.spec.json"
+              "projects/vbr-pulsar/tsconfig.lib.json",
+              "projects/vbr-pulsar/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
