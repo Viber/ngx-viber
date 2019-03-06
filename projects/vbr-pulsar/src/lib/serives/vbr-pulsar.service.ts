@@ -16,30 +16,30 @@ import {
   scan,
 } from 'rxjs/operators';
 
-export interface VbrProcessDelta {
+export interface VbrPulsarDelta {
   delta: -1 | 1;
   name: string;
 }
 
-export interface VbrProcessCount {
+export interface VbrPulsarCount {
   count: number;
   name: string;
 }
 
-export function rxjsVbrProcess<T>(service: VbrPulsarService, name?: string): MonoTypeOperatorFunction<T> {
+export function rxjsVbrPulsar<T>(service: VbrPulsarService, name?: string): MonoTypeOperatorFunction<T> {
   const activity = service.start(name);
 
   return finalize<T>(() => activity.stop());
 }
 
-export function splittedProcessCounter(source: Observable<VbrProcessDelta>) {
+export function splittedProcessCounter(source: Observable<VbrPulsarDelta>) {
   return source.pipe(
     groupBy(process => process.name),
     mergeMap(group => {
       return group.pipe(
         pluck('delta'),
         scan((acc, delta) => acc + delta, 0),
-        map(count => ({count: count, name: group.key} as VbrProcessCount)),
+        map(count => ({count: count, name: group.key} as VbrPulsarCount)),
       );
     }),
   );
@@ -50,12 +50,12 @@ export function splittedProcessCounter(source: Observable<VbrProcessDelta>) {
  *
  */
 export class VbrPulsarProcess {
-  public readonly process$: Observable<VbrProcessDelta>;
+  public readonly process$: Observable<VbrPulsarDelta>;
   private readonly stopper$: Subject<any> = new Subject();
 
   constructor(public readonly name: string) {
 
-    this.process$ = new Observable<VbrProcessDelta>((subscriber) => {
+    this.process$ = new Observable<VbrPulsarDelta>((subscriber) => {
       subscriber.next({delta: 1, name: name});
 
       this.stopper$
@@ -88,7 +88,7 @@ export class VbrPulsarProcess {
 
 @Injectable()
 export class VbrPulsarService {
-  private processes$: Subject<Observable<VbrProcessDelta>> = new Subject();
+  private processes$: Subject<Observable<VbrPulsarDelta>> = new Subject();
   private defaultProcessName: string = 'default';
   private processStatus: BehaviorSubject<{ [processName: string]: number }> = new BehaviorSubject({});
 
@@ -106,7 +106,7 @@ export class VbrPulsarService {
   }
 
   /**
-   * Observable emits number of active processes identified by optional parameter "name"
+   * Observable emits number of active processes identified by optional parameter "name".
    * When not provided with parameter, default parameter name value used - 'default'
    *
    * When asked for never active activity, 0 will be emitted.
@@ -123,8 +123,8 @@ export class VbrPulsarService {
   }
 
   /**
-   * Get number of active processes identified by optional parameter "name"
-   * When not provided with parameter, default parameter name value used - 'default'
+   * Get number of active processes identified by optional parameter "name".
+   * When not provided with parameter, default parameter name value used - 'default'.
    *
    * When asked for never active activity, 0 will be emitted.
    *
@@ -136,7 +136,7 @@ export class VbrPulsarService {
 
   /**
    * Observable emits activity identified by optional parameter "name" is active or not.
-   * When not provided with parameter, default parameter name value used - 'default'
+   * When not provided with parameter, default parameter name value used - 'default'.
    *
    * @param name
    */
@@ -149,7 +149,7 @@ export class VbrPulsarService {
 
   /**
    * Check activity identified by optional parameter "name" is active or not.
-   * When not provided with parameter, default parameter name value used - 'default'
+   * When not provided with parameter, default parameter name value used - 'default'.
    *
    * @param name
    */
@@ -172,10 +172,10 @@ export class VbrPulsarService {
   }
 
   /**
-   * Append Observable of VbrProcessDelta to
+   * Append Observable of VbrPulsarDelta VbrPulsarService processes
    * @param process
    */
-  public append(process: Observable<VbrProcessDelta>) {
+  public append(process: Observable<VbrPulsarDelta>) {
     this.processes$.next(process);
   }
 }

@@ -8,23 +8,18 @@
 
 ## What is it for
 Should be used to track processes activity.
-Most common usage - preloader show. 
-Usually it is not a problem, unless preloader represent few not connected requests and considered the moment all the requests complete.
 
 We are using it
 * As network activity detector for whole application.
 * For the graphs preloaders, when more than one graph data source exists.
 * Application initialization flow tracking.
+* Preloader depended on few not related request processes.
 
 Services:
-* [VbrPulsarService](#VbrPulsarService)
+* [VbrPulsarService](#VbrPulsarService) - Keep track on process groups.
 
 Misc:
-* rxjsVbrProcess - rxjs operator
-
- 
-Interceptors:
-* [VbrActiveRequestsDetectorInterceptor](#activerequestdetectorinterceptor) - use partials in template names as well as supports observable parameters.
+* rxjsVbrPulsar - rxjs operator
 
 ## Installation
 ```bash
@@ -34,7 +29,15 @@ npm install @viberlabs/pulsar --save
 ## VbrPulsarService
 The purpose of this service is to keep count of the currently active processes.
 
-###
+### Methods
+| Name | Description |
+|------|-------------|
+| ```start(name: string = this.defaultProcessName): VbrPulsarProcess ``` |  Return newly created process and adds it to service counters. process could be complete by calling .stop() method | 
+| ```append(process: Observable<VbrPulsarDelta>) ``` |  Append Observable of VbrPulsarDelta VbrPulsarService processes |
+| ```count$(name: string = this.defaultProcessName): Observable<number> ``` |  Observable emits number of active processes identified by optional parameter "name". When not provided with parameter, default parameter name value used - 'default'. When asked for never active activity, 0 will be emitted.
+| ```count(name: string = this.defaultProcessName): number``` | Get number of active processes identified by optional parameter "name" |
+| ```isActive$(name: string = this.defaultProcessName): Observable<boolean>``` | Observable emits activity identified by optional parameter "name" is active or not. When not provided with parameter, default parameter name value used - 'default' |
+| ```isActive(name: string = this.defaultProcessName): boolean``` | Check activity identified by optional parameter "name" is active or not. When not provided with parameter, default parameter name value used - 'default'. |
 
 
 ## Usage Examples
