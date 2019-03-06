@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {
+  RouterModule,
+  Routes,
+} from '@angular/router';
+import { VbrRequestDetectorDemoComponent } from './request-detector-demo/request-detector.component';
 import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
 
 const routes: Routes = [
   {
     path: 'translate-pipe',
     component: VbrTranslateDemoComponent
+  },
+  {
+    path: 'request-detector',
+    component: VbrRequestDetectorDemoComponent
   },
   {
     path: '**',

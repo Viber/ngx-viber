@@ -2,5 +2,5 @@
  * Public API Surface of vbr-request-detector
  */
 
-export * from './lib/vbr-request-detector.service';
-export * from './lib/vbr-request-detector.module';
+export * from './lib/serives/vbr-process-status.service';
+export * from './lib/interceptors/vbr-active-requests-detector-interceptor.service';

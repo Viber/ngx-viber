@@ -489,6 +489,11 @@
           "options": {
             "tsConfig": "projects/vbr-request-detector/tsconfig.lib.json",
             "project": "projects/vbr-request-detector/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-request-detector/ng-package.prod.json"
+            }
           }
         },
         "test": {

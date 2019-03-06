@@ -13,7 +13,7 @@ import {
 } from '../serives/vbr-process-status.service';
 
 @Injectable()
-export class VbrRequestDetectorInterceptor implements HttpInterceptor {
+export class VbrActiveRequestsDetectorInterceptor implements HttpInterceptor {
 
   constructor(private progressStatusService: VbrProcessStatusService) {
   }

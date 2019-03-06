@@ -1,44 +1,61 @@
 import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
+  MonoTypeOperatorFunction,
   Observable,
   Subject,
 } from 'rxjs';
 import {
-  delay,
+  distinctUntilChanged,
+  finalize,
   groupBy,
   map,
   mergeAll,
   mergeMap,
+  pluck,
   scan,
-  tap,
 } from 'rxjs/operators';
 
-export interface VbrProcessChange {
+export interface VbrProcessDelta {
   delta: -1 | 1;
   name: string;
 }
 
-export function rxjsVbrProcess<T>(service: VbrProcessStatusService, name?: string) {
-  const activity = service.start(name);
-
-  return tap<T>(() => {
-    },
-    () => {
-      activity.stop();
-    },
-    () => {
-      activity.stop();
-    });
+export interface VbrProcessCount {
+  count: number;
+  name: string;
 }
 
+export function rxjsVbrProcess<T>(service: VbrProcessStatusService, name?: string): MonoTypeOperatorFunction<T> {
+  const activity = service.start(name);
+
+  return finalize<T>(() => activity.stop());
+}
+
+export function splittedProcessCounter(source: Observable<VbrProcessDelta>) {
+  return source.pipe(
+    groupBy(process => process.name),
+    mergeMap(group => {
+      return group.pipe(
+        pluck('delta'),
+        scan((acc, delta) => acc + delta, 0),
+        map(count => ({count: count, name: group.key} as VbrProcessCount)),
+      );
+    }),
+  );
+}
+
+/**
+ * Process class should be used with VbrProcessStatusService
+ *
+ */
 export class VbrProcess {
-  public readonly process$: Observable<VbrProcessChange>;
+  public readonly process$: Observable<VbrProcessDelta>;
   private readonly stopper$: Subject<any> = new Subject();
 
   constructor(public readonly name: string) {
 
-    this.process$ = new Observable<VbrProcessChange>((subscriber) => {
+    this.process$ = new Observable<VbrProcessDelta>((subscriber) => {
       subscriber.next({delta: 1, name: name});
 
       this.stopper$
@@ -61,6 +78,9 @@ export class VbrProcess {
     });
   }
 
+  /**
+   * Mark the process as complete
+   */
   public stop() {
     this.stopper$.complete();
   }
@@ -68,50 +88,94 @@ export class VbrProcess {
 
 @Injectable()
 export class VbrProcessStatusService {
-  public isActive = new Map<string, BehaviorSubject<boolean>>();
-  private processes$: Subject<VbrProcess> = new Subject();
+  private processes$: Subject<Observable<VbrProcessDelta>> = new Subject();
+  private defaultProcessName: string = 'default';
+  private processStatus: BehaviorSubject<{ [processName: string]: number }> = new BehaviorSubject({});
 
   constructor() {
     this.processes$
       .pipe(
-        map(source => source.process$),
         mergeAll(),
-        groupBy(process => process.name),
-        mergeMap(group => {
-          return group.pipe(
-            map(process => process.delta),
-            scan((acc, delta) => acc + delta, 0),
-            tap(count => this.setStatus(group.key, !!count)),
-          );
-        }),
-
-        map((value) => value > 0),
-        delay(0),
+        splittedProcessCounter,
       )
-      .subscribe();
+      .subscribe(processCount => {
+        this.processStatus.next(
+          {...this.processStatus.value, [processCount.name]: processCount.count},
+        );
+      });
   }
 
-  private setStatus(name: string, status: boolean) {
-    this.getStatus(name).next(status);
+  /**
+   * Observable emits number of active processes identified by optional parameter "name"
+   * When not provided with parameter, default parameter name value used - 'default'
+   *
+   * When asked for never active activity, 0 will be emitted.
+   *
+   *
+   * @param name
+   */
+  public count$(name: string = this.defaultProcessName): Observable<number> {
+    return this.processStatus
+      .pipe(
+        map(status => status[name] || 0),
+        distinctUntilChanged(),
+      );
   }
 
-  public getStatus(name: string = 'default'): BehaviorSubject<boolean> {
-    if (!this.isActive.has(name)) {
-      this.createNewActivity(name);
-    }
-
-    return this.isActive.get(name);
+  /**
+   * Get number of active processes identified by optional parameter "name"
+   * When not provided with parameter, default parameter name value used - 'default'
+   *
+   * When asked for never active activity, 0 will be emitted.
+   *
+   * @param name
+   */
+  public count(name: string = this.defaultProcessName): number {
+    return this.processStatus.value[name] || 0;
   }
 
-  private createNewActivity(name: string) {
-    this.isActive.set(name, new BehaviorSubject(false));
+  /**
+   * Observable emits activity identified by optional parameter "name" is active or not.
+   * When not provided with parameter, default parameter name value used - 'default'
+   *
+   * @param name
+   */
+  public isActive$(name: string = this.defaultProcessName): Observable<boolean> {
+    return this.count$()
+      .pipe(
+        map(count => !!count),
+      );
   }
 
-  public start(name: string = 'default') {
+  /**
+   * Check activity identified by optional parameter "name" is active or not.
+   * When not provided with parameter, default parameter name value used - 'default'
+   *
+   * @param name
+   */
+  public isActive(name: string = this.defaultProcessName): boolean {
+    return !!this.count(name);
+  }
 
+  /**
+   * Return newly created process and adds it to service counters.
+   *
+   * process could be complete by calling .stop() method
+   *
+   *
+   * @param name
+   */
+  public start(name: string = this.defaultProcessName): VbrProcess {
     const process = new VbrProcess(name);
-
-    this.processes$.next(process);
+    this.append(process.process$);
     return process;
+  }
+
+  /**
+   * Append Observable of VbrProcessDelta to
+   * @param process
+   */
+  public append(process: Observable<VbrProcessDelta>) {
+    this.processes$.next(process);
   }
 }

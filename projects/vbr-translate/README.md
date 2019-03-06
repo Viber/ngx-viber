@@ -7,7 +7,7 @@
 * [Installation](#installation)
 
 ## What is it for
-This module includes set of tools for easy
+This module includes set of tools:
 
 Services:
 * VbrTranslateService
