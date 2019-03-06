@@ -139,7 +139,7 @@ describe('Combine', () => {
     ).subscribe(() => done());
   });
 
-  it('getFilesListFromDirectory', done => {
+  it('get files list from directory', done => {
     const getFilesListFromDirectory =
       jsonCombineBuilder.getPrivatePropertyForTesting('getFilesListFromDirectory').bind(jsonCombineBuilder);
 
