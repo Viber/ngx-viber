@@ -14,13 +14,15 @@ import {
   TranslateModule,
   TranslateService,
 } from '@ngx-translate/core';
+import { VbrInputKeyboardModule, } from '@viberlab/input-keyboard';
 import { VbrPulsarService } from '@viberlab/pulsar';
-import { VbrTranslateModule } from '@viberlab/translate';
+import { VbrTranslateModule, VbrLanguageInfoService } from '@viberlab/translate';
 import { VbrTranslatePipeModule } from '@viberlab/translate-pipe';
-import { VbrInputKeyboardModule } from '../../projects/vbr-input-keyboard/src/lib/vbr-input-keyboard.module';
+import { VbrLayoutModule } from '@viberlab/layout';
 
 import { AppComponent } from './app.component';
 import { VbrInputKeyboardDemoComponent } from './input-keyboard-demo/input-keyboard-demo.component';
+import { VbrLayoutDemoComponent } from './layout-demo/layout-demo.component';
 import { VbrPulsarDemoComponent } from './pulsar-demo/pulsar-demo.component';
 import { AppRoutingModule } from './routing.module';
 import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
@@ -31,6 +33,7 @@ import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.compo
     VbrTranslateDemoComponent,
     VbrPulsarDemoComponent,
     VbrInputKeyboardDemoComponent,
+    VbrLayoutDemoComponent
   ],
   imports: [
     BrowserModule,
@@ -41,14 +44,16 @@ import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.compo
     MatInputModule,
     MatButtonModule,
     TranslateModule.forRoot(),
-    VbrTranslateModule,
+    VbrTranslateModule.forRoot(),
     VbrTranslatePipeModule,
     VbrInputKeyboardModule,
+    VbrLayoutModule,
     // VbrPulsarModule.forRoot(),
     AppRoutingModule
   ],
   providers: [
-    VbrPulsarService
+    VbrPulsarService,
+    VbrLanguageInfoService
   ],
   bootstrap: [AppComponent]
 })

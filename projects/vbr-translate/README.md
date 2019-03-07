@@ -98,8 +98,6 @@ imports: [
     } 
   })
 ]
-
-
 ```
 
 Also you can create your own language detector by implementing `VbrLanguageDetector`:
@@ -127,11 +125,7 @@ imports: [
     } 
   })
 ]
-
-
 ```
-
-
 
 ## VbrTranslateService
 Injection Tokens:

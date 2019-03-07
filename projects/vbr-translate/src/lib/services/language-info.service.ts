@@ -1,10 +1,16 @@
-import { Inject, Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable
+} from '@angular/core';
 import {
   VBR_TRANSLATE_LANGUAGES_INFO,
   VBR_TRANSLATE_RTL_CODES
 } from '../tokens';
 import { VbrLanguage } from '../interfaces';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import {
+  LangChangeEvent,
+  TranslateService
+} from '@ngx-translate/core';
 
 @Injectable()
 export class VbrLanguageInfoService {

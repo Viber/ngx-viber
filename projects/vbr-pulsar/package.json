@@ -1,6 +1,6 @@
 {
   "name": "vbr-pulsar",
-  "version": "0.0.1",
+  "version": "7.0.0",
   "peerDependencies": {
     "@angular/core": ">=6.0.0",
     "rxjs": ">=6.0.0"

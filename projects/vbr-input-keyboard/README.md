@@ -1,6 +1,6 @@
 # input filter & replace directives
 
-## @viberlab/vbr-input-keyboard
+## @viberlab/input-keyboard
 
 ### vbrInputKeyboardFilter
 
