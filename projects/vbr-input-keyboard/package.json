@@ -1,12 +1,12 @@
 {
   "name": "@viberlab/input-keyboard",
-  "version": "1.0.0-alfa.1",
+  "version": "1.0.1",
   "author": "ViberLab",
   "description": "Viber Tools - Material input keyboard filter and replacer",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": ">=6.0.0",
-    "@angular/core": ">=6.0.0",
-    "@angular/forms": ">=6.0.0"
+    "@angular/common": "^7.2.8",
+    "@angular/core": "^7.2.8",
+    "@angular/forms": "^7.2.8"
   }
 }

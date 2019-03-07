@@ -32,7 +32,7 @@ type VbrInputReplaceType = [string | RegExp, (substring: string, ...args: any[])
 
 regexpReplace: Array<VbrInputReplaceType> = [
     [/[A-Z]/g, (match: string) => match.toLowerCase()],
-    [/ /g, '_'],
-    [/[^0-9a-z_\-]/g, ''],
+    [/ /g, () => '_'],
+    [/[^0-9a-z_\-]/g, () => ''],
 ];
 ```

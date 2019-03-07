@@ -17,8 +17,10 @@ import {
 import { VbrPulsarService } from '@viberlab/pulsar';
 import { VbrTranslateModule } from '@viberlab/translate';
 import { VbrTranslatePipeModule } from '@viberlab/translate-pipe';
+import { VbrInputKeyboardModule } from '../../projects/vbr-input-keyboard/src/lib/vbr-input-keyboard.module';
 
 import { AppComponent } from './app.component';
+import { VbrInputKeyboardDemoComponent } from './input-keyboard-demo/input-keyboard-demo.component';
 import { VbrPulsarDemoComponent } from './pulsar-demo/pulsar-demo.component';
 import { AppRoutingModule } from './routing.module';
 import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
@@ -28,6 +30,7 @@ import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.compo
     AppComponent,
     VbrTranslateDemoComponent,
     VbrPulsarDemoComponent,
+    VbrInputKeyboardDemoComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.compo
     TranslateModule.forRoot(),
     VbrTranslateModule,
     VbrTranslatePipeModule,
+    VbrInputKeyboardModule,
     // VbrPulsarModule.forRoot(),
     AppRoutingModule
   ],

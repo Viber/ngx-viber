@@ -9,6 +9,40 @@
 npm install --save-dev @viberlab/builders
 ```
 
+#### Using
+
+Add to configuration in angular.json: projects --> "project-name" --> architect
+
+      "projects": {
+        "project-name": {
+          ...
+          "architect": {
+            "build": {
+                ...
+            },
+            "serve": {
+                ...
+            },
+            ...
+            "json-combine": {
+              "builder": "@viberlab/builders:json-combine",
+              "options": {
+                ...
+              }
+            }
+          }
+        },
+        ...
+      }
+
+
+Run in console or build.sh:
+```bash
+ng run project-name:json-combine
+
+ng run project-name:json-validator
+```
+
 ## Json combine
 ### Json files combine builder
 
@@ -27,7 +61,7 @@ npm install --save-dev @viberlab/builders
   * groupByFilename (boolean, default: true) - merges json files with the same name
   
   * deepSearch (boolean, default: true) - processes nested directories recursively
-
+  
 #### Example (angular.json)
 
       "projects": {
@@ -74,7 +108,7 @@ npm install --save-dev @viberlab/builders
   * checkList (array) - list of source files and directories
   
   * dryRun (boolean, default: false) - checks files only (without BOM removing)
-
+  
 #### Example (angular.json)
 
       "projects": {
@@ -88,7 +122,7 @@ npm install --save-dev @viberlab/builders
                 ...
             },
             ...
-            "json-merging": {
+            "json-validator": {
               "builder": "@viberlab/builders:json-validator",
               "options": {
                 "dryRun": false,

@@ -3,6 +3,7 @@ import {
   RouterModule,
   Routes,
 } from '@angular/router';
+import { VbrInputKeyboardDemoComponent } from './input-keyboard-demo/input-keyboard-demo.component';
 import { VbrPulsarDemoComponent } from './pulsar-demo/pulsar-demo.component';
 import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
 
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'pulsar',
     component: VbrPulsarDemoComponent
+  },
+  {
+    path: 'input-keyboard',
+    component: VbrInputKeyboardDemoComponent
   },
   {
     path: '**',
