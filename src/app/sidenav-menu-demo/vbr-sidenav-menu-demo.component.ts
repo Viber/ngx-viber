@@ -18,11 +18,13 @@ export class VbrSidenavMenuDemoComponent {
         {
           name: 'Layout',
           type: 'link',
+          icon: 'dvr',
           state: ['/layout']
         },
         {
           name: 'Input Keyboard',
           type: 'link',
+          icon: 'input',
           state: of('/input-keyboard')
         },
       ]

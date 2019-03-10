@@ -27,6 +27,7 @@ import {
 import { VbrTranslateLoader } from '@viberlab/translate-loader';
 import { VbrTranslatePipeModule } from '@viberlab/translate-pipe';
 import { VbrSidenavMenuModule } from '@viberlab/sidenav-menu';
+import { VbrSquircleModule } from '@viberlab/squircle';
 
 import { AppComponent } from './app.component';
 import { VbrInputKeyboardDemoComponent } from './input-keyboard-demo/input-keyboard-demo.component';
@@ -35,6 +36,7 @@ import { VbrPulsarDemoComponent } from './pulsar-demo/pulsar-demo.component';
 import { AppRoutingModule } from './routing.module';
 import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
 import { VbrSidenavMenuDemoComponent } from './sidenav-menu-demo/vbr-sidenav-menu-demo.component';
+import { VbrSquircleDemoComponent } from './squircle-demo/vbr-squircle-demo.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { VbrSidenavMenuDemoComponent } from './sidenav-menu-demo/vbr-sidenav-men
     VbrPulsarDemoComponent,
     VbrInputKeyboardDemoComponent,
     VbrLayoutDemoComponent,
-    VbrSidenavMenuDemoComponent
+    VbrSidenavMenuDemoComponent,
+    VbrSquircleDemoComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +71,7 @@ import { VbrSidenavMenuDemoComponent } from './sidenav-menu-demo/vbr-sidenav-men
     VbrInputKeyboardModule,
     VbrLayoutModule,
     VbrSidenavMenuModule,
+    VbrSquircleModule,
     // VbrPulsarModule.forRoot(),
     AppRoutingModule
   ],
