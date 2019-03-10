@@ -6,6 +6,7 @@ import {
 import { VbrInputKeyboardDemoComponent } from './input-keyboard-demo/input-keyboard-demo.component';
 import { VbrLayoutDemoComponent } from './layout-demo/layout-demo.component';
 import { VbrPulsarDemoComponent } from './pulsar-demo/pulsar-demo.component';
+import { VbrSidenavMenuDemoComponent } from './sidenav-menu-demo/vbr-sidenav-menu-demo.component';
 import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'layout',
     component: VbrLayoutDemoComponent
+  },
+  {
+    path: 'sidenav-menu',
+    component: VbrSidenavMenuDemoComponent
   },
   {
     path: '**',

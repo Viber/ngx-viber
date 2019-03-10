@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import {
   FormsModule,
@@ -11,14 +12,21 @@ import {
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  TranslateLoader,
   TranslateModule,
   TranslateService,
 } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { VbrInputKeyboardModule, } from '@viberlab/input-keyboard';
-import { VbrPulsarService } from '@viberlab/pulsar';
-import { VbrTranslateModule, VbrLanguageInfoService } from '@viberlab/translate';
-import { VbrTranslatePipeModule } from '@viberlab/translate-pipe';
 import { VbrLayoutModule } from '@viberlab/layout';
+import { VbrPulsarService } from '@viberlab/pulsar';
+import {
+  VbrLanguageInfoService,
+  VbrTranslateModule
+} from '@viberlab/translate';
+import { VbrTranslateLoader } from '@viberlab/translate-loader';
+import { VbrTranslatePipeModule } from '@viberlab/translate-pipe';
+import { VbrSidenavMenuModule } from '@viberlab/sidenav-menu';
 
 import { AppComponent } from './app.component';
 import { VbrInputKeyboardDemoComponent } from './input-keyboard-demo/input-keyboard-demo.component';
@@ -26,6 +34,7 @@ import { VbrLayoutDemoComponent } from './layout-demo/layout-demo.component';
 import { VbrPulsarDemoComponent } from './pulsar-demo/pulsar-demo.component';
 import { AppRoutingModule } from './routing.module';
 import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
+import { VbrSidenavMenuDemoComponent } from './sidenav-menu-demo/vbr-sidenav-menu-demo.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +42,8 @@ import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.compo
     VbrTranslateDemoComponent,
     VbrPulsarDemoComponent,
     VbrInputKeyboardDemoComponent,
-    VbrLayoutDemoComponent
+    VbrLayoutDemoComponent,
+    VbrSidenavMenuDemoComponent
   ],
   imports: [
     BrowserModule,
@@ -43,11 +53,21 @@ import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.compo
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    TranslateModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: ((http: HttpClient) => new VbrTranslateLoader(
+          [new TranslateHttpLoader(http, 'assets/@viberlab/layout/translations/locale-', '.json')],
+          true
+        )),
+        deps: [HttpClient]
+      }
+    }),
     VbrTranslateModule.forRoot(),
     VbrTranslatePipeModule,
     VbrInputKeyboardModule,
     VbrLayoutModule,
+    VbrSidenavMenuModule,
     // VbrPulsarModule.forRoot(),
     AppRoutingModule
   ],
@@ -66,11 +86,11 @@ export class AppModule {
         parameter: 'Translation with parameter: {{super}}'
       }
     });
-    translate.setTranslation('ru', {
-      start: {
-        end: 'Перевод без параметра',
-        parameter: 'Перевод с параметром: {{super}}'
-      }
-    });
+    // translate.setTranslation('ru', {
+    //   start: {
+    //     end: 'Перевод без параметра',
+    //     parameter: 'Перевод с параметром: {{super}}'
+    //   }
+    // });
   }
 }

@@ -20,7 +20,12 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "dist/vbr-layout/assets",
+                "output": "/assets/@viberlab/layout"
+              }
             ],
             "styles": [
               "src/styles.scss"
