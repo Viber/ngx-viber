@@ -1,10 +1,68 @@
-import { Builder, BuilderConfiguration, BuilderContext, BuildEvent, } from '@angular-devkit/architect';
+import {
+  Builder,
+  BuilderConfiguration,
+  BuilderContext,
+  BuildEvent,
+} from '@angular-devkit/architect';
 import { getSystemPath } from '@angular-devkit/core';
 import { Stats } from '@angular-devkit/core/src/virtual-fs/host';
-import { bindNodeCallback, from, iif, merge, Observable, of, Subject } from 'rxjs';
-import { filter, map, mapTo, mergeMap, switchMap, tap } from 'rxjs/operators';
-import { readdir, readFile, stat, writeFile } from 'fs';
+import {
+  readdir,
+  readFile,
+  stat,
+  writeFile
+} from 'fs';
+import {
+  bindNodeCallback,
+  from,
+  iif,
+  merge,
+  Observable,
+  of,
+  Subject
+} from 'rxjs';
+import {
+  concatMap,
+  delayWhen,
+  filter,
+  groupBy,
+  map,
+  mapTo,
+  mergeMap,
+  reduce,
+  scan,
+  switchMap,
+  tap,
+  toArray
+} from 'rxjs/operators';
 import { JsonValidatorBuilderSchema } from './schema';
+
+type JsonStatus = 'bom' | 'parse' | 'update' | 'ok';
+
+enum JsonStatuses {
+  WITH_BOM = 'WITH_BOM',
+  UPDATED = 'UPDATED',
+  FAILED_TO_PARSE = 'FAILED_TO_PARSE'
+}
+
+
+const messages = {
+  bom: 'There is BOM: ',
+  parse: 'Parsing error: ',
+  update: 'Updated file: ',
+  passed: 'Passed file: ',
+};
+
+interface CheckedFile {
+  name: string;
+  status: Set<JsonStatuses>;
+}
+
+
+interface JsonResult {
+  status: JsonStatus;
+  message: string;
+}
 
 export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilderSchema> {
   private dryRun: boolean;
@@ -15,14 +73,89 @@ export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilde
   run(builderConfig: BuilderConfiguration<Partial<JsonValidatorBuilderSchema>>): Observable<BuildEvent> {
     const {checkList, dryRun} = builderConfig.options;
     const systemPath = getSystemPath(this.context.workspace.root);
+    let success: boolean = true;
+    let nParsingError: number = 0;
+    let nHasBom: number = 0;
     this.dryRun = dryRun;
 
-    return from(checkList)
+    const hz: Subject<BuildEvent> = new Subject();
+
+    from(checkList)
       .pipe(
         mergeMap((source: string) => this.getFiles(systemPath + '/' + source)),
         mergeMap((fileName: string) => this.validateFile(fileName)),
-        mapTo({success: true})
+
+        reduce((acc, status: CheckedFile) => {
+          acc.push(status);
+          return acc;
+        }, []),
+
+        // groupBy((status: Array<JsonResult>) => 'undefined' === typeof status[0] ? 'ok' : status[0].status),
+        // mergeMap(group => group.pipe(toArray())),
+        // reduce((acc, status: Array<JsonResult>) => {
+        //   status.forEach(s => acc[s.status] = s.message);
+        //   return acc;
+        // }, {}),
+        // tap(
+        //   statuses => {
+        //     console.log('next *****', statuses);
+        //     // status.forEach(s => {
+        //     // if (s.startsWith('Parsing error:')) {
+        //     //   success = false;
+        //     //   throw 'Parsing error: ' + (++nParsingError) + ' files';
+        //     // }
+        //     //
+        //     // if (dryRun && s.startsWith('There is BOM:')) {
+        //     //   success = false;
+        //     //   throw 'There is BOM: ' + (++nHasBom) + ' files';
+        //     // }
+        //     // });
+        //     // return statuses;
+        //   },
+        //   error => console.log('error *****', error),
+        //   () => console.log('Complete')
+        // ),
+        // mapTo({success: success})
+      )
+      .subscribe(statuses => {
+          statuses.forEach(
+            status => console.log('['
+              + (status.status.has(JsonStatuses.FAILED_TO_PARSE) ? 'P' : ' ')
+              + (status.status.has(JsonStatuses.WITH_BOM) ? 'B' : ' ')
+              + (status.status.has(JsonStatuses.UPDATED) ? 'U' : ' ')
+              + ']' + ' ' + status.name
+            )
+          );
+
+          const isFail = statuses.find(status => status.status.has(JsonStatuses.FAILED_TO_PARSE));
+
+          hz.next({success: !isFail});
+          hz.complete();
+          // status.forEach(s => {
+          // if (s.startsWith('Parsing error:')) {
+          //   success = false;
+          //   throw 'Parsing error: ' + (++nParsingError) + ' files';
+          // }
+          //
+          // if (dryRun && s.startsWith('There is BOM:')) {
+          //   success = false;
+          //   throw 'There is BOM: ' + (++nHasBom) + ' files';
+          // }
+          // });
+          // return statuses;
+        },
+        error => {
+
+          hz.next({success: success});
+          hz.complete();
+        },
+        () => {
+          hz.next({success: success});
+          hz.complete();
+        }
       );
+
+    return hz;
   }
 
   /**
@@ -56,39 +189,72 @@ export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilde
    * 4. Write File
    * @param filepath
    */
-  private validateFile(filepath: string): Observable<Array<string>> {
-    const status: Array<string> = [];
-    const status$: Subject<Array<string>> = new Subject();
-    const logging = (info: string) => {
-      info += filepath;
-      this.context.logger.error(info);
-      status.push(info);
+  private validateFile(filepath: string): Observable<CheckedFile> {
+    const status$: Subject<CheckedFile> = new Subject();
+
+    const fileStatus: CheckedFile = {
+      name: filepath,
+      status: new Set()
     };
 
     this.getFileContent(filepath)
       .pipe(
-        filter(json => !this.isValidJson(json)),
         filter(json => {
+          const isValid = this.isValidJson(json);
+
+          if (!isValid) {
+            // Set status failed to parse
+            fileStatus.status.add(JsonStatuses.FAILED_TO_PARSE);
+          }
+
+          return !isValid;
+        }),
+
+
+        filter(json => {
+
           const hasBom: boolean = this.hasBom(json);
-          logging(hasBom ? 'There is BOM: ' : 'Parsing error: ');
+          if (hasBom) {
+            // Set status failed to parse
+            fileStatus.status.add(JsonStatuses.WITH_BOM);
+            // Remove failed to parse, since we have a bom situation
+            fileStatus.status.delete(JsonStatuses.FAILED_TO_PARSE);
+          }
+
           return hasBom;
         }),
+
         map(json => this.removeBom(json)),
+
         filter(json => {
-          const isValid: boolean = this.isValidJson(json);
+          const isValid = this.isValidJson(json);
+
           if (!isValid) {
-            logging('Parsing error: ');
+            // Set status failed to parse
+            fileStatus.status.add(JsonStatuses.FAILED_TO_PARSE);
           }
+
           return isValid;
         }),
+
         filter(() => !this.dryRun),
+
         switchMap(json => this.updateFile(filepath, json)
           .pipe(
-            tap(() => logging('Updated file: '))
+            tap(() => {
+              fileStatus.status.add(JsonStatuses.UPDATED);
+            })
           )),
-      ).subscribe(() => {
-    }, () => {
-    }, () => status$.next(status));
+      )
+      .subscribe(
+        () => {
+        },
+        () => {
+        },
+        () => {
+          status$.next(fileStatus);
+          status$.complete();
+        });
 
     return status$;
   }
