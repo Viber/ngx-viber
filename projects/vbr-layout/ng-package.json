@@ -1,0 +1,11 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/vbr-layout",
+  "deleteDestPath": false,
+  "whitelistedNonPeerDependencies": [
+    "normalize.css"
+  ],
+  "lib": {
+    "entryFile": "src/public_api.ts"
+  }
+}

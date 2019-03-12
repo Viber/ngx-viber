@@ -1,0 +1,15 @@
+{
+  "name": "@viberlab/translate",
+  "version": "7.0.0",
+  "author": "ViberLab",
+  "homepage": "https://github.com/Viber/ngx-viber",
+  "description": "Viber Tools for ngx-translate",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": ">=6.0.0",
+    "@angular/core": ">=6.0.0",
+    "@angular/router": ">=6.0.0",
+    "@ngx-translate/core": ">=10.0.0",
+    "rxjs": ">=6.0.0"
+  }
+}

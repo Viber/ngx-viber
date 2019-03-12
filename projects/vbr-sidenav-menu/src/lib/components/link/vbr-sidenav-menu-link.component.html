@@ -1,0 +1,7 @@
+<mat-list-item [VbrSidenavHideSecured]="section.permissions"
+               routerLinkActive="mat-list-item-focus"
+               [routerLink]="section.state | asyncOrNot">
+  <mat-icon mat-list-icon *ngIf="section.icon">{{section.icon}}</mat-icon>
+  <a mat-line>{{section.name | asyncOrNot}}
+  </a>
+</mat-list-item>

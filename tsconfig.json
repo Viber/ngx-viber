@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "importHelpers": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -14,32 +15,63 @@
     ],
     "lib": [
       "es2017",
-      "dom"
+      "dom",
+      "esnext"
     ],
     "paths": {
-      "vbr-chips-autocomplete": [
-        "dist/vbr-chips-autocomplete"
-      ],
-      "vbr-chips-autocomplete/*": [
-        "dist/vbr-chips-autocomplete/*"
-      ],
-      "vbr-storage": [
+      "@viberlab/storage": [
         "dist/vbr-storage"
       ],
-      "vbr-storage/*": [
+      "@viberlab/storage/*": [
         "dist/vbr-storage/*"
       ],
-      "vbr-input-keyboard": [
+      "@viberlab/input-keyboard": [
         "dist/vbr-input-keyboard"
       ],
-      "vbr-input-keyboard/*": [
+      "@viberlab/input-keyboard/*": [
         "dist/vbr-input-keyboard/*"
       ],
-      "vbr-input-params-templates": [
-        "dist/vbr-input-params-templates"
+      "@viberlab/translate": [
+        "dist/vbr-translate"
       ],
-      "vbr-input-params-templates/*": [
-        "dist/vbr-input-params-templates/*"
+      "@viberlab/translate/*": [
+        "dist/vbr-translate/*"
+      ],
+      "@viberlab/translate-loader": [
+        "dist/vbr-translate-loader"
+      ],
+      "@viberlab/translate-loader/*": [
+        "dist/vbr-translate-loader/*"
+      ],
+      "@viberlab/translate-pipe": [
+        "dist/vbr-translate-pipe"
+      ],
+      "@viberlab/translate-pipe/*": [
+        "dist/vbr-translate-pipe/*"
+      ],
+      "@viberlab/sidenav-menu": [
+        "dist/vbr-sidenav-menu"
+      ],
+      "@viberlab/sidenav-menu/*": [
+        "dist/vbr-sidenav-menu/*"
+      ],
+      "@viberlab/layout": [
+        "dist/vbr-layout"
+      ],
+      "@viberlab/layout/*": [
+        "dist/vbr-layout/*"
+      ],
+      "@viberlab/squircle": [
+        "dist/vbr-squircle"
+      ],
+      "@viberlab/squircle/*": [
+        "dist/vbr-squircle/*"
+      ],
+      "@viberlab/pulsar": [
+        "dist/vbr-pulsar"
+      ],
+      "@viberlab/pulsar/*": [
+        "dist/vbr-pulsar/*"
       ]
     }
   }

@@ -1,0 +1,99 @@
+{
+  "vbr-layout": {
+    "footer": {
+      "titles": {
+        "viber": "Viber",
+        "business": "Cégek",
+        "developers": "Fejlesztők",
+        "general": "Általános"
+      },
+      "elements": {
+        "get_viber": {
+          "title": "A Viber beszerzése",
+          "link": "//www.viber.com/"
+        },
+        "viber_out": {
+          "title": "Viber Out",
+          "link": "//account.viber.com/en/"
+        },
+        "blog": {
+          "title": "Blog",
+          "link": "//www.viber.com/blog/"
+        },
+        "media_kit": {
+          "title": "Médiakészlet",
+          "link": "//www.viber.com/media-kit/"
+        },
+        "discover": {
+          "title": "Tartalom és márkák felfedezése",
+          "link": "//discover.viber.com/"
+        },
+        "communities": {
+          "title": "Közösségek",
+          "link": "//www.viber.com/viber-for-business#public-accounts"
+        },
+        "integration_partners": {
+          "title": "Integrációs partnerek",
+          "link": "//www.viber.com/partners"
+        },
+        "promotional_stickers": {
+          "title": "Promóciós matricák",
+          "link": "//www.viber.com/viber-for-business#promotional-stickers"
+        },
+        "advertising": {
+          "title": "Hirdetés",
+          "link": "//www.viber.com/viber-for-business#viber-ads"
+        },
+        "resellers": {
+          "title": "Viber Out viszonteladók",
+          "link": "//www.viber.com/viber-for-business#viber-out"
+        },
+        "service_messages": {
+          "title": "Szolgáltatási üzenetek",
+          "link": "//www.viber.com/viber-for-business#service-messages"
+        },
+        "documentation": {
+          "title": "Dokumentáció",
+          "link": "//developers.viber.com/"
+        },
+        "releases": {
+          "title": "Kiadások",
+          "link": "//developers.viber.com/releases/"
+        },
+        "blog-dev": {
+          "title": "Blog",
+          "link": "//developers.viber.com/blog/"
+        },
+        "partners": {
+          "title": "Partnerek",
+          "link": "//developers.viber.com/partners/"
+        },
+        "faq": {
+          "title": "GYIK",
+          "link": "//www.viber.com/faq/"
+        },
+        "about": {
+          "title": "Névjegy",
+          "link": "//www.viber.com/about/"
+        },
+        "support": {
+          "title": "Támogatás",
+          "link": "//support.viber.com/"
+        },
+        "terms": {
+          "title": "Feltételek és irányelvek",
+          "link": "//www.viber.com/terms/"
+        },
+        "facebook": {
+          "title": "Facebook",
+          "link": "//www.facebook.com/viber"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "link": "//twitter.com/viber"
+        }
+      },
+      "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+    }
+  }
+}

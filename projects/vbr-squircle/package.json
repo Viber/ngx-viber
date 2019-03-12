@@ -1,0 +1,13 @@
+{
+  "name": "@viberlab/squircle",
+  "version": "7.0.0",
+  "author": "ViberLab",
+  "homepage": "https://github.com/Viber/ngx-viber",
+  "description": "Viber Utils",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": ">=6.0.0",
+    "@angular/core": ">=6.0.0",
+    "rxjs": ">=6.0.0"
+  }
+}

@@ -1,0 +1,22 @@
+/**
+  Viber style customisations for angular material design
+
+  Dont' forget to import material/theming before using this
+
+  @import '~@angular/material/theming';
+
+  * Set elements font to 'Noto Sans, sans-serif'
+  * Changes buttons font size and line-height
+ */
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Noto Sans, sans-serif',
+  $button: mat-typography-level(16px, 18.4px, 500),
+  $display-2: mat-typography-level(45px, 58px, 300),
+  $display-3: mat-typography-level(70px, 100px, 300),
+  $subheading-2:  mat-typography-level(18px, 24px, 300),
+  // Changed to 1.195 because of the Nato Sans font
+  $input: mat-typography-level(16px, 1.195, 400)
+);
+
+@include angular-material-typography($custom-typography);

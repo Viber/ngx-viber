@@ -1,0 +1,21 @@
+vbr-squircle-icon {
+  position: relative;
+  display: inline-block;
+  font-size: initial;
+
+  vbr-squircle {
+    display: inline-block;
+
+    &.border {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      div.white {
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

@@ -20,7 +20,12 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "dist/vbr-layout/assets",
+                "output": "/assets/@viberlab/layout"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -72,7 +77,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -110,46 +115,6 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "vbr-chips-autocomplete": {
-      "root": "projects/vbr-chips-autocomplete",
-      "sourceRoot": "projects/vbr-chips-autocomplete/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/vbr-chips-autocomplete/tsconfig.lib.json",
-            "project": "projects/vbr-chips-autocomplete/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/vbr-chips-autocomplete/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/vbr-chips-autocomplete/src/test.ts",
-            "tsConfig": "projects/vbr-chips-autocomplete/tsconfig.spec.json",
-            "karmaConfig": "projects/vbr-chips-autocomplete/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/vbr-chips-autocomplete/tsconfig.lib.json",
-              "projects/vbr-chips-autocomplete/tsconfig.spec.json"
-            ],
             "exclude": [
               "**/node_modules/**"
             ]
@@ -237,38 +202,278 @@
         }
       }
     },
-    "vbr-input-params-templates": {
-      "root": "projects/vbr-input-params-templates",
-      "sourceRoot": "projects/vbr-input-params-templates/src",
+    "vbr-translate": {
+      "root": "projects/vbr-translate",
+      "sourceRoot": "projects/vbr-translate/src",
       "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/vbr-input-params-templates/tsconfig.lib.json",
-            "project": "projects/vbr-input-params-templates/ng-package.json"
+            "tsConfig": "projects/vbr-translate/tsconfig.lib.json",
+            "project": "projects/vbr-translate/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "projects/vbr-input-params-templates/ng-package.prod.json"
+              "project": "projects/vbr-translate/ng-package.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/vbr-input-params-templates/src/test.ts",
-            "tsConfig": "projects/vbr-input-params-templates/tsconfig.spec.json",
-            "karmaConfig": "projects/vbr-input-params-templates/karma.conf.js"
+            "main": "projects/vbr-translate/src/test.ts",
+            "tsConfig": "projects/vbr-translate/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-translate/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/vbr-input-params-templates/tsconfig.lib.json",
-              "projects/vbr-input-params-templates/tsconfig.spec.json"
+              "projects/vbr-translate/tsconfig.lib.json",
+              "projects/vbr-translate/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "vbr-translate-loader": {
+      "root": "projects/vbr-translate-loader",
+      "sourceRoot": "projects/vbr-translate-loader/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-translate-loader/tsconfig.lib.json",
+            "project": "projects/vbr-translate-loader/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-translate-loader/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-translate-loader/src/test.ts",
+            "tsConfig": "projects/vbr-translate-loader/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-translate-loader/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-translate-loader/tsconfig.lib.json",
+              "projects/vbr-translate-loader/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "vbr-translate-pipe": {
+      "root": "projects/vbr-translate-pipe",
+      "sourceRoot": "projects/vbr-translate-pipe/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-translate-pipe/tsconfig.lib.json",
+            "project": "projects/vbr-translate-pipe/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-translate-pipe/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-translate-pipe/src/test.ts",
+            "tsConfig": "projects/vbr-translate-pipe/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-translate-pipe/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-translate-pipe/tsconfig.lib.json",
+              "projects/vbr-translate-pipe/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "vbr-sidenav-menu": {
+      "root": "projects/vbr-sidenav-menu",
+      "sourceRoot": "projects/vbr-sidenav-menu/src",
+      "projectType": "library",
+      "prefix": "vbr-sidenav-menu",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-sidenav-menu/tsconfig.lib.json",
+            "project": "projects/vbr-sidenav-menu/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-sidenav-menu/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-sidenav-menu/src/test.ts",
+            "tsConfig": "projects/vbr-sidenav-menu/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-sidenav-menu/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-sidenav-menu/tsconfig.lib.json",
+              "projects/vbr-sidenav-menu/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "vbr-layout": {
+      "root": "projects/vbr-layout",
+      "sourceRoot": "projects/vbr-layout/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-layout/tsconfig.lib.json",
+            "project": "projects/vbr-layout/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-layout/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-layout/src/test.ts",
+            "tsConfig": "projects/vbr-layout/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-layout/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-layout/tsconfig.lib.json",
+              "projects/vbr-layout/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "vbr-squircle": {
+      "root": "projects/vbr-squircle",
+      "sourceRoot": "projects/vbr-squircle/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-squircle/tsconfig.lib.json",
+            "project": "projects/vbr-squircle/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-squircle/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-squircle/src/test.ts",
+            "tsConfig": "projects/vbr-squircle/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-squircle/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-squircle/tsconfig.lib.json",
+              "projects/vbr-squircle/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "vbr-pulsar": {
+      "root": "projects/vbr-pulsar",
+      "sourceRoot": "projects/vbr-pulsar/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/vbr-pulsar/tsconfig.lib.json",
+            "project": "projects/vbr-pulsar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/vbr-pulsar/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vbr-pulsar/src/test.ts",
+            "tsConfig": "projects/vbr-pulsar/tsconfig.spec.json",
+            "karmaConfig": "projects/vbr-pulsar/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vbr-pulsar/tsconfig.lib.json",
+              "projects/vbr-pulsar/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

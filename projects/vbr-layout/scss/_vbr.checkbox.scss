@@ -1,0 +1,12 @@
+mat-checkbox {
+  &[vbr-checkbox], &.vbr-checkbox {
+    .mat-checkbox-inner-container {
+      width: 15px;
+      height: 15px;
+      margin-right: 11px;
+    }
+    .mat-checkbox-label {
+      font-size: 13pt;
+    }
+  }
+}

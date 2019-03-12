@@ -1,0 +1,17 @@
+<form [formGroup]="inputKeyboard">
+    <h3>keyboard input filter</h3>
+    <mat-form-field>
+        <input matInput
+               formControlName="theFilter"
+               [vbrInputKeyboardFilter]="regexpFilter"
+               placeholder="keyboard input filter">
+    </mat-form-field>
+
+    <h3>keyboard input replacer</h3>
+    <mat-form-field>
+        <input matInput
+               formControlName="theReplacer"
+               [vbrInputKeyboardReplace]="regexpReplace"
+               placeholder="keyboard input replacer">
+    </mat-form-field>
+</form>

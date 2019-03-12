@@ -1,0 +1,27 @@
+.mat-toolbar {
+  background-color: #ffffff;
+  font-size: 1em;
+  border-bottom: 1px solid #e3e3e3;
+
+  @media (min-width: 320px) {
+    padding: 0 20px;
+  }
+
+  @media (min-width: 768px) {
+    padding: 0 38px;
+  }
+
+  img {
+    width: auto;
+    height: 24px;
+    padding-top: 10px;
+    @media (min-width: 768px) {
+      height: 28px;
+    }
+  }
+
+  .fill-remaining-space {
+    flex: 1 1 auto;
+  }
+}
+

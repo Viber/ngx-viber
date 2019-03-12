@@ -1,0 +1,21 @@
+<footer [dir]="languages.dir">
+  <div class="vat-footer-container">
+    <div class="vat-footer-row">
+      <div *ngFor="let row of FOOTER_ELEMENTS" class="vat-footer-col">
+        <h3>{{'vbr-layout.footer.titles.' + row.title | translate}}</h3>
+        <ul>
+          <li *ngFor="let column of row.elements">
+            <a href="{{'vbr-layout.footer.elements.' + column + '.link' | translate}}">
+              {{'vbr-layout.footer.elements.' + column + '.title' | translate}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="vat-footer-copy vat-footer-row">
+      <div class="vat-footer-col" style="flex: initial; max-width: initial;">
+        <span dir="ltr">{{'vbr-layout.footer.copyright' | translate : year}}</span>
+      </div>
+    </div>
+  </div>
+</footer>
