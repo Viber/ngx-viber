@@ -12,6 +12,11 @@
       "type": "boolean",
       "description": "Dry run",
       "default": false
+    },
+    "verbose": {
+      "type": "boolean",
+      "description": "Verbose output after the script run",
+      "default": false
     }
   }
 }

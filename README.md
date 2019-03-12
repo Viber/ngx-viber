@@ -1,6 +1,5 @@
 # Viber Angular Libs
 
-* [vbr-chips-autocomplete](projects/vbr-chips-autocomplete)
 * [vbr-input-keyboard](projects/vbr-input-keyboard)
 * [vbr-layout](projects/vbr-layout)
 * [vbr-pulsar](projects/vbr-pulsar)

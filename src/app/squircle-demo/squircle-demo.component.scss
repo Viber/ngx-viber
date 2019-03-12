@@ -1,0 +1,17 @@
+div {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+
+  &:last-child {
+    background: green;
+  }
+}
+
+img {
+  background: blue;
+}
+
+h2 {
+  margin: 0 10px;
+}
