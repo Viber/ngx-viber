@@ -1,10 +1,32 @@
-import { Architect, BuilderContext } from '@angular-devkit/architect';
-import { experimental, logging, normalize, Path, virtualFs } from '@angular-devkit/core';
+import {
+  Architect,
+  BuilderContext
+} from '@angular-devkit/architect';
+import {
+  experimental,
+  logging,
+  normalize,
+  Path,
+  virtualFs
+} from '@angular-devkit/core';
 import { NodeJsSyncHost } from '@angular-devkit/core/node';
-import { unlink, writeFile } from 'fs';
-import { bindNodeCallback, merge } from 'rxjs';
-import { concatMap, map, tap } from 'rxjs/operators';
-import JsonValidatorBuilder from '../src/json-validator';
+import {
+  unlink,
+  writeFile
+} from 'fs';
+import {
+  bindNodeCallback,
+  merge
+} from 'rxjs';
+import {
+  concatMap,
+  map,
+  tap
+} from 'rxjs/operators';
+import JsonValidatorBuilder, {
+  CheckedFile,
+  JsonStatuses
+} from '../src/json-validator';
 
 interface BrowserTargetOptions {
   browserOption: number;
@@ -141,12 +163,22 @@ describe('Validator', () => {
 
     it('valid json', done => validateFile(jsonPath('test.json'))
       .pipe(
-        tap(status => expect(status).toEqual([]))
+        tap((status: CheckedFile) => {
+          expect(status.name).toEqual(jsonPath('test.json'));
+          expect(status.status.has(JsonStatuses.WITH_BOM)).toBeFalsy();
+          expect(status.status.has(JsonStatuses.UPDATED)).toBeFalsy();
+          expect(status.status.has(JsonStatuses.FAILED_TO_PARSE)).toBeFalsy();
+        })
       ).subscribe(() => done(), () => done(), () => done()));
 
     it('valid json with BOM', done => validateFile(jsonPath('bom.json'))
       .pipe(
-        tap(status => expect(status).toEqual(['There is BOM: ' + jsonPath('bom.json'), 'Updated file: ' + jsonPath('bom.json')]))
+        tap((status: CheckedFile) => {
+          expect(status.name).toEqual(jsonPath('bom.json'));
+          expect(status.status.has(JsonStatuses.WITH_BOM)).toBeTruthy();
+          expect(status.status.has(JsonStatuses.UPDATED)).toBeTruthy();
+          expect(status.status.has(JsonStatuses.FAILED_TO_PARSE)).toBeFalsy();
+        })
       ).subscribe(() => done(), () => done(), () => done()));
 
     it('valid json with BOM (dry run)', done => {
@@ -154,18 +186,33 @@ describe('Validator', () => {
       jsonValidatorBuilder.run(builderConfig);
       validateFile(jsonPath('bom.json'))
         .pipe(
-          tap(status => expect(status).toEqual(['There is BOM: ' + jsonPath('bom.json')]))
+          tap((status: CheckedFile) => {
+            expect(status.name).toEqual(jsonPath('bom.json'));
+            expect(status.status.has(JsonStatuses.WITH_BOM)).toBeTruthy();
+            expect(status.status.has(JsonStatuses.UPDATED)).toBeFalsy();
+            expect(status.status.has(JsonStatuses.FAILED_TO_PARSE)).toBeFalsy();
+          })
         ).subscribe(() => done(), () => done(), () => done());
     });
 
     it('invalid json', done => validateFile(jsonPath('err.json'))
       .pipe(
-        tap(status => expect(status).toEqual(['Parsing error: ' + jsonPath('err.json')]))
+        tap((status: CheckedFile) => {
+          expect(status.name).toEqual(jsonPath('err.json'));
+          expect(status.status.has(JsonStatuses.WITH_BOM)).toBeFalsy();
+          expect(status.status.has(JsonStatuses.UPDATED)).toBeFalsy();
+          expect(status.status.has(JsonStatuses.FAILED_TO_PARSE)).toBeTruthy();
+        })
       ).subscribe(() => done(), () => done(), () => done()));
 
     it('not json', done => validateFile(jsonPath('test.err'))
       .pipe(
-        tap(status => expect(status).toEqual(['Parsing error: ' + jsonPath('test.err')]))
+        tap((status: CheckedFile) => {
+          expect(status.name).toEqual(jsonPath('test.err'));
+          expect(status.status.has(JsonStatuses.WITH_BOM)).toBeFalsy();
+          expect(status.status.has(JsonStatuses.UPDATED)).toBeFalsy();
+          expect(status.status.has(JsonStatuses.FAILED_TO_PARSE)).toBeTruthy();
+        })
       ).subscribe(() => done(), () => done(), () => done()));
   });
 });

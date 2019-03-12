@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# cleanup dist folder
-
 tsc
 
 cd src

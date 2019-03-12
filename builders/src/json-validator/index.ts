@@ -22,46 +22,24 @@ import {
   Subject
 } from 'rxjs';
 import {
-  concatMap,
-  delayWhen,
   filter,
-  groupBy,
   map,
-  mapTo,
   mergeMap,
   reduce,
-  scan,
   switchMap,
-  tap,
-  toArray
+  tap
 } from 'rxjs/operators';
 import { JsonValidatorBuilderSchema } from './schema';
 
-type JsonStatus = 'bom' | 'parse' | 'update' | 'ok';
-
-enum JsonStatuses {
+export enum JsonStatuses {
   WITH_BOM = 'WITH_BOM',
   UPDATED = 'UPDATED',
   FAILED_TO_PARSE = 'FAILED_TO_PARSE'
 }
 
-
-const messages = {
-  bom: 'There is BOM: ',
-  parse: 'Parsing error: ',
-  update: 'Updated file: ',
-  passed: 'Passed file: ',
-};
-
-interface CheckedFile {
+export interface CheckedFile {
   name: string;
   status: Set<JsonStatuses>;
-}
-
-
-interface JsonResult {
-  status: JsonStatus;
-  message: string;
 }
 
 export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilderSchema> {
@@ -71,16 +49,11 @@ export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilde
   }
 
   run(builderConfig: BuilderConfiguration<Partial<JsonValidatorBuilderSchema>>): Observable<BuildEvent> {
-    const {checkList, dryRun} = builderConfig.options;
+    const {checkList, dryRun, verbose} = builderConfig.options;
     const systemPath = getSystemPath(this.context.workspace.root);
-    let success: boolean = true;
-    let nParsingError: number = 0;
-    let nHasBom: number = 0;
     this.dryRun = dryRun;
 
-    const hz: Subject<BuildEvent> = new Subject();
-
-    from(checkList)
+    return from(checkList)
       .pipe(
         mergeMap((source: string) => this.getFiles(systemPath + '/' + source)),
         mergeMap((fileName: string) => this.validateFile(fileName)),
@@ -90,72 +63,34 @@ export default class JsonValidatorBuilder implements Builder<JsonValidatorBuilde
           return acc;
         }, []),
 
-        // groupBy((status: Array<JsonResult>) => 'undefined' === typeof status[0] ? 'ok' : status[0].status),
-        // mergeMap(group => group.pipe(toArray())),
-        // reduce((acc, status: Array<JsonResult>) => {
-        //   status.forEach(s => acc[s.status] = s.message);
-        //   return acc;
-        // }, {}),
-        // tap(
-        //   statuses => {
-        //     console.log('next *****', statuses);
-        //     // status.forEach(s => {
-        //     // if (s.startsWith('Parsing error:')) {
-        //     //   success = false;
-        //     //   throw 'Parsing error: ' + (++nParsingError) + ' files';
-        //     // }
-        //     //
-        //     // if (dryRun && s.startsWith('There is BOM:')) {
-        //     //   success = false;
-        //     //   throw 'There is BOM: ' + (++nHasBom) + ' files';
-        //     // }
-        //     // });
-        //     // return statuses;
-        //   },
-        //   error => console.log('error *****', error),
-        //   () => console.log('Complete')
-        // ),
-        // mapTo({success: success})
-      )
-      .subscribe(statuses => {
+        // Output results
+        tap((statuses) => {
           statuses.forEach(
-            status => console.log('['
-              + (status.status.has(JsonStatuses.FAILED_TO_PARSE) ? 'P' : ' ')
-              + (status.status.has(JsonStatuses.WITH_BOM) ? 'B' : ' ')
-              + (status.status.has(JsonStatuses.UPDATED) ? 'U' : ' ')
-              + ']' + ' ' + status.name
-            )
+            status => {
+              if (verbose) {
+                this.context.logger.info('['
+                  + (status.status.has(JsonStatuses.FAILED_TO_PARSE) ? 'P' : ' ')
+                  + (status.status.has(JsonStatuses.WITH_BOM) ? 'B' : ' ')
+                  + (status.status.has(JsonStatuses.UPDATED) ? 'U' : ' ')
+                  + ']' + ' ' + status.name
+                );
+              } else {
+                if (status.status.has(JsonStatuses.FAILED_TO_PARSE)) {
+                  this.context.logger.error('[P] ' + status.name);
+                }
+
+                if (dryRun && status.status.has(JsonStatuses.WITH_BOM)) {
+                  this.context.logger.error('[B] ' + status.name);
+                }
+              }
+            }
           );
-
+        }),
+        switchMap((statuses) => {
           const isFail = statuses.find(status => status.status.has(JsonStatuses.FAILED_TO_PARSE));
-
-          hz.next({success: !isFail});
-          hz.complete();
-          // status.forEach(s => {
-          // if (s.startsWith('Parsing error:')) {
-          //   success = false;
-          //   throw 'Parsing error: ' + (++nParsingError) + ' files';
-          // }
-          //
-          // if (dryRun && s.startsWith('There is BOM:')) {
-          //   success = false;
-          //   throw 'There is BOM: ' + (++nHasBom) + ' files';
-          // }
-          // });
-          // return statuses;
-        },
-        error => {
-
-          hz.next({success: success});
-          hz.complete();
-        },
-        () => {
-          hz.next({success: success});
-          hz.complete();
-        }
+          return of({success: !isFail});
+        })
       );
-
-    return hz;
   }
 
   /**
