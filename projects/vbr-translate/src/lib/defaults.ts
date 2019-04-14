@@ -39,6 +39,8 @@ export const VbrAllLanguages: Array<VbrLanguage> = [
   {lang: 'Svenska', short: 'SE', code: 'sv'},
   {lang: 'Türkçe', short: 'TR', code: 'tr'},
   {lang: 'Українська', short: 'Укр', code: 'uk'},
+  {lang: 'ျမန္မ', short: 'My', code: 'my'},
+  {lang: 'বাংলা', short: 'বাং', code: 'bn'},
 ];
 
 export const VbrSupportedLanguageCodes: Array<string> = [
@@ -51,6 +53,7 @@ export const VbrSupportedLanguageCodes: Array<string> = [
   'vi',
   'ar',
   'bg',
+  'bn',
   'ca',
   'zh-CN',
   'zh-TW',
@@ -68,6 +71,7 @@ export const VbrSupportedLanguageCodes: Array<string> = [
   'ja',
   'ko',
   'ms',
+  'my',
   'no',
   'pl',
   'pt-PT',
