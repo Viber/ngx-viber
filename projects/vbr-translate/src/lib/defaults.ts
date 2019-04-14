@@ -17,7 +17,7 @@ export const VbrAllLanguages: Array<VbrLanguage> = [
   {lang: '繁體中文', short: '繁中', code: 'zh-TW'},
   {lang: 'Hrvatski', short: 'Hr', code: 'hr'},
   {lang: 'Čeština', short: 'CZ', code: 'cs'},
-  {lang: 'Dansk ', short: '', code: 'da'},
+  {lang: 'Dansk ', short: 'DA', code: 'da'},
   {lang: 'Nederlands', short: 'Nl', code: 'nl'},
   {lang: 'فارسی', short: 'فا', code: 'fa'},
   {lang: 'Suomi', short: 'SU', code: 'fi'},
