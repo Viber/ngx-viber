@@ -82,6 +82,7 @@ export const VbrSupportedLanguageCodes: Array<string> = [
   'sv',
   'tr',
   'uk',
+  'be'
 ];
 
 export const VbrRtlLanguageCodes: Array<string> = ['he', 'fa', 'ar'];
