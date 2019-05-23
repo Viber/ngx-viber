@@ -1,0 +1,99 @@
+{
+  "vbr-layout": {
+    "footer": {
+      "titles": {
+        "viber": " ভাইবার",
+        "business": "ব্যবসা",
+        "developers": "ডেভেলপার",
+        "general": "সাধারণ"
+      },
+      "elements": {
+        "get_viber": {
+          "title": "ভাইবার নিন",
+          "link": "//www.viber.com/"
+        },
+        "viber_out": {
+          "title": "ভাইবার আউট",
+          "link": "//account.viber.com/en/"
+        },
+        "blog": {
+          "title": "ব্লগ",
+          "link": "//www.viber.com/blog/"
+        },
+        "media_kit": {
+          "title": "মিডিয়া কিট",
+          "link": "//www.viber.com/media-kit/"
+        },
+        "discover": {
+          "title": "কনটেন্ট এবং ব্র্যান্ড অন্বেষণ করুন",
+          "link": "//discover.viber.com/"
+        },
+        "communities": {
+          "title": "সম্প্রদায় সমূহ",
+          "link": "//www.viber.com/viber-for-business#public-accounts"
+        },
+        "integration_partners": {
+          "title": "ইন্টিগ্রেশন পার্টনার",
+          "link": "//www.viber.com/partners"
+        },
+        "promotional_stickers": {
+          "title": "প্রমোশনাল স্টিকার",
+          "link": "//www.viber.com/viber-for-business#promotional-stickers"
+        },
+        "advertising": {
+          "title": "বিজ্ঞাপন",
+          "link": "//www.viber.com/viber-for-business#viber-ads"
+        },
+        "resellers": {
+          "title": "ভাইবার আউট রিসেলার",
+          "link": "//www.viber.com/viber-for-business#viber-out"
+        },
+        "service_messages": {
+          "title": "সার্ভিস মেসেজ",
+          "link": "//www.viber.com/viber-for-business#service-messages"
+        },
+        "documentation": {
+          "title": "ডকুমেন্টেশন",
+          "link": "//developers.viber.com/"
+        },
+        "releases": {
+          "title": "রিলিজ সমূহ",
+          "link": "//developers.viber.com/releases/"
+        },
+        "blog-dev": {
+          "title": "ব্লগ",
+          "link": "//developers.viber.com/blog/"
+        },
+        "partners": {
+          "title": "পাটনার গন",
+          "link": "//developers.viber.com/partners/"
+        },
+        "faq": {
+          "title": "এফ এ কিউ",
+          "link": "//www.viber.com/faq/"
+        },
+        "about": {
+          "title": "সম্পর্কে",
+          "link": "//www.viber.com/about/"
+        },
+        "support": {
+          "title": "সাপোর্ট",
+          "link": "//support.viber.com/"
+        },
+        "terms": {
+          "title": "শর্ত এবং নীতি",
+          "link": "//www.viber.com/terms/"
+        },
+        "facebook": {
+          "title": "ফেসবুক",
+          "link": "//www.facebook.com/viber"
+        },
+        "twitter": {
+          "title": "টুইটার",
+          "link": "//twitter.com/viber"
+        }
+      },
+      "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+    }
+  }
+}
