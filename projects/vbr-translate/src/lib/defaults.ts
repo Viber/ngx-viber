@@ -41,7 +41,7 @@ export const VbrAllLanguages: Array<VbrLanguage> = [
   {lang: 'Українська', short: 'Укр', code: 'uk'},
   {lang: 'ျမန္မ', short: 'My', code: 'my'},
   {lang: 'বাংলা', short: 'বাং', code: 'bn'},
-  {lang: 'Беларуская мова', short: 'Be', code: 'be'}
+  {lang: 'Беларуская', short: 'Be', code: 'be'}
 ];
 
 export const VbrSupportedLanguageCodes: Array<string> = [
