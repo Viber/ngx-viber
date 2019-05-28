@@ -2,90 +2,94 @@
   "vbr-layout": {
     "footer": {
       "titles": {
-        "viber": "Viber",
-        "business": "Business",
-        "developers": "Developers",
-        "general": "General"
+        "viber": " ভাইবার",
+        "business": "ব্যবসা",
+        "developers": "ডেভেলপার",
+        "general": "সাধারণ"
       },
       "elements": {
         "get_viber": {
-          "title": "Get Viber",
+          "title": "ভাইবার নিন",
           "link": "//www.viber.com/"
         },
         "viber_out": {
-          "title": "Viber Out",
+          "title": "ভাইবার আউট",
           "link": "//account.viber.com/en/"
         },
         "blog": {
-          "title": "Blog",
+          "title": "ব্লগ",
           "link": "//www.viber.com/blog/"
         },
         "media_kit": {
-          "title": "Media Kit",
+          "title": "মিডিয়া কিট",
           "link": "//www.viber.com/media-kit/"
         },
         "discover": {
-          "title": "Discover content & brands",
+          "title": "কনটেন্ট এবং ব্র্যান্ড অন্বেষণ করুন",
           "link": "//discover.viber.com/"
         },
-        "public_accounts": {
-          "title": "Public Accounts",
+        "communities": {
+          "title": "সম্প্রদায় সমূহ",
           "link": "//www.viber.com/viber-for-business#public-accounts"
         },
+        "integration_partners": {
+          "title": "ইন্টিগ্রেশন পার্টনার",
+          "link": "//www.viber.com/partners"
+        },
         "promotional_stickers": {
-          "title": "Promotional Stickers",
+          "title": "প্রমোশনাল স্টিকার",
           "link": "//www.viber.com/viber-for-business#promotional-stickers"
         },
         "advertising": {
-          "title": "Advertising",
+          "title": "বিজ্ঞাপন",
           "link": "//www.viber.com/viber-for-business#viber-ads"
         },
         "resellers": {
-          "title": "Viber out resellers",
+          "title": "ভাইবার আউট রিসেলার",
           "link": "//www.viber.com/viber-for-business#viber-out"
         },
         "service_messages": {
-          "title": "Service Messages",
+          "title": "সার্ভিস মেসেজ",
           "link": "//www.viber.com/viber-for-business#service-messages"
         },
         "documentation": {
-          "title": "Documentation",
+          "title": "ডকুমেন্টেশন",
           "link": "//developers.viber.com/"
         },
         "releases": {
-          "title": "Releases",
+          "title": "রিলিজ সমূহ",
           "link": "//developers.viber.com/releases/"
         },
         "blog-dev": {
-          "title": "Blog",
+          "title": "ব্লগ",
           "link": "//developers.viber.com/blog/"
         },
         "partners": {
-          "title": "Partners",
+          "title": "পাটনার গন",
           "link": "//developers.viber.com/partners/"
         },
         "faq": {
-          "title": "FAQ",
+          "title": "এফ এ কিউ",
           "link": "//www.viber.com/faq/"
         },
         "about": {
-          "title": "About",
+          "title": "সম্পর্কে",
           "link": "//www.viber.com/about/"
         },
         "support": {
-          "title": "Support",
+          "title": "সাপোর্ট",
           "link": "//support.viber.com/"
         },
         "terms": {
-          "title": "Terms & Policies",
+          "title": "শর্ত এবং নীতি",
           "link": "//www.viber.com/terms/"
         },
         "facebook": {
-          "title": "Facebook",
+          "title": "ফেসবুক",
           "link": "//www.facebook.com/viber"
         },
         "twitter": {
-          "title": "Twitter",
+          "title": "টুইটার",
           "link": "//twitter.com/viber"
         }
       },
