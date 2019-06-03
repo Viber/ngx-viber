@@ -1,9 +1,9 @@
 import {
-  AfterContentChecked,
   AfterContentInit,
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  ContentChildren,
   ElementRef,
   EventEmitter,
   HostBinding,
@@ -12,12 +12,15 @@ import {
   OnChanges,
   OnDestroy,
   Output,
+  QueryList,
   Renderer2,
   SimpleChanges,
   ViewChild,
+  ViewContainerRef,
 } from '@angular/core';
 import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
 import {
+  BehaviorSubject,
   Observable,
   Subject,
 } from 'rxjs';
@@ -34,30 +37,31 @@ import {
   WINDOW,
   WindowWrapper,
 } from './classes/factory';
+import { ScrollItemDirective } from './scroll-item.directive';
 
 @Component({
   selector: 'vbr-scrollable',
   templateUrl: './vbr-scrollable.component.html',
   styleUrls: ['./vbr-scrollable.component.scss'],
 })
-export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, OnChanges, OnDestroy, AfterContentChecked, Scrollable {
+export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, OnChanges, OnDestroy, Scrollable {
   @Input() public usePerfectScrollbar = true;
   @Input() private items: Array<any>;
+  // @Input() private items$: Subject<any>;
   @Input() private reverseOrder: boolean;
   @Output() reachStart: EventEmitter<any> = new EventEmitter();
   @Output() reachEnd: EventEmitter<any> = new EventEmitter();
   @Output() scroll: EventEmitter<any> = new EventEmitter();
   @ViewChild(PerfectScrollbarComponent) private pScroll: PerfectScrollbarComponent;
   @ViewChild('scroller') scrollerElement: ElementRef;
-  @ViewChild('contentWrap') contentWrap: ElementRef;
-  @ViewChild('vsTemp') vsTemp: ElementRef;
-  @ViewChild('vsTempEl') vsTempEl: ElementRef;
+  @ViewChild('contentWrap', {read: ViewContainerRef}) contentWrap: ViewContainerRef;
+  @ViewChild('vsTemp', {read: ViewContainerRef}) vsTemp: ViewContainerRef;
   @HostBinding('class.loading') loading: boolean = true;
+  @ContentChildren(ScrollItemDirective) contentChildren !: QueryList<ScrollItemDirective>;
 
   public innerItems: Array<any>;
   public totalHeight = 20;
   public totalWidth = 0;
-  public chunkHeight = 0;
   public onInit: Subject<void> = new Subject();
 
   private initialized: boolean;
@@ -68,10 +72,14 @@ export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, 
    */
   private elements: Array<ElementInterface> = [];
   private nodeElements = [];
-  private nodeChunks = [];
-  private chunkNumber = 0;
+  private scrollToPosition = 0;
+  private prevHeight = 0;
   private chunks: Chunk[] = [];
-  private scrollToIndexElement;
+
+
+  private nodeStorage = [];
+
+
   /**
    * Scroller factory class, takes all the responsibility for scroller element maintaining,
    * Whether use perfect scrollbar or native element
@@ -112,35 +120,26 @@ export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, 
     this.cdr.markForCheck();
   }
 
-  ngAfterContentChecked(): void {
-    if (this.initialized) {
-      return;
-    }
+  loadContent() {
+    // this.loading = true;
 
-    this.loading = true;
-
-    const tempNodeElements = this.document.querySelectorAll('#vs-ps-temp > *');
-    this.chunkHeight = this.vsTemp.nativeElement.getBoundingClientRect().height;
+    const tempNodeElements = this.contentChildren.toArray().slice();
+    // this.chunkHeight = this.vsTemp.element.nativeElement.getBoundingClientRect().height;
 
     if (tempNodeElements.length === 0) {
       return;
     }
 
+    // this.totalHeight = this.vsTemp.element.nativeElement.getBoundingClientRect().height;
+
+
     /**
      * Set current node to scroll to, after more nodes loaded.
      * Remember scroll position.
      */
-    if (this.nodeChunks.length > 0) {
-      this.scrollToIndexElement = this.nodeChunks[0][0];
-    }
 
-    this.nodeChunks.unshift(tempNodeElements);
-
-    const tempArr = [];
-
-    this.nodeChunks.forEach(node => node.forEach((item) => tempArr.push(item)));
-
-    this.nodeElements = tempArr;
+    // this.nodeElements = [...Array.from(tempNodeElements)];
+    this.nodeElements = tempNodeElements;
 
     const images = this.document.querySelectorAll('#vs-ps-temp img');
 
@@ -151,17 +150,27 @@ export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, 
       this.imagesLoaded(images)
         .pipe(takeUntil(this.onDestroy))
         .subscribe(() => {
-          const height = this.vsTemp.nativeElement.getBoundingClientRect().height;
+          // const height = this.vsTemp.element.nativeElement.getBoundingClientRect().height;
+          // this.totalHeight = height + 20;
+
+
+          const height = this.vsTemp.element.nativeElement.getBoundingClientRect().height;
           this.totalHeight += height;
 
+          this.scrollToPosition = this.totalHeight - this.prevHeight;
+          this.prevHeight = this.totalHeight;
+
           setTimeout(() => {
-            this.processNodes(tempNodeElements);
-          }, 800);
+            this.processNodes(this.nodeElements);
+          }, 500);
         });
     } else {
       setTimeout(() => {
-        const height = this.vsTemp.nativeElement.getBoundingClientRect().height;
-        this.totalHeight += height;
+        const height = this.vsTemp.element.nativeElement.getBoundingClientRect().height;
+        this.totalHeight = height + 20;
+
+        this.scrollToPosition = this.totalHeight - this.prevHeight;
+        this.prevHeight = this.totalHeight;
 
         this.processNodes(tempNodeElements);
       }, 0);
@@ -171,11 +180,13 @@ export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.items && this.items) {
-      this.setInnerItems(this.items);
-      this.chunkNumber++;
-      this.initialized = false;
-    }
+    this.initialized = false;
+    this.setInnerItems(changes.items.currentValue);
+
+    setTimeout(() => {
+      this.loadContent();
+      this.cdr.detectChanges();
+    }, 0);
   }
 
   ngOnDestroy(): void {
@@ -207,21 +218,47 @@ export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, 
     this.scroller.scrollToBottom();
   }
 
-  /**
-   * Process newly added nodes
-   * @param nodeElements
-   */
 
   private processNodes(nodeElements) {
-    const chunkTop = this.reverseOrder ? 0 : this.totalHeight - this.chunkHeight;
-    const chunkBottom = this.reverseOrder ? this.vsTemp.nativeElement.getBoundingClientRect().height :
-      (this.totalHeight - this.chunkHeight) + this.vsTemp.nativeElement.getBoundingClientRect().height;
+    // const chunkTop = this.reverseOrder ? 0 : this.totalHeight - this.chunkHeight;
+    // const chunkBottom = this.reverseOrder ? this.vsTemp.element.nativeElement.getBoundingClientRect().height :
+    //   (this.totalHeight - this.chunkHeight) + this.vsTemp.element.nativeElement.getBoundingClientRect().height;
 
-    const newChunk = new Chunk(chunkTop, chunkBottom, this.vsTemp.nativeElement.getBoundingClientRect().height);
+    const newChunk = new Chunk();
+    let chunkHeight = 0;
 
     const elements: ElementInterface[] = [];
     nodeElements.forEach(node => {
-      const bounding = node.getBoundingClientRect();
+      const dims = {
+        height: node.getRenderElement().offsetHeight,
+      };
+      elements.push({bounding: dims, parent: node});
+    });
+
+    const prevChunkLength = this.elements.length;
+    // newChunk.elements = prevChunkLength > 0 ? elements.slice(0, elements.length - prevChunkLength) : elements;
+
+
+    newChunk.elements = prevChunkLength > 0 ? elements.slice(0, elements.length - prevChunkLength) : elements;
+
+
+    newChunk.elements.forEach(el => {
+      chunkHeight += el.bounding.height;
+    });
+
+    /**
+     * Set chunk dimensions
+     */
+    // const chunkTop = this.reverseOrder ? 0 : this.totalHeight - this.chunkHeight;
+    // const chunkBottom = this.reverseOrder ? this.vsTemp.element.nativeElement.getBoundingClientRect().height :
+    //   (this.totalHeight - this.chunkHeight) + this.vsTemp.element.nativeElement.getBoundingClientRect().height;
+
+    newChunk.setTop(0);
+    newChunk.setBottom(chunkHeight);
+    newChunk.setHeight(chunkHeight);
+
+    newChunk.elements.forEach(node => {
+      const bounding = node.parent.getRenderElement().getBoundingClientRect();
       const dims = {
         prevItemTop: bounding.top + newChunk.top,
         top: bounding.top + newChunk.top,
@@ -229,10 +266,10 @@ export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, 
         height: bounding.height,
       };
 
-      elements.push({bounding: dims, parent: node});
+      node.bounding = dims;
     });
 
-    newChunk.elements = elements;
+
     this.addChunkToChunks(newChunk);
 
     /**
@@ -243,37 +280,35 @@ export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, 
         return;
       }
       const bounding = this.elements[index].bounding;
+      node = node.vc.element.nativeElement;
 
       this.renderer.setStyle(node, 'height', bounding.height + 'px');
-      this.renderer.setStyle(node, 'transform', 'translateY(' + bounding.top + 'px)');
+      this.renderer.setStyle(node, 'top', bounding.top + 'px');
       this.renderer.setStyle(node, 'position', 'absolute');
 
-      if (node.parentNode === this.vsTemp.nativeElement) {
-        this.renderer.removeChild(this.vsTemp.nativeElement, node);
-      }
+      // if (node.parentNode === this.vsTemp.element.nativeElement) {
+      //   this.renderer.removeChild(this.vsTemp.element.nativeElement, node);
+      // }
     });
 
-    this.contentWrap.nativeElement.innerHTML = '';
+    this.contentWrap.element.nativeElement.innerHTML = '';
 
     this.appendElements();
 
     /**
      * Scroll to the position that was before loading new nodes.
      */
-    if (this.scrollToIndexElement) {
-      const style = this.scrollToIndexElement.style.transform;
-      const scrollIndex = parseInt(style.split('(')[1].split(')')[0], 10);
+    if (this.scrollToPosition !== 20 && this.scrollToPosition > 0) {
+      // const style = this.scrollToIndexElement.style.top;
+      // const scrollIndex = parseInt(style.split('(')[1].split(')')[0], 10);
 
-      this.scroller.scrollTo(scrollIndex);
-    } else {
-      if (this.reverseOrder) {
-        this.scrollToBottom();
-      }
+      this.scroller.scrollTo(this.scrollToPosition);
     }
 
     this.loading = false;
     this.onInit.next();
   }
+
 
   /**
    * Add new chunk to `this.chunks` array
@@ -281,44 +316,56 @@ export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, 
    */
   private addChunkToChunks(chunk: Chunk) {
     if (this.reverseOrder) {
-      this.chunks.unshift(chunk);
+      const exists = [];
+
+      if (this.chunks.length > 0) {
+        chunk.elements.map(el => {
+          const last = this.chunks[this.chunks.length - 1];
+          const e = last.elements.some(l => {
+            return l.parent === el.parent;
+          });
+
+          exists.push(e);
+        });
+      }
+
+      if (exists.indexOf(false) !== -1 || exists.length === 0) {
+
+        for (let i = 0; i < exists.length; i++) {
+          const v = exists[i];
+          if (v) {
+            exists.splice(i, 1);
+            chunk.elements.splice(i, 1);
+            i--;
+          }
+        }
+
+        this.chunks.unshift(chunk);
+      } else {
+        this.chunks[this.chunks.length - 1] = chunk;
+      }
 
       const chunks = [];
 
       /**
-       * Recalculate positions of all nodes
+       * Recalculate positions of all nodes and recalculate height of chunk
        */
       this.chunks.forEach((chunkItem, i) => {
         const prev = this.chunks[i - 1];
         if (prev) {
           chunkItem.top = prev.top + prev.height;
+          chunkItem.bottom = chunkItem.top + chunkItem.height;
         }
 
+        let height = 0;
+
         chunkItem.elements.forEach(el => {
-          /**
-           * Check if node size has changed
-           */
-
-          if (this.reverseOrder && i > 0) {
-            const div = this.document.createElement('div');
-            div.style.width = '100%';
-            div.style.display = 'block';
-            div.style.boxSizing = 'border-box';
-
-            div.innerHTML = el.parent.innerHTML.trim();
-            this.vsTempEl.nativeElement.appendChild(div);
-
-            el.bounding.top = chunkItem.top + el.bounding.prevItemTop;
-            el.bounding.bottom = el.bounding.top +
-              (this.vsTempEl.nativeElement.clientHeight !== 0 ? this.vsTempEl.nativeElement.clientHeight : el.bounding.bottom);
-
-            this.renderer.removeChild(this.vsTempEl.nativeElement, div);
-          } else {
-            el.bounding.top = chunkItem.top + el.bounding.prevItemTop;
-            el.bounding.bottom = el.bounding.top +
-              (this.vsTempEl.nativeElement.clientHeight !== 0 ? this.vsTempEl.nativeElement.clientHeight : el.bounding.bottom);
-          }
+          el.bounding.top = chunkItem.top + el.bounding.prevItemTop;
+          el.bounding.bottom = el.bounding.top + el.bounding.height;
+          height += el.bounding.height;
         });
+
+        chunkItem.height = height;
 
         chunks.push(chunkItem);
       });
@@ -346,6 +393,7 @@ export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, 
       this.elements = [...chunk.elements, ...this.elements];
     }
   }
+
 
   /**
    * Method that emits only when all images on the page were loaded.
@@ -382,30 +430,16 @@ export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, 
     const scrollTop = this.scroller.scrollTop;
     const nodeStorage = [];
 
-    this.chunks.forEach(chunk => {
-      const top = chunk.top - scrollTop;
-      const bottom = chunk.bottom - scrollTop;
+    const arr = this.contentChildren.toArray().slice();
 
-      const clientHeight = this.window.innerHeight || this.document.documentElement.clientHeight;
-
-      chunk.visible = (top <= 0 &&
-        bottom >= clientHeight) ||
-        (bottom <= clientHeight && bottom >= 0 ||
-          top >= 0 && top <= clientHeight);
-    });
-
-    const visibleChunks = this.chunks.filter(c => c.visible);
-    const arrElements = [];
-
-    for (const arr of visibleChunks) {
-      arrElements.push(...arr.elements);
-    }
-
-    arrElements.forEach(el => {
+    this.elements.forEach((el, index) => {
       const bounding: ClientRect = el.bounding;
       const top = bounding.top - scrollTop;
       const bottom = bounding.bottom - scrollTop;
-      const node = el.parent.cloneNode(true);
+
+
+      const node = el.parent.getRenderElement().cloneNode(true);
+
 
       node.childNodes.forEach((childNodes: HTMLElement) => {
         if (!!childNodes.querySelectorAll) {
@@ -444,19 +478,55 @@ export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, 
       }
 
       nodeStorage.push(node);
+
+
     });
 
-    this.contentWrap.nativeElement.innerHTML = '';
+    this.contentWrap.element.nativeElement.innerHTML = '';
 
-    nodeStorage.forEach((node) => {
-      if (node.innerHTML.length > 0) {
-        this.renderer.appendChild(this.contentWrap.nativeElement, node);
+    // this.contentWrap.clear();
+
+    nodeStorage.forEach((node, i) => {
+      const item: ScrollItemDirective = arr[i];
+      let renderElement;
+      if (item) {
+        renderElement = item.getRenderElement();
+      }
+
+      if (node.childElementCount > 0) {
+        // const factory = this.resolver.resolveComponentFactory(item.getComponent());
+
+        // const tmpCmp = item.getComponent();
+        // const tmpModule = NgModule({declarations: [tmpCmp], entryComponents:[tmpCmp]})(class {
+        // });
+
+        // this.compiler.compileModuleAndAllComponentsAsync(tmpModule)
+        //   .then(factories => {
+        //     const f = factories.componentFactories[0];
+        //     const cmpRef = this.contentWrap.createComponent(f);
+        //     cmpRef.instance.name = 'dynamic';
+        //   });
+
+        // this.contentWrap.createComponent(item.getComponent());
+
+
+        if (renderElement) {
+          const wrap = this.contentWrap.element.nativeElement;
+          const el = renderElement.cloneNode(true);
+          this.renderer.appendChild(this.contentWrap.element.nativeElement, renderElement);
+          this.nodeStorage.push(el);
+        }
       } else {
-        if (this.contentWrap.nativeElement.contains(node)) {
-          this.renderer.removeChild(this.contentWrap.nativeElement, node);
+        const storage = this.nodeStorage;
+
+
+        if (this.contentWrap.element.nativeElement.contains(renderElement)) {
+          this.renderer.removeChild(this.contentWrap.element.nativeElement, renderElement);
         }
       }
     });
+
+    // this.setInnerItems([]);
   }
 
   private setInnerItems(items: Array<any>) {
