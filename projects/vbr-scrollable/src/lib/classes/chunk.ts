@@ -1,4 +1,4 @@
-export interface ChunkInterface {
+interface ChunkInterface {
   top: number;
   bottom: number;
   height: number;
@@ -17,9 +17,15 @@ export class Chunk implements ChunkInterface {
   visible: boolean;
   elements: Array<ElementInterface>;
 
-  constructor(top, bottom, height) {
+  setTop(top) {
     this.top = top;
+  }
+
+  setBottom(bottom) {
     this.bottom = bottom;
+  }
+
+  setHeight(height) {
     this.height = height;
   }
 }

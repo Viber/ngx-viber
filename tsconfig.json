@@ -72,6 +72,12 @@
       ],
       "@viberlab/pulsar/*": [
         "dist/vbr-pulsar/*"
+      ],
+      "vbr-scrollable": [
+        "dist/vbr-scrollable"
+      ],
+      "vbr-scrollable/*": [
+        "dist/vbr-scrollable/*"
       ]
     }
   }

@@ -13,10 +13,10 @@ import { VbrPageComponent } from './page/page.component';
 import { VbrHeaderComponent } from './header/header.component';
 import { VbrPageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { VbrFooterComponent } from './footer/footer.component';
-import { VbrTranslateModule } from '@viberlab/translate';
 import { TranslateModule } from '@ngx-translate/core';
 import { VbrLanguagesSwitchComponent } from './languages-switch/languages-switch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { VbrTranslateModule } from '../../../vbr-translate/src/lib/translate.module';
 
 @NgModule({
   imports: [
