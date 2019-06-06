@@ -3,8 +3,8 @@
   "version": "7.0.0",
   "author": "ViberLab",
   "homepage": "https://github.com/Viber/ngx-viber",
-  "description": "Viber Tools for ngx-translate - Extended version of ngx-translate TranslatePipe",
-  "license": "MIT",
+  "description": "Viber Tools for ngx-translate - Extended version for ngx-translate TranslatePipe",
+  "license": "Apache-2.0",
   "peerDependencies": {
     "@angular/core": ">=6.0.0",
     "@ngx-translate/core": ">=10.0.0",

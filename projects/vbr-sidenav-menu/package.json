@@ -3,7 +3,7 @@
   "version": "7.0.0",
   "author": "ViberLab",
   "description": "Viber Tools - Material Sidenav Menu component",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "peerDependencies": {
     "@angular/common": ">=6.0.0",
     "@angular/core": ">=6.0.0",
