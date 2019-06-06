@@ -1,6 +1,6 @@
 {
   "name": "@viberlab/translate-pipe",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "author": "ViberLab",
   "homepage": "https://github.com/Viber/ngx-viber",
   "description": "Viber Tools for ngx-translate - Extended version for ngx-translate TranslatePipe",

@@ -17,24 +17,28 @@ import {
   TranslateService,
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { VbrInputKeyboardModule } from '@viberlab/input-keyboard';
 import { VbrLayoutModule } from '@viberlab/layout';
+import { VbrPulsarService } from '@viberlab/pulsar';
+import { VbrSidenavMenuModule } from '@viberlab/sidenav-menu';
 import { VbrSquircleModule } from '@viberlab/squircle';
+import {
+  VbrLanguageInfoService,
+  VbrTranslateModule,
+} from '@viberlab/translate';
+import { VbrTranslateLoader } from '@viberlab/translate-loader';
+import { VbrTranslatePipeModule } from '@viberlab/translate-pipe';
 
 import { AppComponent } from './app.component';
 import { VbrInputKeyboardDemoComponent } from './input-keyboard-demo/input-keyboard-demo.component';
 import { VbrLayoutDemoComponent } from './layout-demo/layout-demo.component';
 import { VbrPulsarDemoComponent } from './pulsar-demo/pulsar-demo.component';
 import { AppRoutingModule } from './routing.module';
-import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
 import { VbrSidenavMenuDemoComponent } from './sidenav-menu-demo/vbr-sidenav-menu-demo.component';
 import { VbrSquircleDemoComponent } from './squircle-demo/vbr-squircle-demo.component';
-import { VbrPulsarService } from '../../projects/vbr-pulsar/src/lib/serives/vbr-pulsar.service';
-import { VbrInputKeyboardModule } from '../../projects/vbr-input-keyboard/src/lib/vbr-input-keyboard.module';
-import { VbrTranslateLoader } from '../../projects/vbr-translate-loader/src/lib/translate-loader';
-import { VbrTranslateModule } from '../../projects/vbr-translate/src/lib/translate.module';
-import { VbrTranslatePipeModule } from '../../projects/vbr-translate-pipe/src/lib/translate-pipe.module';
-import { VbrSidenavMenuModule } from '../../projects/vbr-sidenav-menu/src/public_api';
-import { VbrLanguageInfoService } from '../../projects/vbr-translate/src/lib/services/language-info.service';
+import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
+
 
 @NgModule({
   declarations: [
