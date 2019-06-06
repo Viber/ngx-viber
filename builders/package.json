@@ -1,9 +1,10 @@
 {
   "name": "@viberlab/builders",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "ViberLab",
+  "homepage": "https://github.com/Viber/ngx-viber",
   "description": "Viber builders",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "builders": "builders.json",
   "scripts": {
     "build": "./build.sh",
