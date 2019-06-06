@@ -1,0 +1,14 @@
+{
+  "name": "@viberlab/scrollable",
+  "version": "0.0.1-alpha.6",
+  "author": "ViberLab",
+  "homepage": "https://github.com/Viber/ngx-viber",
+  "description": "Viber Utils",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@angular/common": "^7.2.15",
+    "@angular/core": "^7.2.15",
+    "rxjs": ">=6.0.0",
+    "ngx-perfect-scrollbar": "^7.2.1"
+  }
+}

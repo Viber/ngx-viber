@@ -1,0 +1,34 @@
+:host {
+  height: 100%;
+  width: inherit;
+  display: block;
+
+  &.loading {
+    pointer-events: none;
+  }
+}
+
+.total-height {
+  position: relative;
+  float: left;
+  left: 0;
+  top: 0;
+  width: 0;
+}
+
+.content-wrap {
+  position: relative;
+  //z-index: -1;
+}
+
+#vs-ps-temp, #vs-temp-el {
+  position: fixed;
+  top: 0;
+  left: -9999px;
+  width: 100%;
+}
+
+#scroller {
+  overflow-y: scroll;
+  height: 100%;
+}

@@ -1,0 +1,15 @@
+<perfect-scrollbar
+    *ngIf="usePerfectScrollbar; else noPs;">
+  <div class="total-height" [ngStyle]="{height: totalHeight + 'px'}"></div>
+  <div #contentWrap class="content-wrap"></div>
+</perfect-scrollbar>
+<div #vsTemp id="vs-ps-temp" [ngStyle]="{width: totalWidth + 'px'}">
+  <ng-content></ng-content>
+</div>
+
+<ng-template #noPs>
+  <div #scroller id="scroller">
+    <div class="total-height" [ngStyle]="{height: totalHeight + 'px'}"></div>
+    <div #contentWrap class="content-wrap"></div>
+  </div>
+</ng-template>

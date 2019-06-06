@@ -1,3 +1,9 @@
+# 7.0.3 (2019-05-23)
+
+| Task | Feature |
+| ---- | ---- |
+| --- | VbrLanguageInfoService now have .languages as VBR_TRANSLATE_LANGUAGES_INFO filtered by VBR_TRANSLATE_ALLOWED_LANGUAGES |
+
 # 7.0.2 (2019-05-23)
 
 | Task | Feature |
