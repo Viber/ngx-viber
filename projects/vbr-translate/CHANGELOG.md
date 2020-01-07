@@ -1,3 +1,10 @@
+# 7.0.5 (2019-12-09)
+
+| Task | Feature |
+| ---- | ---- |
+| **WAD-2012** | Added Tamil and Sinhala languages |
+
+
 # 7.0.3 (2019-05-23)
 
 | Task | Feature |
