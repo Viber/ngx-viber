@@ -1,0 +1,95 @@
+﻿{
+  "vbr-layout": {
+    "footer": {
+      "titles": {
+        "viber": "Viber",
+        "business": "வர்த்தகம்",
+        "developers": "டெவலப்பர்கள்",
+        "general": "பொதுவானவை"
+      },
+      "elements": {
+        "get_viber": {
+          "title": "Viber ஐப் பெறுக",
+          "link": "//www.viber.com/"
+        },
+        "viber_out": {
+          "title": "Viber அவுட்",
+          "link": "//account.viber.com/en/"
+        },
+        "blog": {
+          "title": "வலைப்பதிவு",
+          "link": "//www.viber.com/blog/"
+        },
+        "media_kit": {
+          "title": "மீடியா கிட்",
+          "link": "//www.viber.com/media-kit/"
+        },
+        "discover": {
+          "title": "உள்ளடக்கம் & பிராண்டுகளைக் கண்டுபிடி",
+          "link": "//discover.viber.com/"
+        },
+        "public_accounts": {
+          "title": "பொதுக்கணக்குகள்",
+          "link": "//www.viber.com/viber-for-business#public-accounts"
+        },
+        "promotional_stickers": {
+          "title": "புரமோஷனல் ஸ்டிக்கர்கள்",
+          "link": "//www.viber.com/viber-for-business#promotional-stickers"
+        },
+        "advertising": {
+          "title": "விளம்பரம்",
+          "link": "//www.viber.com/viber-for-business#viber-ads"
+        },
+        "resellers": {
+          "title": "Viber அவுட் மறுவிற்பனையாளர்கள்",
+          "link": "//www.viber.com/viber-for-business#viber-out"
+        },
+        "service_messages": {
+          "title": "சேவை செய்திகள்",
+          "link": "//www.viber.com/viber-for-business#service-messages"
+        },
+        "documentation": {
+          "title": "ஆவணமாக்கல்",
+          "link": "//developers.viber.com/"
+        },
+        "releases": {
+          "title": "வெளியீடுகள்",
+          "link": "//developers.viber.com/releases/"
+        },
+        "blog-dev": {
+          "title": "வலைப்பதிவு",
+          "link": "//developers.viber.com/blog/"
+        },
+        "partners": {
+          "title": "கூட்டாளிகள்",
+          "link": "//developers.viber.com/partners/"
+        },
+        "faq": {
+          "title": "FAQ",
+          "link": "//www.viber.com/faq/"
+        },
+        "about": {
+          "title": "சுருக்கவிவரம்",
+          "link": "//www.viber.com/about/"
+        },
+        "support": {
+          "title": "உதவி",
+          "link": "//support.viber.com/"
+        },
+        "terms": {
+          "title": "விதிகள் & கொள்கைகள்",
+          "link": "//www.viber.com/terms/"
+        },
+        "facebook": {
+          "title": "Facebook",
+          "link": "//www.facebook.com/viber"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "link": "//twitter.com/viber"
+        }
+      },
+      "copyright": "©2016 {{year}} Viber மீடியா S.a.r.l."
+    }
+  }
+}
