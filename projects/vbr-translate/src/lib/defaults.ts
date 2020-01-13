@@ -26,6 +26,7 @@ export const VbrAllLanguages: Array<VbrLanguage> = [
   {lang: 'Български', short: 'Бг', code: 'bg'},
   {lang: 'தமிழ்', short: 'tam', code: 'ta'},
   {lang: 'Türkçe', short: 'TR', code: 'tr'},
+  {lang: 'नेपाली', short: 'नेपा', code: 'ne'},
   {lang: 'Norsk', short: 'NO', code: 'no'},
   {lang: 'Español', short: 'Es', code: 'es'},
   {lang: 'Català', short: 'CAT', code: 'ca'},
@@ -43,7 +44,7 @@ export const VbrAllLanguages: Array<VbrLanguage> = [
   {lang: 'ภาษาไทย', short: 'ไทย', code: 'th'},
   {lang: '简体中文', short: '简中', code: 'zh-CN'},
   {lang: '繁體中文', short: '繁中', code: 'zh-TW'},
-  {lang: '한국어', short: 'ko', code: 'ko'},
+  {lang: '한국어', short: 'ko', code: 'ko'}
 ];
 
 export const VbrSupportedLanguageCodes: Array<string> = [

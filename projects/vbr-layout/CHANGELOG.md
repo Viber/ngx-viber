@@ -1,3 +1,10 @@
+# 7.0.4 (2019-12-09)
+
+| Task | Feature |
+| ---- | ---- |
+| **WAD-2020** | Added Nepalese language. |
+
+
 # 7.0.3 (2019-12-09)
 
 | Task | Feature |

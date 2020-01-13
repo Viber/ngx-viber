@@ -1,0 +1,95 @@
+{
+  "vbr-layout": {
+    "footer": {
+      "titles": {
+        "viber": "Viber",
+        "business": "बिजनेस",
+        "developers": "डेभलपरहरू",
+        "general": "सामान्य"
+      },
+      "elements": {
+        "get_viber": {
+          "title": "Viber प्राप्त गर्नुहोस्",
+          "link": "//www.viber.com/"
+        },
+        "viber_out": {
+          "title": "Viber Out",
+          "link": "//account.viber.com/en/"
+        },
+        "blog": {
+          "title": "ब्लग",
+          "link": "//www.viber.com/blog/"
+        },
+        "media_kit": {
+          "title": "मिडिया किट",
+          "link": "//www.viber.com/media-kit/"
+        },
+        "discover": {
+          "title": "सामग्री तथा ब्राण्डहरू पत्ता लगाउनुहोस्",
+          "link": "//discover.viber.com/"
+        },
+        "public_accounts": {
+          "title": "सार्वजनिक एकाउन्टहरू",
+          "link": "//www.viber.com/viber-for-business#public-accounts"
+        },
+        "promotional_stickers": {
+          "title": "प्रवर्द्धनात्मक स्टिकरहरू",
+          "link": "//www.viber.com/viber-for-business#promotional-stickers"
+        },
+        "advertising": {
+          "title": "विज्ञापन",
+          "link": "//www.viber.com/viber-for-business#viber-ads"
+        },
+        "resellers": {
+          "title": "Viber Out रिसेलरहरू",
+          "link": "//www.viber.com/viber-for-business#viber-out"
+        },
+        "service_messages": {
+          "title": "सेवा सन्देशहरू",
+          "link": "//www.viber.com/viber-for-business#service-messages"
+        },
+        "documentation": {
+          "title": "कागजपत्रहरू",
+          "link": "//developers.viber.com/"
+        },
+        "releases": {
+          "title": "प्रकाशनहरू",
+          "link": "//developers.viber.com/releases/"
+        },
+        "blog-dev": {
+          "title": "ब्लग",
+          "link": "//developers.viber.com/blog/"
+        },
+        "partners": {
+          "title": "साझेदारहरू",
+          "link": "//developers.viber.com/partners/"
+        },
+        "faq": {
+          "title": "प्राय: सोधिने प्रश्नहरू",
+          "link": "//www.viber.com/faq/"
+        },
+        "about": {
+          "title": "बारेमा",
+          "link": "//www.viber.com/about/"
+        },
+        "support": {
+          "title": "सपोर्ट",
+          "link": "//support.viber.com/"
+        },
+        "terms": {
+          "title": "शर्त तथा नीतिहरू",
+          "link": "//www.viber.com/terms/"
+        },
+        "facebook": {
+          "title": "Facebook",
+          "link": "//www.facebook.com/viber"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "link": "//twitter.com/viber"
+        }
+      },
+      "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+    }
+  }
+}
