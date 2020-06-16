@@ -1,3 +1,10 @@
+# 7.0.7 (2020-06-15)
+
+| Task | Feature |
+| ---- | ---- |
+| **WAD-1930** | Added Burmese language in two different character codes. |
+
+
 # 7.0.6 (2019-01-07)
 
 | Task | Feature |
