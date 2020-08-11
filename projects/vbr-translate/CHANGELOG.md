@@ -1,3 +1,10 @@
+# 7.0.8 (2020-06-15)
+
+| Task | Feature |
+| ---- | ---- |
+| **WAD-1930** | Changed Burmese languages in drop down menu. |
+
+
 # 7.0.7 (2020-06-15)
 
 | Task | Feature |
