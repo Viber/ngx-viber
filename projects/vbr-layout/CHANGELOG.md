@@ -1,3 +1,10 @@
+# 7.0.6 (2020-08-17)
+
+| Task | Feature |
+| ---- | ---- |
+| **WAD-2065** | Removed discover references. |
+
+
 # 7.0.5 (2020-06-15)
 
 | Task | Feature |

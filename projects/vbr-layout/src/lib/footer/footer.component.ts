@@ -11,7 +11,7 @@ export class VbrFooterComponent {
   public FOOTER_ELEMENTS = [
     {
       title: 'viber',
-      elements: ['get_viber', 'viber_out', 'blog', 'media_kit', 'discover']
+      elements: ['get_viber', 'viber_out', 'blog', 'media_kit']
     },
     {
       title: 'business',
