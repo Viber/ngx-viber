@@ -1,3 +1,10 @@
+# 7.0.7 (2020-08-24)
+
+| Task | Feature |
+| ---- | ---- |
+| **WAD-2069** | Changed header to support custom viber logo image. |
+
+
 # 7.0.6 (2020-08-17)
 
 | Task | Feature |

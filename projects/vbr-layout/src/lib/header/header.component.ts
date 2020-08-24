@@ -8,4 +8,5 @@ import {Component, Input} from '@angular/core';
 
 export class VbrHeaderComponent {
   @Input() logoAltText = '';
+  @Input() imgSrc = 'assets/@viberlab/layout/img/viber_logo.svg'
 }
