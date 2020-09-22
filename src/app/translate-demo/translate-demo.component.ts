@@ -11,7 +11,7 @@ export class VbrTranslateDemoComponent {
 
   public paramName = 'start.parameter';
 
-  private data: any = {super: 'Initial'};
+  public data: any = {super: 'Initial'};
 
   constructor(public translate: TranslateService) {
     this.translate.use('en');

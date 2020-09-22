@@ -21,10 +21,10 @@ export class VbrSquircleComponent implements OnInit, AfterViewInit {
   @Input() size: string | number = 100;
   @Input() placeholder: string;
   // @Input() bg: string;
-  @ViewChild('squircle', { static: false }) squircle: ElementRef;
-  @ViewChild('sqWrap', { static: false }) sqWrap: ElementRef;
-  @ViewChild('inner', { static: false }) inner: ElementRef;
-  @ViewChild('innerSrc', { static: false }) innerSrc: ElementRef;
+  @ViewChild('squircle') squircle: ElementRef;
+  @ViewChild('sqWrap') sqWrap: ElementRef;
+  @ViewChild('inner') inner: ElementRef;
+  @ViewChild('innerSrc') innerSrc: ElementRef;
 
   isMS: boolean = false;
 

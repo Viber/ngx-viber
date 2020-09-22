@@ -56,7 +56,7 @@ export interface VbrTranslateModuleConfig {
 })
 
 export class VbrTranslateModule {
-  static forRoot(config: VbrTranslateModuleConfig = {}): ModuleWithProviders {
+  static forRoot(config: VbrTranslateModuleConfig = {}): ModuleWithProviders<VbrTranslateModule> {
     return {
       ngModule: VbrTranslateModule,
       providers: [

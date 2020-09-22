@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/libs",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -34,6 +35,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -137,7 +144,8 @@
           "configurations": {
             "production": {
               "project": "projects/vbr-storage/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/vbr-storage/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {
@@ -177,7 +185,8 @@
           "configurations": {
             "production": {
               "project": "projects/vbr-input-keyboard/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/vbr-input-keyboard/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {
@@ -217,7 +226,8 @@
           "configurations": {
             "production": {
               "project": "projects/vbr-translate/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/vbr-translate/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {
@@ -257,7 +267,8 @@
           "configurations": {
             "production": {
               "project": "projects/vbr-translate-loader/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/vbr-translate-loader/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {
@@ -297,7 +308,8 @@
           "configurations": {
             "production": {
               "project": "projects/vbr-translate-pipe/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/vbr-translate-pipe/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {
@@ -337,7 +349,8 @@
           "configurations": {
             "production": {
               "project": "projects/vbr-sidenav-menu/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/vbr-sidenav-menu/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {
@@ -377,7 +390,8 @@
           "configurations": {
             "production": {
               "project": "projects/vbr-layout/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/vbr-layout/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {
@@ -417,7 +431,8 @@
           "configurations": {
             "production": {
               "project": "projects/vbr-squircle/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/vbr-squircle/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {
@@ -457,7 +472,8 @@
           "configurations": {
             "production": {
               "project": "projects/vbr-pulsar/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/vbr-pulsar/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {
@@ -497,7 +513,8 @@
           "configurations": {
             "production": {
               "project": "projects/vbr-scrollable/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/vbr-scrollable/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {

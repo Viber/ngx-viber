@@ -17,7 +17,7 @@ export interface VbrStorageModuleConfig {
   ]
 })
 export class VbrStorageModule {
-  static forRoot(config: VbrStorageModuleConfig = {}): ModuleWithProviders {
+  static forRoot(config: VbrStorageModuleConfig = {}): ModuleWithProviders<VbrStorageModule> {
     return {
       ngModule: VbrStorageModule,
       providers: [
