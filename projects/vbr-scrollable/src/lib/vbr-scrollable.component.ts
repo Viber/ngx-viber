@@ -52,10 +52,10 @@ export class VbrScrollableComponent implements AfterViewInit, AfterContentInit, 
   @Output() reachStart: EventEmitter<any> = new EventEmitter();
   @Output() reachEnd: EventEmitter<any> = new EventEmitter();
   @Output() scroll: EventEmitter<any> = new EventEmitter();
-  @ViewChild(PerfectScrollbarComponent) private pScroll: PerfectScrollbarComponent;
-  @ViewChild('scroller') scrollerElement: ElementRef;
-  @ViewChild('contentWrap', {read: ViewContainerRef}) contentWrap: ViewContainerRef;
-  @ViewChild('vsTemp', {read: ViewContainerRef}) vsTemp: ViewContainerRef;
+  @ViewChild(PerfectScrollbarComponent, { static: false }) private pScroll: PerfectScrollbarComponent;
+  @ViewChild('scroller', { static: false }) scrollerElement: ElementRef;
+  @ViewChild('contentWrap', { read: ViewContainerRef, static: false }) contentWrap: ViewContainerRef;
+  @ViewChild('vsTemp', { read: ViewContainerRef, static: true }) vsTemp: ViewContainerRef;
   @HostBinding('class.loading') loading: boolean = true;
   @ContentChildren(ScrollItemDirective) contentChildren !: QueryList<ScrollItemDirective>;
 
