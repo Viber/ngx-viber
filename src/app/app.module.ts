@@ -18,9 +18,9 @@ import {
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { VbrInputKeyboardModule } from '@viberlab/input-keyboard';
+import { VbrInputKeyboardModule } from '../../projects/vbr-input-keyboard/src/lib/vbr-input-keyboard.module';
 import { VbrLayoutModule } from '@viberlab/layout';
-import { VbrPulsarService } from '@viberlab/pulsar';
+import { VbrPulsarService } from '../../projects/vbr-pulsar/src/lib/serives/vbr-pulsar.service';
 import { VbrSidenavMenuModule } from '@viberlab/sidenav-menu';
 import { VbrSquircleModule } from '@viberlab/squircle';
 import {

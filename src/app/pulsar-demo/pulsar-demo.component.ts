@@ -5,7 +5,7 @@ import {
 import {
   rxjsVbrPulsar,
   VbrPulsarService,
-} from '@viberlab/pulsar';
+} from '../../../projects/vbr-pulsar/src/lib/serives/vbr-pulsar.service';
 import {
   from,
   of,

@@ -5,7 +5,7 @@ import {
   FormControl,
   FormGroup
 } from '@angular/forms';
-import { VbrInputReplaceType } from '@viberlab/input-keyboard';
+import { VbrInputReplaceType } from '../../../projects/vbr-input-keyboard/src/lib/vbr-input-keyboard-replace.directive';
 
 @Component({
   selector: 'input-keyboard-demo',
