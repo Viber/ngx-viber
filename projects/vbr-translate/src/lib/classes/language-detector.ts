@@ -1,7 +1,6 @@
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { ParamMap, Router, RoutesRecognized } from '@angular/router';
+import {ParamMap, Router, RouterEvent, RoutesRecognized} from '@angular/router';
 import { filter, first, map } from 'rxjs/operators';
-import { RouterEvent } from '@angular/router/src/events';
 
 /**
  * Allows to add custom language for initial language detection

@@ -1,32 +1,10 @@
-import {
-  Architect,
-  BuilderContext
-} from '@angular-devkit/architect';
-import {
-  experimental,
-  logging,
-  normalize,
-  Path,
-  virtualFs
-} from '@angular-devkit/core';
-import { NodeJsSyncHost } from '@angular-devkit/core/node';
-import {
-  unlink,
-  writeFile
-} from 'fs';
-import {
-  bindNodeCallback,
-  merge
-} from 'rxjs';
-import {
-  concatMap,
-  map,
-  tap
-} from 'rxjs/operators';
-import JsonValidatorBuilder, {
-  CheckedFile,
-  JsonStatuses
-} from '../src/json-validator';
+import {Architect, BuilderContext} from '@angular-devkit/architect';
+import {experimental, logging, normalize, Path, virtualFs} from '@angular-devkit/core';
+import {NodeJsSyncHost} from '@angular-devkit/core/node';
+import {unlink, writeFile} from 'fs';
+import {bindNodeCallback, merge} from 'rxjs';
+import {concatMap, map, tap} from 'rxjs/operators';
+import JsonValidatorBuilder, {CheckedFile, JsonStatuses} from '../src/json-validator';
 
 interface BrowserTargetOptions {
   browserOption: number;

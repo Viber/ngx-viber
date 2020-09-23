@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule, MatListModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { VbrHideSecureDirective } from './directives/secured.directive';
 import { AsyncOrNotPipe } from './pipes/async-or-not.pipe';

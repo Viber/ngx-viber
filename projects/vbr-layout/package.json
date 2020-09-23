@@ -6,14 +6,15 @@
   "description": "Viber - Layout Components",
   "license": "Apache-2.0",
   "dependencies": {
-    "normalize.css": "^8.0.0"
+    "normalize.css": "^8.0.0",
+    "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/common": ">=6.0.0",
-    "@angular/core": ">=6.0.0",
-    "@angular/material": ">=6.0.0",
-    "@angular/router": ">=6.0.0",
-    "@angular/forms": ">=6.0.0",
+    "@angular/common": ">=10.0.0",
+    "@angular/core": ">=10.0.0",
+    "@angular/mvbr-layout\nvbr-sidenav-menu\nvbr-translate\nvbr-translate-pipeaterial": ">=10.0.0",
+    "@angular/router": ">=10.0.0",
+    "@angular/forms": ">=10.0.0",
     "@viberlab/translate": "=>7.0.0",
     "@viberlab/translate-pipe": "=>7.0.0",
     "@ngx-translate/core": ">=10.0.0",

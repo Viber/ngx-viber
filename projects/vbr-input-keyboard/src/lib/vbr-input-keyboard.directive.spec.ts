@@ -2,7 +2,8 @@ import { async, TestBed } from '@angular/core/testing';
 import { FormControl, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { VbrInputKeyboardFilterDirective } from './vbr-input-keyboard-filter.directive';
 import { VbrInputKeyboardReplaceDirective, VbrInputReplaceType } from './vbr-input-keyboard-replace.directive';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ElementRef } from '@angular/core';
 

@@ -5,10 +5,13 @@
   "homepage": "https://github.com/Viber/ngx-viber",
   "description": "Viber Tools for ngx-translate",
   "license": "Apache-2.0",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
-    "@angular/common": ">=6.0.0",
-    "@angular/core": ">=6.0.0",
-    "@angular/router": ">=6.0.0",
+    "@angular/common": ">=10.0.0",
+    "@angular/core": ">=10.0.0",
+    "@angular/router": ">=10.0.0",
     "@ngx-translate/core": ">=10.0.0",
     "rxjs": ">=6.0.0"
   }

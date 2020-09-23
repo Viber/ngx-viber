@@ -5,8 +5,11 @@
   "homepage": "https://github.com/Viber/ngx-viber",
   "description": "Viber Tools for ngx-translate - Multisource Translate Loader",
   "license": "Apache-2.0",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
-    "@angular/core": ">=6.0.0",
+    "@angular/core": ">=10.0.0",
     "@ngx-translate/core": ">=10.0.0",
     "rxjs": ">=6.0.0"
   }

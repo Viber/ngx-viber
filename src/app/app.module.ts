@@ -4,11 +4,6 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import {
-  MatButtonModule,
-  MatFormFieldModule,
-  MatInputModule,
-} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -38,6 +33,9 @@ import { AppRoutingModule } from './routing.module';
 import { VbrSidenavMenuDemoComponent } from './sidenav-menu-demo/vbr-sidenav-menu-demo.component';
 import { VbrSquircleDemoComponent } from './squircle-demo/vbr-squircle-demo.component';
 import { VbrTranslateDemoComponent } from './translate-demo/translate-demo.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
