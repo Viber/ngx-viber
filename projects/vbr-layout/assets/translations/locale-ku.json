@@ -1,0 +1,95 @@
+{
+  "vbr-layout": {
+    "footer": {
+      "titles": {
+        "viber": "Viber",
+        "business": "بازرگانی",
+        "developers": "گەشەپێدەران",
+        "general": "گشتی"
+      },
+      "elements": {
+        "get_viber": {
+          "title": "Viber بەدەستبهێنە",
+          "link": "//www.viber.com/"
+        },
+        "viber_out": {
+          "title": "Viber Out",
+          "link": "//account.viber.com/en/"
+        },
+        "blog": {
+          "title": "Blog",
+          "link": "//www.viber.com/blog/"
+        },
+        "media_kit": {
+          "title": "کەرەسەی میدیا",
+          "link": "//www.viber.com/media-kit/"
+        },
+        "discover": {
+          "title": "براند و بابەتەکان بدۆزەرەوە",
+          "link": "//discover.viber.com/"
+        },
+        "public_accounts": {
+          "title": "ئەکاونتە گشتیەکان",
+          "link": "//www.viber.com/viber-for-business#public-accounts"
+        },
+        "promotional_stickers": {
+          "title": "لکێنەری نرخ داشکێنراو",
+          "link": "//www.viber.com/viber-for-business#promotional-stickers"
+        },
+        "advertising": {
+          "title": "ڕیکلام کردن",
+          "link": "//www.viber.com/viber-for-business#viber-ads"
+        },
+        "resellers": {
+          "title": "فرۆشیارەکانی Viber Out",
+          "link": "//www.viber.com/viber-for-business#viber-out"
+        },
+        "service_messages": {
+          "title": "پەیامەکانی خزمەتگوزاری",
+          "link": "//www.viber.com/viber-for-business#service-messages"
+        },
+        "documentation": {
+          "title": "بەڵگەنامە",
+          "link": "//developers.viber.com/"
+        },
+        "releases": {
+          "title": "بڵاوکراوەکان",
+          "link": "//developers.viber.com/releases/"
+        },
+        "blog-dev": {
+          "title": "Blog",
+          "link": "//developers.viber.com/blog/"
+        },
+        "partners": {
+          "title": "هاوبەشەکان",
+          "link": "//developers.viber.com/partners/"
+        },
+        "faq": {
+          "title": "پرسیارە گشتییەکان",
+          "link": "//www.viber.com/faq/"
+        },
+        "about": {
+          "title": "دەربارە",
+          "link": "//www.viber.com/about/"
+        },
+        "support": {
+          "title": "یارمەتیی",
+          "link": "//support.viber.com/"
+        },
+        "terms": {
+          "title": "بەند و ڕێساکان",
+          "link": "//www.viber.com/terms/"
+        },
+        "facebook": {
+          "title": "Facebook",
+          "link": "//www.facebook.com/viber"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "link": "//twitter.com/viber"
+        }
+      },
+      "copyright": "© 2016-{{year}} Viber Media S.à r.l."
+    }
+  }
+}

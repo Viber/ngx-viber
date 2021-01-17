@@ -1,3 +1,10 @@
+# 7.0.8 (2021-01-17)
+
+| Task | Feature |
+| ---- | ---- |
+| **WAD-2103** | Localization for Kurdish |
+
+
 # 7.0.7 (2020-08-24)
 
 | Task | Feature |
