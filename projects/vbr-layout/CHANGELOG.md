@@ -1,3 +1,10 @@
+# 10.0.0 (2021-01-19)
+
+| Task | Feature |
+| ---- | ----- |
+| **WAD-2204** | Upgrade angular to version 10 |
+
+
 # 7.0.7 (2020-08-24)
 
 | Task | Feature |
